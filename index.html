@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NSKHub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FF5733',
+            primaryLight: '#FF8C66',
+            primaryDark: '#CC4529',
+            secondary: '#3A3A3A',
+            background: '#1A1A1A',
+            surface: '#2A2A2A',
+            textPrimary: '#F5F5F5',
+            textSecondary: '#B0B0B0',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background: linear-gradient(180deg, #1A1A1A 0%, #2A2A2A 100%);
+      color: #F5F5F5;
+      font-family: 'Lexend', sans-serif;
+      animation: fadeIn 0.8s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    header {
+      background: linear-gradient(90deg, #2A2A2A 0%, #3A3A3A 100%);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 3px solid #FF5733;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+    .banner-card {
+      background: linear-gradient(135deg, #333333 0%, #2A2A2A 100%);
+      border: 1px solid #444;
+      border-radius: 12px;
+      padding: 1.75rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease, transform 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    .banner-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+      border-color: #FF5733;
+    }
+    .banner-icon {
+      background: linear-gradient(135deg, #FF5733 0%, #FF8C66 100%);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 4px 10px rgba(255, 87, 51, 0.4);
+    }
+    .banner-icon i {
+        font-size: 1.75rem;
+        color: #FFFFFF;
+    }
+    .banner-card h2 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: #F5F5F5;
+        text-align: center;
+    }
+    .banner-card ul {
+        flex-grow: 1;
+    }
+    .banner-card li {
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid #3A3A3A;
+    }
+    .banner-card li:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+    .nav-link {
+      color: #F5F5F5;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+    }
+    .nav-link i {
+        margin-right: 8px;
+        font-size: 0.9em;
+        min-width: 20px;
+        text-align: center;
+    }
+    .nav-link:hover {
+      color: #FF8C66;
+      text-decoration: none;
+    }
+    .nav-link:hover i {
+        transform: translateX(3px);
+    }
+    .btn-primary {
+      background: linear-gradient(90deg, #FF5733 0%, #FF8C66 100%);
+      color: #FFFFFF;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 87, 51, 0.4);
+    }
+    .btn-primary i {
+        margin-right: 8px;
+    }
+    .font-size-toggle span {
+      cursor: pointer;
+      margin: 0 0.4rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      color: #F5F5F5;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+    .font-size-toggle span:hover {
+      background-color: rgba(255, 87, 51, 0.2);
+      color: #FF8C66;
+    }
+    .search-block {
+      position: relative;
+    }
+    .search-input {
+      background: #2A2A2A;
+      color: #F5F5F5;
+      border: 2px solid #444;
+      border-radius: 30px;
+      padding: 0.6rem 1rem 0.6rem 2.5rem;
+      font-size: 0.95rem;
+      font-family: 'Lexend', sans-serif;
+      transition: all 0.3s ease;
+      width: 100%;
+      max-width: 250px;
+    }
+    .search-input:focus {
+      border-color: #FF5733;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255, 87, 51, 0.2);
+    }
+    .search-icon {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #B0B0B0;
+    }
+    footer {
+      background: linear-gradient(90deg, #2A2A2A 0%, #3A3A3A 100%);
+      border-top: 3px solid #FF5733;
+      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+    }
+    .footer-section h3 {
+        color: #FF5733;
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #444;
+        padding-bottom: 0.5rem;
+    }
+    .footer-link {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #B0B0B0;
+        transition: color 0.2s ease;
+    }
+    .footer-link:hover {
+        color: #FF8C66;
+        text-decoration: underline;
+    }
+    .contact-highlight {
+        color: #FF5733;
+        font-weight: 600;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="py-4 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="text-center sm:text-left">
+        <h1 class="text-2xl sm:text-3xl font-bold text-[#F5F5F5]">NSKHub</h1>
+        <p class="text-sm text-[#B0B0B0] font-light mt-1">Постройте свое будущее с нами!</p>
+      </div>
+      <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+        <div class="font-size-toggle flex items-center bg-surface p-1 rounded-lg">
+          <span class="text-xs sm:text-sm" onclick="changeFontSize('small')"><i class="fas fa-text-height"></i> М</span>
+          <span class="text-sm sm:text-base" onclick="changeFontSize('medium')"><i class="fas fa-text-height"></i> С</span>
+          <span class="text-base sm:text-lg" onclick="changeFontSize('large')"><i class="fas fa-text-height"></i> Б</span>
+        </div>
+        <div class="search-block w-full sm:w-auto">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" class="search-input" placeholder="Поиск по сайту...">
+        </div>
+      </div>
+    </div>
+    <nav class="max-w-7xl mx-auto mt-4">
+      <ul class="flex flex-wrap justify-center gap-1 sm:gap-4">
+        <li><a href="#student" class="nav-link px-3 py-2 rounded-lg hover:bg-surface/50 transition-colors"><i class="fas fa-graduation-cap"></i> Студенту</a></li>
+        <li><a href="#education" class="nav-link px-3 py-2 rounded-lg hover:bg-surface/50 transition-colors"><i class="fas fa-book-open"></i> Обучение</a></li>
+        <li><a href="#info" class="nav-link px-3 py-2 rounded-lg hover:bg-surface/50 transition-colors"><i class="fas fa-info-circle"></i> Информация</a></li>
+        <li><a href="#" class="nav-link px-3 py-2 rounded-lg hover:bg-surface/50 transition-colors"><i class="fas fa-calendar-alt"></i> Новости</a></li>
+        <li><a href="#" class="nav-link px-3 py-2 rounded-lg hover:bg-surface/50 transition-colors"><i class="fas fa-envelope"></i> Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 max-w-7xl mx-auto py-8 px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+    <!-- Section: Студенту -->
+    <section id="student" class="banner-card">
+      <div class="banner-icon mx-auto">
+        <i class="fas fa-user-graduate"></i>
+      </div>
+      <h2>Студенту</h2>
+      <ul class="space-y-2 text-base font-light">
+        <li><a href="#" class="nav-link"><i class="fas fa-users"></i> Моя группа</a></li>
+        <li><a href="#" class="nav-link"><i class="fas fa-sign-in-alt"></i> Вход в личный кабинет</a></li>
+        <li><a href="https://vk.com/public216209140" class="nav-link" target="_blank"><i class="fab fa-vk"></i> Группа ВКонтакте</a></li>
+        <li><a href="#" class="nav-link"><i class="fas fa-file-contract"></i> Учебный план</a></li>
+        <li><a href="#" class="nav-link"><i class="fas fa-tasks"></i> Задания и оценки</a></li>
+      </ul>
+      <div class="mt-4">
+        <a href="#" class="btn-primary w-full"><i class="fas fa-arrow-right"></i> Перейти в раздел</a>
+      </div>
+    </section>
+
+    <!-- Section: Обучение -->
+    <section id="education" class="banner-card">
+      <div class="banner-icon mx-auto">
+        <i class="fas fa-chalkboard-teacher"></i>
+      </div>
+      <h2>Обучение</h2>
+      <ul class="space-y-2 text-base font-light">
+        <li><a href="#" class="nav-link"><i class="fas fa-bell"></i> Расписание звонков</a></li>
+        <li><a href="#" class="nav-link"><i class="fas fa-calendar"></i> Расписание уроков</a></li>
+        <li><a href="#" class="nav-link"><i class="fas fa-link"></i> Полезные ссылки</a></li>
+        <li><a href="#" class="nav-link"><i class="fas fa-newspaper"></i> Последние новости</a></li>
+        <li><a href="#" class="nav-link"><i class="fas fa-book"></i> Электронная библиотека</a></li>
+      </ul>
+      <div class="mt-4">
+        <a href="#" class="btn-primary w-full"><i class="fas fa-arrow-right"></i> Перейти в раздел</a>
+      </div>
+    </section>
+
+    <!-- Section: Информация -->
+    <section id="info" class="banner-card">
+      <div class="banner-icon mx-auto">
+        <i class="fas fa-building"></i>
+      </div>
+      <h2>Информация</h2>
+      <ul class="space-y-2 text-base font-light">
+        <li><a href="#" class="nav-link"><i class="fas fa-school"></i> О колледже</a></li>
+        <li><a href="#" class="nav-link"><i class="fas fa-home"></i> Общежитие</a></li>
+        <li><a href="#" class="nav-link"><i class="fas fa-phone-alt"></i> Контакты</a></li>
+        <li><a href="#" class="nav-link"><i class="fas fa-map-marker-alt"></i> Как добраться</a></li>
+        <li><a href="#" class="nav-link"><i class="fas fa-file-alt"></i> Документы</a></li>
+      </ul>
+      <div class="mt-4">
+        <a href="#" class="btn-primary w-full"><i class="fas fa-arrow-right"></i> Перейти в раздел</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-6 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+      <div class="footer-section">
+        <h3><i class="fas fa-link mr-2"></i> Полезные ссылки</h3>
+        <p>
+          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Дистанционное обучение</a>
+          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Профсоюз студентов</a>
+          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Студенческий совет</a>
+          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Правила внутреннего распорядка</a>
+        </p>
+      </div>
+      <div class="footer-section">
+        <h3><i class="fas fa-phone mr-2"></i> Контакты</h3>
+        <p class="text-[#B0B0B0] font-light">
+          <span class="contact-highlight"><i class="fas fa-phone-alt mr-2"></i> Приёмная:</span> +7 (3466) 67-23-28<br>
+          <a href="mailto:info@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> info@nskcollege.ru</a><br>
+          <span class="contact-highlight mt-3 block"><i class="fas fa-home mr-2"></i> Общежитие:</span> +7 (3466) 67-02-38<br>
+          <a href="mailto:hostel@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> hostel@nskcollege.ru</a>
+        </p>
+      </div>
+      <div class="footer-section">
+        <h3><i class="fas fa-clock mr-2"></i> Режим работы</h3>
+        <p class="text-[#B0B0B0] font-light mb-4">
+          <i class="fas fa-calendar-day mr-2"></i> Пн-Пт: <span class="text-[#F5F5F5]">09:00–17:00</span><br>
+          <i class="fas fa-calendar-day mr-2"></i> Сб: <span class="text-[#F5F5F5]">09:00–13:00</span><br>
+          <i class="fas fa-calendar-times mr-2"></i> Вс: <span class="text-[#F5F5F5]">выходной</span>
+        </p>
+        <p>
+            <a href="https://vk.com/public216209140" class="btn-primary" target="_blank"><i class="fab fa-vk mr-2"></i> Наша группа ВКонтакте</a>
+        </p>
+        <p class="text-xs text-[#777] mt-4">
+          © 2025 NSKHub. Все права защищены.<br>
+          <a href="#" class="footer-link hover:underline">Политика конфиденциальности</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function changeFontSize(size) {
+      const root = document.documentElement;
+      if (size === 'small') {
+        root.style.fontSize = '14px';
+      } else if (size === 'medium') {
+        root.style.fontSize = '16px';
+      } else if (size === 'large') {
+        root.style.fontSize = '18px';
+      }
+    }
+    // Инициализация среднего размера шрифта
+    document.addEventListener('DOMContentLoaded', (event) => {
+        changeFontSize('medium');
+    });
+  </script>
+</body>
+</html>
