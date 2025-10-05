@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="logo.png"/>
+    <title>Политика конфиденциальности - NSKHub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FF5500',
+            primaryLight: '#FF7733',
+            primaryDark: '#CC4400',
+            primaryMuted: '#FFAA66',
+            background: '#121212',
+            surface: '#1E1E1E',
+            surfaceLight: '#2A2A2A',
+            textPrimary: '#F0F0F0',
+            textSecondary: '#B0B0B0',
+            accent: '#FFD700',
+            gray900: '#111111',
+            gray800: '#1A1A1A',
+            gray700: '#252525',
+            gray600: '#333333',
+          },
+          fontFamily: {
+            'display': ['Oswald', 'sans-serif'],
+            'body': ['Montserrat', 'sans-serif'],
+          },
+          boxShadow: {
+            'card': '0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 85, 0, 0.1)',
+            'card-hover': '0 15px 35px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 85, 0, 0.2)',
+            'glow': '0 0 15px rgba(255, 85, 0, 0.3)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background: linear-gradient(180deg, #121212 0%, #1A1A1A 100%);
+      color: #F0F0F0;
+      font-family: 'Montserrat', sans-serif;
+      animation: fadeIn 0.8s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #FF5500, #FFAA66, #FF5500);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      animation: shine 3s linear infinite;
+    }
+    @keyframes shine {
+      to { background-position: 200% center; }
+    }
+    header {
+      background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 3px solid #FF5500;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+    .nav-link {
+      color: #B0B0B0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+    }
+    .nav-link i {
+        margin-right: 8px;
+        font-size: 0.9em;
+        min-width: 20px;
+        text-align: center;
+        color: #FF5500;
+    }
+    .nav-link:hover {
+      color: #FFAA66;
+      text-decoration: none;
+    }
+    .nav-link:hover i {
+        transform: translateX(3px);
+        color: #FFAA66;
+    }
+    .btn-primary {
+      background: linear-gradient(90deg, #FF5500, #FF7733);
+      color: #FFFFFF;
+      padding: 0.7rem 1.3rem;
+      border: none;
+      border-radius: 30px;
+      font-weight: 600;
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(255, 85, 0, 0.3);
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(255, 85, 0, 0.5);
+      background: linear-gradient(90deg, #FF7733, #FF5500);
+    }
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+    .btn-primary i {
+        margin-right: 8px;
+    }
+    .font-size-toggle span {
+      cursor: pointer;
+      margin: 0 0.4rem;
+      padding: 0.4rem 0.7rem;
+      border-radius: 4px;
+      color: #B0B0B0;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid transparent;
+    }
+    .font-size-toggle span:hover {
+      background-color: rgba(255, 85, 0, 0.1);
+      color: #FFAA66;
+      border-color: #FF5500;
+    }
+    .search-block {
+      position: relative;
+    }
+    .search-input {
+      background: #1E1E1E;
+      color: #F0F0F0;
+      border: 2px solid #333;
+      border-radius: 30px;
+      padding: 0.7rem 1.2rem 0.7rem 2.7rem;
+      font-size: 0.95rem;
+      font-family: 'Montserrat', sans-serif;
+      transition: all 0.3s ease;
+      width: 100%;
+      max-width: 250px;
+    }
+    .search-input:focus {
+      border-color: #FF5500;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255, 85, 0, 0.2);
+      background: #252525;
+    }
+    .search-icon {
+        position: absolute;
+        left: 1.2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #B0B0B0;
+    }
+    footer {
+      background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
+      border-top: 3px solid #FF5500;
+      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+    }
+    .footer-section h3 {
+        color: #FF5500;
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 1.2rem;
+        border-bottom: 1px solid #333;
+        padding-bottom: 0.6rem;
+        display: flex;
+        align-items: center;
+    }
+    .footer-section h3 i {
+        margin-right: 10px;
+        font-size: 1.1rem;
+    }
+    .footer-link {
+        display: block;
+        margin-bottom: 0.6rem;
+        color: #B0B0B0;
+        transition: color 0.2s ease;
+        text-decoration: none;
+    }
+    .footer-link:hover {
+        color: #FFAA66;
+        text-decoration: underline;
+    }
+    .contact-highlight {
+        color: #FF5500;
+        font-weight: 600;
+    }
+    .privacy-content {
+      background: linear-gradient(145deg, #1E1E1E, #1A1A1A);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 85, 0, 0.05);
+      margin-bottom: 2rem;
+    }
+    .privacy-content h2 {
+      color: #FF5500;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #333;
+      padding-bottom: 0.5rem;
+    }
+    .privacy-content h3 {
+      color: #FFAA66;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.4rem;
+      margin: 1.5rem 0 1rem 0;
+    }
+    .privacy-content p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+    .privacy-content ul {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+    .privacy-content li {
+      margin-bottom: 0.5rem;
+      line-height: 1.6;
+    }
+    .update-date {
+      color: #FFAA66;
+      font-weight: 600;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #333;
+    }
+    /* Адаптивность */
+    @media (max-width: 768px) {
+        .privacy-content {
+            padding: 1.5rem;
+        }
+        .search-input {
+            max-width: 100%;
+        }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <header class="py-4 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="text-center sm:text-left">
+        <h1 class="text-2xl sm:text-3xl font-bold text-[#F0F0F0] font-display">NSK<span class="gradient-text">Hub</span></h1>
+        <p class="text-sm text-[#B0B0B0] font-light mt-1">Нижневартовский Строительный Колледж</p>
+      </div>
+      <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+        <div class="font-size-toggle flex items-center bg-surface p-1 rounded-lg">
+          <span class="text-xs sm:text-sm" onclick="changeFontSize('small')"><i class="fas fa-text-height"></i> М</span>
+          <span class="text-sm sm:text-base" onclick="changeFontSize('medium')"><i class="fas fa-text-height"></i> С</span>
+          <span class="text-base sm:text-lg" onclick="changeFontSize('large')"><i class="fas fa-text-height"></i> Б</span>
+        </div>
+        <div class="search-block w-full sm:w-auto">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" class="search-input" placeholder="Поиск по сайту..." id="mainSearch">
+        </div>
+      </div>
+    </div>
+    <nav class="max-w-7xl mx-auto mt-4">
+      <ul class="flex flex-wrap justify-center gap-1 sm:gap-3">
+        <li><a href="index.html" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-home"></i> Главная</a></li>
+        <li><a href="index.html#student" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-graduation-cap"></i> Студенту</a></li>
+        <li><a href="index.html#education" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-book-open"></i> Обучение</a></li>
+        <li><a href="index.html#info" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-info-circle"></i> Информация</a></li>
+        <li><a href="info_contacts.html" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-envelope"></i> Контакты</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="flex-1 max-w-7xl mx-auto py-8 px-4 sm:px-6">
+    <div class="privacy-content">
+      <h2>Политика конфиденциальности</h2>
+
+      <p>Настоящая Политика конфиденциальности персональных данных (далее — Политика конфиденциальности) действует в отношении всей информации, которую сайт NSKHub, расположенный на доменном имени nskhub.ru, может получить о Пользователе во время использования сайта.</p>
+
+      <h3>1. ОПРЕДЕЛЕНИЕ ТЕРМИНОВ</h3>
+      <p>1.1. В настоящей Политике конфиденциальности используются следующие термины:</p>
+      <ul>
+        <li>1.1.1. «Администрация сайта NSKHub (далее — Администрация сайта)» — уполномоченные сотрудники на управления сайтом, действующие от имени Нижневартовского Строительного Колледжа, которые организуют и (или) осуществляют обработку персональных данных, а также определяют цели обработки персональных данных, состав персональных данных, подлежащих обработке, действия (операции), совершаемые с персональными данными.</li>
+        <li>1.1.2. «Персональные данные» — любая информация, относящаяся к прямо или косвенно определенному или определяемому физическому лицу (субъекту персональных данных).</li>
+        <li>1.1.3. «Обработка персональных данных» — любое действие (операция) или совокупность действий (операций), совершаемых с использованием средств автоматизации или без использования таких средств с персональными данными, включая сбор, запись, систематизацию, накопление, хранение, уточнение (обновление, изменение), извлечение, использование, передачу (распространение, предоставление, доступ), обезличивание, блокирование, удаление, уничтожение персональных данных.</li>
+        <li>1.1.4. «Конфиденциальность персональных данных» — обязательное для соблюдения Администрацией сайта требование не допускать их распространения без согласия субъекта персональных данных или наличия иного законного основания.</li>
+        <li>1.1.5. «Пользователь сайта NSKHub (далее — Пользователь)» — лицо, имеющее доступ к Сайту, посредством сети Интернет и использующее Сайт.</li>
+        <li>1.1.6. «Cookies» — небольшой фрагмент данных, отправленный веб-сервером и хранимый на компьютере пользователя, который веб-клиент или веб-браузер каждый раз пересылает веб-серверу в HTTP-запросе при попытке открыть страницу соответствующего сайта.</li>
+        <li>1.1.7. «IP-адрес» — уникальный сетевой адрес узла в компьютерной сети, построенной по протоколу IP.</li>
+      </ul>
+
+      <h3>2. ОБЩИЕ ПОЛОЖЕНИЯ</h3>
+      <p>2.1. Использование Пользователем сайта NSKHub означает согласие с настоящей Политикой конфиденциальности и условиями обработки персональных данных Пользователя.</p>
+      <p>2.2. В случае несогласия с условиями Политики конфиденциальности Пользователь должен прекратить использование сайта NSKHub.</p>
+      <p>2.3. Настоящая Политика конфиденциальности применяется только к сайту NSKHub. Сайт не контролирует и не несет ответственность за сайты третьих лиц, на которые Пользователь может перейти по ссылкам, доступным на сайте NSKHub.</p>
+      <p>2.4. Администрация сайта не проверяет достоверность персональных данных, предоставляемых Пользователем сайта NSKHub.</p>
+
+      <h3>3. ПРЕДМЕТ ПОЛИТИКИ КОНФИДЕНЦИАЛЬНОСТИ</h3>
+      <p>3.1. Настоящая Политика конфиденциальности устанавливает обязательства Администрации сайта NSKHub по неразглашению и обеспечению режима защиты конфиденциальности персональных данных, которые Пользователь предоставляет по запросу Администрации сайта при регистрации на сайте или при оформлении заказа для приобретения Услуг.</p>
+      <p>3.2. Персональные данные, разрешённые к обработке в рамках настоящей Политики конфиденциальности, предоставляются Пользователем путём заполнения регистрационной формы на Сайте NSKHub и включают в себя следующую информацию:</p>
+      <ul>
+        <li>3.2.1. фамилию, имя, отчество Пользователя;</li>
+        <li>3.2.2. контактный телефон Пользователя;</li>
+        <li>3.2.3. адрес электронной почты (e-mail);</li>
+        <li>3.2.4. учебную группу и курс обучения;</li>
+        <li>3.2.5. данные об успеваемости и учебном процессе.</li>
+      </ul>
+      <p>3.3. Сайт NSKHub защищает Данные, которые автоматически передаются в процессе просмотра рекламных блоков и при посещении страниц, на которых установлен статистический скрипт системы ("пиксель"):
+        <ul>
+          <li>IP адрес;</li>
+          <li>информация из cookies;</li>
+          <li>информация о браузере (или иной программе, которая осуществляет доступ к показу рекламы);</li>
+          <li>время доступа;</li>
+          <li>адрес страницы, на которой расположен рекламный блок;</li>
+          <li>реферер (адрес предыдущей страницы).</li>
+        </ul>
+      </p>
+
+      <h3>4. ЦЕЛИ СБОРА ПЕРСОНАЛЬНОЙ ИНФОРМАЦИИ ПОЛЬЗОВАТЕЛЯ</h3>
+      <p>4.1. Персональные данные Пользователя Администрация сайта NSKHub может использовать в целях:</p>
+      <ul>
+        <li>4.1.1. Идентификации Пользователя, зарегистрированного на сайте NSKHub, для предоставления доступа к учебным материалам и сервисам.</li>
+        <li>4.1.2. Предоставления Пользователю доступа к персонализированным ресурсам Сайта NSKHub.</li>
+        <li>4.1.3. Установления с Пользователем обратной связи, включая направление уведомлений, запросов, касающихся использования Сайта NSKHub, оказания услуг, обработка запросов и заявок от Пользователя.</li>
+        <li>4.1.4. Определения места нахождения Пользователя для обеспечения безопасности, предотвращения мошенничества.</li>
+        <li>4.1.5. Подтверждения достоверности и полноты персональных данных, предоставленных Пользователем.</li>
+        <li>4.1.6. Создания учетной записи для использования частей сайта NSKHub, если Пользователь дал согласие на создание учетной записи.</li>
+        <li>4.1.7. Уведомления Пользователя Сайта NSKHub о состоянии Заказа.</li>
+        <li>4.1.8. Обработки и получения платежей, подтверждения налога или налоговых льгот, оспаривания платежа.</li>
+        <li>4.1.9. Предоставления Пользователю эффективной клиентской и технической поддержки при возникновении проблем, связанных с использованием Сайта NSKHub.</li>
+        <li>4.1.10. Предоставления Пользователю с его согласия, обновлений продукции, специальных предложений, информации о ценах, новостной рассылки и иных сведений от имени NSKHub.</li>
+        <li>4.1.11. Осуществления рекламной деятельности с согласия Пользователя.</li>
+        <li>4.1.12. Предоставления доступа Пользователю на сайты или сервисы партнеров NSKHub с целью получения продуктов, обновлений и услуг.</li>
+      </ul>
+
+      <h3>5. СПОСОБЫ И СРОКИ ОБРАБОТКИ ПЕРСОНАЛЬНОЙ ИНФОРМАЦИИ</h3>
+      <p>5.1. Обработка персональных данных Пользователя осуществляется без ограничения срока, любым законным способом, в том числе в информационных системах персональных данных с использованием средств автоматизации или без использования таких средств.</p>
+      <p>5.2. Пользователь соглашается с тем, что Администрация сайта вправе передавать персональные данные третьим лицам, в частности, курьерским службам, организациями почтовой связи, операторам электросвязи, исключительно в целях выполнения заказа Пользователя, оформленного на Сайте NSKHub.</p>
+      <p>5.3. Персональные данные Пользователя могут быть переданы уполномоченным органам государственной власти Российской Федерации только по основаниям и в порядке, установленным законодательством Российской Федерации.</p>
+      <p>5.4. При утрате или разглашении персональных данных Администрация сайта информирует Пользователя об утрате или разглашении персональных данных.</p>
+      <p>5.5. Администрация сайта принимает необходимые организационные и технические меры для защиты персональной информации Пользователя от неправомерного или случайного доступа, уничтожения, изменения, блокирования, копирования, распространения, а также от иных неправомерных действий третьих лиц.</p>
+      <p>5.6. Администрация сайта совместно с Пользователем принимает все необходимые меры по предотвращению убытков или иных отрицательных последствий, вызванных утратой или разглашением персональных данных Пользователя.</p>
+
+      <h3>6. ОБЯЗАТЕЛЬСТВА СТОРОН</h3>
+      <p>6.1. Пользователь обязан:</p>
+      <ul>
+        <li>6.1.1. Предоставить информацию о персональных данных, необходимую для пользования Сайтом NSKHub.</li>
+        <li>6.1.2. Обновить, дополнить предоставленную информацию о персональных данных в случае изменения данной информации.</li>
+      </ul>
+      <p>6.2. Администрация сайта обязана:</p>
+      <ul>
+        <li>6.2.1. Использовать полученную информацию исключительно для целей, указанных в п. 4 настоящей Политики конфиденциальности.</li>
+        <li>6.2.2. Обеспечить хранение конфиденциальной информации в тайне, не разглашать без предварительного письменного разрешения Пользователя, а также не осуществлять продажу, обмен, опубликование, либо разглашение иными возможными способами переданных персональных данных Пользователя, за исключением п.п. 5.2. и 5.3. настоящей Политики Конфиденциальности.</li>
+        <li>6.2.3. Принимать меры предосторожности для защиты конфиденциальности персональных данных Пользователя согласно порядку, обычно используемого для защиты такого рода информации в существующем деловом обороте.</li>
+        <li>6.2.4. Осуществить блокирование персональных данных, относящихся к соответствующему Пользователю, с момента обращения или запроса Пользователя или его законного представителя либо уполномоченного органа по защите прав субъектов персональных данных на период проверки, в случае выявления недостоверных персональных данных или неправомерных действий.</li>
+      </ul>
+
+      <h3>7. ОТВЕТСТВЕННОСТЬ СТОРОН</h3>
+      <p>7.1. Администрация сайта, не исполнившая свои обязательства, несёт ответственность за убытки, понесённые Пользователем в связи с неправомерным использованием персональных данных, в соответствии с законодательством Российской Федерации, за исключением случаев, предусмотренных п.п. 5.2., 5.3. и 7.2. настоящей Политики Конфиденциальности.</p>
+      <p>7.2. В случае утраты или разглашения Конфиденциальной информации Администрация сайта не несёт ответственность, если данная конфиденциальная информация:</p>
+      <ul>
+        <li>7.2.1. Стала публичным достоянием до её утраты или разглашения.</li>
+        <li>7.2.2. Была получена от третьей стороны до момента её получения Администрацией сайта.</li>
+        <li>7.2.3. Была разглашена с согласия Пользователя.</li>
+      </ul>
+
+      <h3>8. РАЗРЕШЕНИЕ СПОРОВ</h3>
+      <p>8.1. До обращения в суд с иском по спорам, возникающим из отношений между Пользователем сайта NSKHub и Администрацией сайта, обязательным является предъявление претензии (письменного предложения о добровольном урегулировании спора).</p>
+      <p>8.2. Получатель претензии в течение 30 календарных дней со дня получения претензии, письменно уведомляет заявителя претензии о результатах рассмотрения претензии.</p>
+      <p>8.3. При недостижении соглашения спор будет передан на рассмотрение в судебный орган в соответствии с действующим законодательством Российской Федерации.</p>
+      <p>8.4. К настоящей Политике конфиденциальности и отношениям между Пользователем и Администрацией сайта применяется действующее законодательство Российской Федерации.</p>
+
+      <h3>9. ДОПОЛНИТЕЛЬНЫЕ УСЛОВИЯ</h3>
+      <p>9.1. Администрация сайта вправе вносить изменения в настоящую Политику конфиденциальности без согласия Пользователя.</p>
+      <p>9.2. Новая Политика конфиденциальности вступает в силу с момента ее размещения на Сайте NSKHub, если иное не предусмотрено новой редакцией Политики конфиденциальности.</p>
+      <p>9.3. Все предложения или вопросы по настоящей Политике конфиденциальности следует сообщать по адресу: info@nskcollege.ru</p>
+      <p>9.4. Действующая Политика конфиденциальности размещена на странице по адресу: https://nskhub.ru/privacy.html</p>
+
+      <p class="update-date">Обновлено: 01 января 2025 г.</p>
+    </div>
+  </main>
+
+  <footer class="py-6 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+      <div class="footer-section">
+        <h3><i class="fas fa-link"></i> Полезные ссылки</h3>
+        <p>
+          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Дистанционное обучение</a>
+          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Профсоюз студентов</a>
+          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Студенческий совет</a>
+          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Правила распорядка</a>
+          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Стипендии и льготы</a>
+        </p>
+      </div>
+      <div class="footer-section">
+        <h3><i class="fas fa-phone"></i> Контакты</h3>
+        <p class="text-[#B0B0B0] font-light">
+          <span class="contact-highlight"><i class="fas fa-phone-alt mr-2"></i> Приёмная:</span> +7 (3466) 67-23-28<br>
+          <a href="mailto:info@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> info@nskcollege.ru</a><br>
+          <span class="contact-highlight mt-3 block"><i class="fas fa-home mr-2"></i> Общежитие:</span> +7 (3466) 67-02-38<br>
+          <a href="mailto:hostel@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> hostel@nskcollege.ru</a>
+        </p>
+      </div>
+      <div class="footer-section">
+        <h3><i class="fas fa-clock"></i> Режим работы</h3>
+        <p class="text-[#B0B0B0] font-light mb-4">
+          <i class="fas fa-calendar-day mr-2"></i> Пн-Пт: <span class="text-[#F0F0F0]">09:00–17:00</span><br>
+          <i class="fas fa-calendar-day mr-2"></i> Сб: <span class="text-[#F0F0F0]">09:00–13:00</span><br>
+          <i class="fas fa-calendar-times mr-2"></i> Вс: <span class="text-[#F0F0F0]">выходной</span>
+        </p>
+        <p>
+            <a href="https://vk.com/public216209140" class="btn-primary" target="_blank"><i class="fab fa-vk mr-2"></i> Наш ВКонтакте</a>
+        </p>
+        <p class="text-xs text-[#777] mt-4">
+          © 2025 NSKHub. Все права защищены.<br>
+          <a href="privacy.html" class="footer-link hover:underline">Политика конфиденциальности</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function changeFontSize(size) {
+      const root = document.documentElement;
+      if (size === 'small') {
+        root.style.fontSize = '13px';
+      } else if (size === 'medium') {
+        root.style.fontSize = '15px';
+      } else if (size === 'large') {
+        root.style.fontSize = '17px';
+      }
+    }
+    document.addEventListener('DOMContentLoaded', (event) => {
+        changeFontSize('medium');
+    });
+
+    // --- Функционал поиска на странице ---
+    const searchInput = document.getElementById('mainSearch');
+
+    searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase().trim();
+
+        // Поиск по тексту на странице
+        if (searchTerm) {
+            const content = document.querySelector('.privacy-content');
+            const text = content.textContent.toLowerCase();
+
+            if (text.includes(searchTerm)) {
+                // Подсветка найденного текста
+                const regex = new RegExp(searchTerm, 'gi');
+                const highlightedText = content.innerHTML.replace(regex, match => `<mark style="background-color: #FF5500; color: white;">${match}</mark>`);
+                content.innerHTML = highlightedText;
+            }
+        } else {
+            // Сброс подсветки при очистке поиска
+            window.location.reload();
+        }
+    });
+
+    // Сброс поиска при очистке поля
+    searchInput.addEventListener('search', function() {
+        if (this.value === '') {
+            window.location.reload();
+        }
+    });
+  </script>
+</body>
+</html>
