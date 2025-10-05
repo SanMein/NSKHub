@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NSKHub - Нижневартовский Строительный Колледж</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="logo.png"/>
+    <title>NSKHub - Нижневартовский Строительный Колледж</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            // Основные фирменные цвета
-            primary: '#FF5500',       // Оранжевый
-            primaryLight: '#FF7733',  // Светлый оранжевый
-            primaryDark: '#CC4400',   // Тёмный оранжевый
-            primaryMuted: '#FFAA66',  // Приглушённый оранжевый
-
-            // Нейтральные цвета
-            background: '#121212',    // Очень тёмный фон
-            surface: '#1E1E1E',       // Поверхность карточек
-            surfaceLight: '#2A2A2A',  // Светлее поверхность
-            textPrimary: '#F0F0F0',   // Основной текст
-            textSecondary: '#B0B0B0', // Второстепенный текст
-            accent: '#FFD700',        // Акцентный цвет (золотой)
-
-            // Градации серого для глубины
+            primary: '#FF5500',
+            primaryLight: '#FF7733',
+            primaryDark: '#CC4400',
+            primaryMuted: '#FFAA66',
+            background: '#121212',
+            surface: '#1E1E1E',
+            surfaceLight: '#2A2A2A',
+            textPrimary: '#F0F0F0',
+            textSecondary: '#B0B0B0',
+            accent: '#FFD700',
             gray900: '#111111',
             gray800: '#1A1A1A',
             gray700: '#252525',
@@ -56,7 +52,6 @@
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    /* Градиентный заголовок */
     .gradient-text {
       background: linear-gradient(90deg, #FF5500, #FFAA66, #FF5500);
       -webkit-background-clip: text;
@@ -67,7 +62,6 @@
     @keyframes shine {
       to { background-position: 200% center; }
     }
-    /* Шапка с тёмным градиентом и оранжевой полосой */
     header {
       background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
       position: sticky;
@@ -76,7 +70,6 @@
       border-bottom: 3px solid #FF5500;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
     }
-    /* Карточки-баннеры с тёмным фоном и оранжевым акцентом */
     .banner-card {
       background: linear-gradient(145deg, #1E1E1E, #1A1A1A);
       border: 1px solid #333;
@@ -89,6 +82,7 @@
       height: 100%;
       position: relative;
       overflow: hidden;
+      cursor: pointer;
     }
     .banner-card::before {
         content: '';
@@ -108,7 +102,6 @@
     .banner-card:hover::before {
         transform: scaleX(1);
     }
-    /* Круглая иконка с оранжевым градиентом */
     .banner-icon {
       background: linear-gradient(145deg, #FF5500, #CC4400);
       width: 60px;
@@ -125,7 +118,6 @@
         font-size: 1.75rem;
         color: #FFFFFF;
     }
-    /* Заголовки карточек */
     .banner-card h2 {
         font-family: 'Oswald', sans-serif;
         font-size: 1.6rem;
@@ -135,7 +127,6 @@
         text-align: center;
         letter-spacing: 0.5px;
     }
-    /* Списки внутри карточек */
     .banner-card ul {
         flex-grow: 1;
         margin-bottom: 1.5rem;
@@ -150,7 +141,6 @@
         padding-bottom: 0;
         border-bottom: none;
     }
-    /* Ссылки */
     .nav-link {
       color: #B0B0B0;
       text-decoration: none;
@@ -174,7 +164,6 @@
         transform: translateX(3px);
         color: #FFAA66;
     }
-    /* Кнопки */
     .btn-primary {
       background: linear-gradient(90deg, #FF5500, #FF7733);
       color: #FFFFFF;
@@ -203,7 +192,6 @@
     .btn-primary i {
         margin-right: 8px;
     }
-    /* Переключатель размера шрифта */
     .font-size-toggle span {
       cursor: pointer;
       margin: 0 0.4rem;
@@ -220,7 +208,6 @@
       color: #FFAA66;
       border-color: #FF5500;
     }
-    /* Поле поиска */
     .search-block {
       position: relative;
     }
@@ -249,7 +236,6 @@
         transform: translateY(-50%);
         color: #B0B0B0;
     }
-    /* Подвал */
     footer {
       background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
       border-top: 3px solid #FF5500;
@@ -285,6 +271,123 @@
         color: #FF5500;
         font-weight: 600;
     }
+    /* Стили для кнопки "+" */
+    .floating-add-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #FF5500, #CC4400);
+      color: white;
+      font-size: 1.5rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 85, 0, 0.5);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    .floating-add-btn:hover {
+      transform: scale(1.1) rotate(90deg);
+      box-shadow: 0 6px 20px rgba(255, 85, 0, 0.7);
+    }
+    /* Стили для модального окна */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      animation: fadeIn 0.3s ease-out;
+    }
+    .modal-content {
+      background: linear-gradient(145deg, #1E1E1E, #1A1A1A);
+      margin: 5% auto;
+      padding: 0;
+      border: 1px solid #333;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 600px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      overflow: hidden;
+      animation: slideIn 0.3s ease-out;
+    }
+    @keyframes slideIn {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .modal-header {
+      padding: 1.5rem;
+      background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
+      border-bottom: 2px solid #FF5500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .modal-header h2 {
+        font-family: 'Oswald', sans-serif;
+        color: #F0F0F0;
+        margin: 0;
+    }
+    .close-modal {
+      color: #B0B0B0;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+    .close-modal:hover {
+        color: #FF5500;
+    }
+    .modal-body {
+      padding: 1.5rem;
+    }
+    .modal-footer {
+      padding: 1rem 1.5rem;
+      background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
+      border-top: 1px solid #333;
+      display: flex;
+      justify-content: flex-end;
+    }
+    .modal-input {
+      width: 100%;
+      padding: 0.7rem;
+      margin-bottom: 1rem;
+      background: #252525;
+      color: #F0F0F0;
+      border: 1px solid #333;
+      border-radius: 6px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .modal-input:focus {
+        outline: none;
+        border-color: #FF5500;
+    }
+    .modal-preview {
+      background: #252525;
+      border: 1px solid #333;
+      border-radius: 6px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      min-height: 100px;
+      color: #B0B0B0;
+      overflow: auto;
+    }
+    .preview-banner {
+      background: linear-gradient(145deg, #FF5500, #CC4400);
+      padding: 0.5rem;
+      text-align: center;
+      color: white;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
     /* Адаптивность */
     @media (max-width: 768px) {
         .banner-card {
@@ -296,11 +399,17 @@
         .search-input {
             max-width: 100%;
         }
+        .floating-add-btn {
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+        }
     }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
-  <!-- Header -->
   <header class="py-4 px-4 sm:px-6">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
       <div class="text-center sm:text-left">
@@ -315,7 +424,7 @@
         </div>
         <div class="search-block w-full sm:w-auto">
           <i class="fas fa-search search-icon"></i>
-          <input type="text" class="search-input" placeholder="Поиск по сайту...">
+          <input type="text" class="search-input" placeholder="Поиск по сайту..." id="mainSearch">
         </div>
       </div>
     </div>
@@ -325,72 +434,58 @@
         <li><a href="#education" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-book-open"></i> Обучение</a></li>
         <li><a href="#info" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-info-circle"></i> Информация</a></li>
         <li><a href="#" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-calendar-alt"></i> Новости</a></li>
-        <li><a href="#" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-envelope"></i> Контакты</a></li>
+        <li><a href="info_contacts.html" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-envelope"></i> Контакты</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Main Content -->
   <main class="flex-1 max-w-7xl mx-auto py-8 px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-    <!-- Section: Студенту -->
     <section id="student" class="banner-card">
       <div class="banner-icon">
         <i class="fas fa-user-graduate"></i>
       </div>
       <h2>Студенту</h2>
       <ul class="space-y-2 text-base font-light">
-        <li><a href="#" class="nav-link"><i class="fas fa-users"></i> Моя группа</a></li>
-        <li><a href="#" class="nav-link"><i class="fas fa-sign-in-alt"></i> Личный кабинет</a></li>
+        <li><a href="group.html" class="nav-link"><i class="fas fa-users"></i> Моя группа</a></li>
+        <li><a href="profile.html" class="nav-link"><i class="fas fa-sign-in-alt"></i> Личный кабинет</a></li>
         <li><a href="https://vk.com/public216209140" class="nav-link" target="_blank"><i class="fab fa-vk"></i> Группа ВКонтакте</a></li>
-        <li><a href="#" class="nav-link"><i class="fas fa-file-contract"></i> Учебный план</a></li>
-        <li><a href="#" class="nav-link"><i class="fas fa-tasks"></i> Задания и оценки</a></li>
-        <li><a href="#" class="nav-link"><i class="fas fa-calendar-check"></i> Расписание сессии</a></li>
+        <li><a href="info_docs.html?category=Учеба" class="nav-link"><i class="fas fa-file-contract"></i> Учебный план</a></li>
+        <li><a href="info_docs.html?category=Учеба" class="nav-link"><i class="fas fa-tasks"></i> Задания и оценки</a></li>
+        <li><a href="schedule.html" class="nav-link"><i class="fas fa-calendar-check"></i> Расписание сессии</a></li>
       </ul>
-      <div class="mt-auto">
-        <a href="#" class="btn-primary w-full"><i class="fas fa-arrow-right"></i> Перейти</a>
-      </div>
     </section>
 
-    <!-- Section: Обучение -->
     <section id="education" class="banner-card">
       <div class="banner-icon">
         <i class="fas fa-chalkboard-teacher"></i>
       </div>
       <h2>Обучение</h2>
       <ul class="space-y-2 text-base font-light">
-        <li><a href="#" class="nav-link"><i class="fas fa-bell"></i> Расписание звонков</a></li>
-        <li><a href="#" class="nav-link"><i class="fas fa-calendar"></i> Расписание уроков</a></li>
-        <li><a href="#" class="nav-link"><i class="fas fa-link"></i> Полезные ссылки</a></li>
-        <li><a href="#" class="nav-link"><i class="fas fa-newspaper"></i> Последние новости</a></li>
-        <li><a href="#" class="nav-link"><i class="fas fa-book"></i> Электронная библиотека</a></li>
-        <li><a href="#" class="nav-link"><i class="fas fa-laptop-code"></i> Онлайн-ресурсы</a></li>
+        <li><a href="schedule.html#bell" class="nav-link"><i class="fas fa-bell"></i> Расписание звонков</a></li>
+        <li><a href="schedule.html" class="nav-link"><i class="fas fa-calendar"></i> Расписание уроков</a></li>
+        <li><a href="#education" class="nav-link" onclick="alert('Раздел в разработке')"><i class="fas fa-link"></i> Полезные ссылки</a></li>
+        <li><a href="#education" class="nav-link" onclick="alert('Раздел в разработке')"><i class="fas fa-newspaper"></i> Последние новости</a></li>
+        <li><a href="#education" class="nav-link" onclick="alert('Раздел в разработке')"><i class="fas fa-book"></i> Электронная библиотека</a></li>
+        <li><a href="#education" class="nav-link" onclick="alert('Раздел в разработке')"><i class="fas fa-laptop-code"></i> Онлайн-ресурсы</a></li>
       </ul>
-      <div class="mt-auto">
-        <a href="#" class="btn-primary w-full"><i class="fas fa-arrow-right"></i> Перейти</a>
-      </div>
     </section>
 
-    <!-- Section: Информация -->
     <section id="info" class="banner-card">
       <div class="banner-icon">
         <i class="fas fa-building"></i>
       </div>
       <h2>Информация</h2>
       <ul class="space-y-2 text-base font-light">
-        <li><a href="#" class="nav-link"><i class="fas fa-school"></i> О колледже</a></li>
-        <li><a href="#" class="nav-link"><i class="fas fa-home"></i> Общежитие</a></li>
-        <li><a href="#" class="nav-link"><i class="fas fa-phone-alt"></i> Контакты</a></li>
-        <li><a href="#" class="nav-link"><i class="fas fa-map-marker-alt"></i> Как добраться</a></li>
-        <li><a href="#" class="nav-link"><i class="fas fa-file-alt"></i> Документы</a></li>
-        <li><a href="#" class="nav-link"><i class="fas fa-briefcase"></i> Карьера выпускников</a></li>
+        <li><a href="info_o_college.html" class="nav-link"><i class="fas fa-school"></i> О колледже</a></li>
+        <li><a href="info_obsh.html" class="nav-link"><i class="fas fa-home"></i> Общежитие</a></li>
+        <li><a href="info_contacts.html" class="nav-link"><i class="fas fa-phone-alt"></i> Контакты</a></li>
+        <li><a href="info_contacts.html#address" class="nav-link"><i class="fas fa-map-marker-alt"></i> Как добраться</a></li>
+        <li><a href="info_docs.html" class="nav-link"><i class="fas fa-file-alt"></i> Документы</a></li>
+        <li><a href="#info" class="nav-link" onclick="alert('Раздел в разработке')"><i class="fas fa-briefcase"></i> Карьера выпускников</a></li>
       </ul>
-      <div class="mt-auto">
-        <a href="#" class="btn-primary w-full"><i class="fas fa-arrow-right"></i> Перейти</a>
-      </div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="py-6 px-4 sm:px-6">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
       <div class="footer-section">
@@ -430,6 +525,38 @@
     </div>
   </footer>
 
+  <!-- Кнопка "+" -->
+  <button id="addBtn" class="floating-add-btn" title="Создать документ">
+    <i class="fas fa-plus"></i>
+  </button>
+
+  <!-- Модальное окно -->
+  <div id="createDocModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Создать документ</h2>
+        <span class="close-modal">&times;</span>
+      </div>
+      <div class="modal-body">
+        <div class="preview-banner">
+          Предпросмотр документа
+        </div>
+        <div id="previewContent" class="modal-preview">
+          Введите название и описание для предпросмотра.
+        </div>
+        <label for="docName" class="block text-sm font-medium text-[#B0B0B0] mb-1">Имя документа</label>
+        <input type="text" id="docName" class="modal-input" placeholder="Введите название документа...">
+        <label for="docDesc" class="block text-sm font-medium text-[#B0B0B0] mb-1">Описание документа</label>
+        <textarea id="docDesc" class="modal-input" rows="3" placeholder="Введите описание документа..."></textarea>
+        <label for="docFile" class="block text-sm font-medium text-[#B0B0B0] mb-1">Прикрепить файл (.md, .txt)</label>
+        <input type="file" id="docFile" class="modal-input" accept=".md,.txt">
+      </div>
+      <div class="modal-footer">
+        <button id="createDocBtn" class="btn-primary"><i class="fas fa-save mr-2"></i>Создать документ</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     function changeFontSize(size) {
       const root = document.documentElement;
@@ -441,9 +568,90 @@
         root.style.fontSize = '17px';
       }
     }
-    // Инициализация среднего размера шрифта
     document.addEventListener('DOMContentLoaded', (event) => {
         changeFontSize('medium');
+    });
+
+    // Логика для модального окна
+    const modal = document.getElementById('createDocModal');
+    const btn = document.getElementById('addBtn');
+    const span = document.querySelector('.close-modal');
+    const createBtn = document.getElementById('createDocBtn');
+    const docNameInput = document.getElementById('docName');
+    const docDescInput = document.getElementById('docDesc');
+    const previewContent = document.getElementById('previewContent');
+
+    // Обновление предпросмотра
+    function updatePreview() {
+        const name = docNameInput.value.trim() || 'Новый документ';
+        const desc = docDescInput.value.trim() || 'Без описания.';
+        previewContent.innerHTML = `<strong>${name}</strong><br><small>${desc}</small>`;
+    }
+
+    docNameInput.addEventListener('input', updatePreview);
+    docDescInput.addEventListener('input', updatePreview);
+
+    btn.onclick = function() {
+        modal.style.display = 'block';
+        // Сброс формы при открытии
+        docNameInput.value = '';
+        docDescInput.value = '';
+        document.getElementById('docFile').value = '';
+        updatePreview(); // Обновить предпросмотр с пустыми полями
+    }
+
+    span.onclick = function() {
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    createBtn.onclick = function() {
+        const name = docNameInput.value.trim();
+        const desc = docDescInput.value.trim();
+        if (name) {
+            // Симуляция создания документа
+            alert(`Документ "${name}" создан!`);
+            // В реальном приложении здесь был бы код для сохранения данных
+            modal.style.display = 'none';
+        } else {
+            alert('Пожалуйста, введите имя документа.');
+        }
+    }
+
+    // --- Функционал поиска на главной странице ---
+    const searchInput = document.getElementById('mainSearch');
+    const bannerCards = document.querySelectorAll('.banner-card');
+
+    searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase().trim();
+
+        bannerCards.forEach(card => {
+            const cardTitle = card.querySelector('h2').textContent.toLowerCase();
+            const cardLinks = card.querySelectorAll('.nav-link');
+            let linkTexts = Array.from(cardLinks).map(link => link.textContent.toLowerCase());
+            // Объединяем текст заголовка и всех ссылок в карточке
+            const cardText = [cardTitle, ...linkTexts].join(' ');
+
+            if (cardText.includes(searchTerm)) {
+                card.style.display = 'flex';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+
+    // Сброс поиска при очистке поля
+    searchInput.addEventListener('search', function() {
+        if (this.value === '') {
+            bannerCards.forEach(card => {
+                card.style.display = 'flex';
+            });
+        }
     });
   </script>
 </body>
