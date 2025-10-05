@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расписание - NSKHub</title>
+    <link rel="icon" type="image/png" href="logo.png"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FF5500',
+            primaryLight: '#FF7733',
+            primaryDark: '#CC4400',
+            primaryMuted: '#FFAA66',
+            background: '#121212',
+            surface: '#1E1E1E',
+            surfaceLight: '#2A2A2A',
+            textPrimary: '#F0F0F0',
+            textSecondary: '#B0B0B0',
+            accent: '#FFD700',
+            gray900: '#111111',
+            gray800: '#1A1A1A',
+            gray700: '#252525',
+            gray600: '#333333',
+          },
+          fontFamily: {
+            'display': ['Oswald', 'sans-serif'],
+            'body': ['Montserrat', 'sans-serif'],
+          },
+          boxShadow: {
+            'card': '0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 85, 0, 0.1)',
+            'card-hover': '0 15px 35px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 85, 0, 0.2)',
+            'glow': '0 0 15px rgba(255, 85, 0, 0.3)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background: linear-gradient(180deg, #121212 0%, #1A1A1A 100%);
+      color: #F0F0F0;
+      font-family: 'Montserrat', sans-serif;
+      animation: fadeIn 0.8s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .gradient-text {
+      background: linear-gradient(90deg, #FF5500, #FFAA66, #FF5500);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      animation: shine 3s linear infinite;
+    }
+    @keyframes shine {
+      to { background-position: 200% center; }
+    }
+    header {
+      background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 3px solid #FF5500;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+    .banner-card {
+      background: linear-gradient(145deg, #1E1E1E, #1A1A1A);
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.75rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 85, 0, 0.05);
+      transition: all 0.3s ease, transform 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+    .banner-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 3px;
+        background: linear-gradient(90deg, #FF5500, #FFAA66);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+    }
+    .banner-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 85, 0, 0.1);
+      border-color: #FF5500;
+    }
+    .banner-card:hover::before {
+        transform: scaleX(1);
+    }
+    .banner-icon {
+      background: linear-gradient(145deg, #FF5500, #CC4400);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 4px 10px rgba(255, 85, 0, 0.4);
+      align-self: center;
+    }
+    .banner-icon i {
+        font-size: 1.75rem;
+        color: #FFFFFF;
+    }
+    .banner-card h2 {
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: #F0F0F0;
+        text-align: center;
+        letter-spacing: 0.5px;
+    }
+    .banner-card ul {
+        flex-grow: 1;
+        margin-bottom: 1.5rem;
+    }
+    .banner-card li {
+        margin-bottom: 0.8rem;
+        padding-bottom: 0.8rem;
+        border-bottom: 1px solid #333;
+    }
+    .banner-card li:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+    .nav-link {
+      color: #B0B0B0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+    }
+    .nav-link i {
+        margin-right: 8px;
+        font-size: 0.9em;
+        min-width: 20px;
+        text-align: center;
+        color: #FF5500;
+    }
+    .nav-link:hover {
+      color: #FFAA66;
+      text-decoration: none;
+    }
+    .nav-link:hover i {
+        transform: translateX(3px);
+        color: #FFAA66;
+    }
+    .btn-primary {
+      background: linear-gradient(90deg, #FF5500, #FF7733);
+      color: #FFFFFF;
+      padding: 0.7rem 1.3rem;
+      border: none;
+      border-radius: 30px;
+      font-weight: 600;
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(255, 85, 0, 0.3);
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(255, 85, 0, 0.5);
+      background: linear-gradient(90deg, #FF7733, #FF5500);
+    }
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+    .btn-primary i {
+        margin-right: 8px;
+    }
+    .btn-secondary {
+      background: linear-gradient(90deg, #444, #555);
+      color: #F0F0F0;
+      padding: 0.7rem 1.3rem;
+      border: none;
+      border-radius: 30px;
+      font-weight: 600;
+      font-family: 'Oswald', sans-serif;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+      background: linear-gradient(90deg, #555, #666);
+    }
+    .font-size-toggle span {
+      cursor: pointer;
+      margin: 0 0.4rem;
+      padding: 0.4rem 0.7rem;
+      border-radius: 4px;
+      color: #B0B0B0;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid transparent;
+    }
+    .font-size-toggle span:hover {
+      background-color: rgba(255, 85, 0, 0.1);
+      color: #FFAA66;
+      border-color: #FF5500;
+    }
+    .search-block {
+      position: relative;
+    }
+    .search-input {
+      background: #1E1E1E;
+      color: #F0F0F0;
+      border: 2px solid #333;
+      border-radius: 30px;
+      padding: 0.7rem 1.2rem 0.7rem 2.7rem;
+      font-size: 0.95rem;
+      font-family: 'Montserrat', sans-serif;
+      transition: all 0.3s ease;
+      width: 100%;
+      max-width: 250px;
+    }
+    .search-input:focus {
+      border-color: #FF5500;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(255, 85, 0, 0.2);
+      background: #252525;
+    }
+    .search-icon {
+        position: absolute;
+        left: 1.2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #B0B0B0;
+    }
+    footer {
+      background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
+      border-top: 3px solid #FF5500;
+      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+    }
+    .footer-section h3 {
+        color: #FF5500;
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 1.2rem;
+        border-bottom: 1px solid #333;
+        padding-bottom: 0.6rem;
+        display: flex;
+        align-items: center;
+    }
+    .footer-section h3 i {
+        margin-right: 10px;
+        font-size: 1.1rem;
+    }
+    .footer-link {
+        display: block;
+        margin-bottom: 0.6rem;
+        color: #B0B0B0;
+        transition: color 0.2s ease;
+        text-decoration: none;
+    }
+    .footer-link:hover {
+        color: #FFAA66;
+        text-decoration: underline;
+    }
+    .contact-highlight {
+        color: #FF5500;
+        font-weight: 600;
+    }
+    /* Стили для кнопки "+" */
+    .floating-add-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #FF5500, #CC4400);
+      color: white;
+      font-size: 1.5rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 85, 0, 0.5);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    .floating-add-btn:hover {
+      transform: scale(1.1) rotate(90deg);
+      box-shadow: 0 6px 20px rgba(255, 85, 0, 0.7);
+    }
+    /* Стили для модального окна */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      animation: fadeIn 0.3s ease-out;
+    }
+    .modal-content {
+      background: linear-gradient(145deg, #1E1E1E, #1A1A1A);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 0;
+      border: 1px solid #333;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 800px;
+      max-height: 90vh;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      overflow: hidden;
+      animation: slideIn 0.3s ease-out;
+    }
+    @keyframes slideIn {
+      from { transform: translate(-50%, -40%); opacity: 0; }
+      to { transform: translate(-50%, -50%); opacity: 1; }
+    }
+    .modal-header {
+      padding: 1.5rem;
+      background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
+      border-bottom: 2px solid #FF5500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .modal-header h2 {
+        font-family: 'Oswald', sans-serif;
+        color: #F0F0F0;
+        margin: 0;
+    }
+    .close-modal {
+      color: #B0B0B0;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+    .close-modal:hover {
+        color: #FF5500;
+    }
+    .modal-body {
+      max-height: 70vh;
+      overflow-y: auto;
+      padding: 1.5rem;
+    }
+    .modal-footer {
+      padding: 1rem 1.5rem;
+      background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
+      border-top: 1px solid #333;
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+    .modal-input {
+      width: 100%;
+      padding: 0.7rem;
+      margin-bottom: 1rem;
+      background: #252525;
+      color: #F0F0F0;
+      border: 1px solid #333;
+      border-radius: 6px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .modal-input:focus {
+        outline: none;
+        border-color: #FF5500;
+    }
+    .modal-select {
+      width: 100%;
+      padding: 0.7rem;
+      margin-bottom: 1rem;
+      background: #252525;
+      color: #F0F0F0;
+      border: 1px solid #333;
+      border-radius: 6px;
+      font-family: 'Montserrat', sans-serif;
+    }
+    /* Стили для таблицы расписания */
+    .schedule-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 1rem;
+    }
+    .schedule-table th {
+        background: linear-gradient(90deg, #1A1A1A, #252525);
+        color: #FF5500;
+        font-family: 'Oswald', sans-serif;
+        padding: 0.75rem;
+        text-align: left;
+        border-bottom: 2px solid #FF5500;
+        position: sticky;
+        top: 0;
+    }
+    .schedule-table td {
+        padding: 0.75rem;
+        border-bottom: 1px solid #333;
+        color: #B0B0B0;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .schedule-table td:hover {
+        background: rgba(255, 85, 0, 0.1);
+        transform: scale(1.02);
+    }
+    .schedule-table tr:hover {
+        background: rgba(255, 85, 0, 0.05);
+    }
+    .current-day {
+        background: rgba(255, 85, 0, 0.15) !important;
+        border-left: 3px solid #FF5500;
+    }
+    .lesson-time {
+        font-weight: 600;
+        color: #FFAA66;
+        min-width: 100px;
+    }
+    /* Стили для панели управления */
+    .control-panel {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: rgba(30, 30, 30, 0.8);
+        border-radius: 8px;
+        border: 1px solid #333;
+    }
+    .group-selector {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+    .view-toggle {
+        display: flex;
+        gap: 0.5rem;
+    }
+    .view-btn {
+        padding: 0.5rem 1rem;
+        border: 1px solid #333;
+        background: #252525;
+        color: #B0B0B0;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .view-btn.active {
+        background: #FF5500;
+        color: white;
+        border-color: #FF5500;
+    }
+    .view-btn:hover {
+        background: #FF7733;
+        color: white;
+    }
+    /* Стили для уведомлений */
+    .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 1rem 1.5rem;
+        background: linear-gradient(90deg, #FF5500, #FF7733);
+        color: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(255, 85, 0, 0.3);
+        z-index: 1000;
+        animation: slideInRight 0.3s ease-out;
+    }
+    @keyframes slideInRight {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    /* Адаптивность */
+    @media (max-width: 768px) {
+        .banner-card {
+            padding: 1.5rem;
+        }
+        .banner-card h2 {
+            font-size: 1.4rem;
+        }
+        .search-input {
+            max-width: 100%;
+        }
+        .floating-add-btn {
+            bottom: 1.5rem;
+            right: 1.5rem;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+        }
+        .control-panel {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        .schedule-table {
+            font-size: 0.8rem;
+        }
+        .schedule-table th,
+        .schedule-table td {
+            padding: 0.5rem;
+        }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+  <header class="py-4 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="text-center sm:text-left">
+        <h1 class="text-2xl sm:text-3xl font-bold text-[#F0F0F0] font-display">NSK<span class="gradient-text">Hub</span></h1>
+        <p class="text-sm text-[#B0B0B0] font-light mt-1">Нижневартовский Строительный Колледж</p>
+      </div>
+      <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+        <div class="font-size-toggle flex items-center bg-surface p-1 rounded-lg">
+          <span class="text-xs sm:text-sm" onclick="changeFontSize('small')"><i class="fas fa-text-height"></i> М</span>
+          <span class="text-sm sm:text-base" onclick="changeFontSize('medium')"><i class="fas fa-text-height"></i> С</span>
+          <span class="text-base sm:text-lg" onclick="changeFontSize('large')"><i class="fas fa-text-height"></i> Б</span>
+        </div>
+        <div class="search-block w-full sm:w-auto">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" class="search-input" placeholder="Поиск по сайту...">
+        </div>
+      </div>
+    </div>
+    <nav class="max-w-7xl mx-auto mt-4">
+      <ul class="flex flex-wrap justify-center gap-1 sm:gap-3">
+        <li><a href="index.html#student" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-graduation-cap"></i> Студенту</a></li>
+        <li><a href="index.html#education" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-book-open"></i> Обучение</a></li>
+        <li><a href="index.html#info" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-info-circle"></i> Информация</a></li>
+        <li><a href="index.html" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-arrow-left"></i> Назад</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="flex-1 max-w-7xl mx-auto py-8 px-4 sm:px-6">
+    <div class="text-center mb-8">
+        <h2 class="text-3xl font-bold text-[#F0F0F0] font-display mb-2">Расписание</h2>
+        <p class="text-[#B0B0B0]">Мощная система управления расписанием занятий</p>
+    </div>
+
+    <!-- Панель управления -->
+    <div class="control-panel">
+        <div class="group-selector">
+            <label class="text-[#B0B0B0] mr-2">Группа:</label>
+            <select id="groupSelect" class="modal-select w-auto" onchange="changeGroup()">
+                <option value="СТ-21-01">ИС-25</option>
+            </select>
+        </div>
+
+        <div class="view-toggle">
+            <button class="view-btn active" onclick="changeView('week')">Неделя</button>
+            <button class="view-btn" onclick="changeView('day')">День</button>
+        </div>
+
+        <div class="flex gap-2 ml-auto">
+            <button class="btn-secondary" onclick="exportSchedule()"><i class="fas fa-download mr-2"></i>Экспорт</button>
+            <button class="btn-secondary" onclick="importSchedule()"><i class="fas fa-upload mr-2"></i>Импорт</button>
+            <button class="btn-primary" onclick="showEditModal()"><i class="fas fa-edit mr-2"></i>Редактировать</button>
+        </div>
+    </div>
+
+    <!-- Основное расписание -->
+    <div class="banner-card mb-8">
+        <div class="flex flex-wrap justify-between items-center gap-4 mb-4">
+            <h3 class="text-xl font-display text-[#F0F0F0]">
+                Группа: <span id="currentGroup">ИС-25</span> |
+                Неделя: <span id="currentWeek">1</span>
+                <br>
+                <small class="text-sm text-[#B0B0B0]" id="weekDates"></small>
+            </h3>
+            <div class="flex gap-2">
+                <button onclick="changeWeek(-1)" class="btn-primary"><i class="fas fa-chevron-left"></i> Пред.</button>
+                <button onclick="changeWeek(1)" class="btn-primary">След. <i class="fas fa-chevron-right"></i></button>
+                <button onclick="goToCurrentWeek()" class="btn-secondary">Сегодня</button>
+            </div>
+        </div>
+
+        <div id="scheduleContainer" class="overflow-x-auto">
+            <!-- Расписание будет сгенерировано здесь -->
+        </div>
+    </div>
+
+    <!-- Блок с расписанием звонков и дополнительной информацией -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <section id="bell" class="banner-card">
+            <div class="banner-icon">
+                <i class="fas fa-bell"></i>
+            </div>
+            <h2>Расписание звонков</h2>
+            <ul class="space-y-2 text-base font-light">
+                <li>1 пара: 08:30 - 09:55</li>
+                <li>2 пара: 10:10 - 11:45</li>
+                <li>3 пара: 12:00 - 13:35</li>
+                <li>4 пара: 14:00 - 15:20</li>
+                <li>5 пара: 15:35 - 16:55</li>
+                <li>6 пара: 17:00 - 18:20</li>
+            </ul>
+        </section>
+
+        <section class="banner-card">
+            <div class="banner-icon">
+                <i class="fas fa-info-circle"></i>
+            </div>
+            <h2>Статистика</h2>
+            <div id="scheduleStats" class="space-y-2 text-base font-light">
+                <!-- Статистика будет генерироваться здесь -->
+            </div>
+        </section>
+    </div>
+  </main>
+
+  <footer class="py-6 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+      <div class="footer-section">
+        <h3><i class="fas fa-link"></i> Полезные ссылки</h3>
+        <p>
+          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Дистанционное обучение</a>
+          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Профсоюз студентов</a>
+          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Студенческий совет</a>
+          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Правила распорядка</a>
+          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Стипендии и льготы</a>
+        </p>
+      </div>
+      <div class="footer-section">
+        <h3><i class="fas fa-phone"></i> Контакты</h3>
+        <p class="text-[#B0B0B0] font-light">
+          <span class="contact-highlight"><i class="fas fa-phone-alt mr-2"></i> Приёмная:</span> +7 (3466) 67-23-28<br>
+          <a href="mailto:info@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> info@nskcollege.ru</a><br>
+          <span class="contact-highlight mt-3 block"><i class="fas fa-home mr-2"></i> Общежитие:</span> +7 (3466) 67-02-38<br>
+          <a href="mailto:hostel@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> hostel@nskcollege.ru</a>
+        </p>
+      </div>
+      <div class="footer-section">
+        <h3><i class="fas fa-clock"></i> Режим работы</h3>
+        <p class="text-[#B0B0B0] font-light mb-4">
+          <i class="fas fa-calendar-day mr-2"></i> Пн-Пт: <span class="text-[#F0F0F0]">09:00–17:00</span><br>
+          <i class="fas fa-calendar-day mr-2"></i> Сб: <span class="text-[#F0F0F0]">09:00–13:00</span><br>
+          <i class="fas fa-calendar-times mr-2"></i> Вс: <span class="text-[#F0F0F0]">выходной</span>
+        </p>
+        <p>
+            <a href="https://vk.com/public216209140" class="btn-primary" target="_blank"><i class="fab fa-vk mr-2"></i> Наш ВКонтакте</a>
+        </p>
+        <p class="text-xs text-[#777] mt-4">
+          © 2025 NSKHub. Все права защищены.<br>
+          <a href="#" class="footer-link hover:underline">Политика конфиденциальности</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Кнопка "+" -->
+  <button id="addBtn" class="floating-add-btn" title="Добавить занятие">
+    <i class="fas fa-plus"></i>
+  </button>
+
+  <!-- Модальное окно редактирования занятия -->
+  <div id="editLessonModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Добавить занятие</h2>
+        <span class="close-modal" data-modal="editLessonModal">&times;</span>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="editLessonId">
+        <input type="hidden" id="editLessonDay">
+        <input type="hidden" id="editLessonTime">
+
+        <label for="lessonSubject" class="block text-sm font-medium text-[#B0B0B0] mb-1">Предмет</label>
+        <input type="text" id="lessonSubject" class="modal-input" placeholder="Введите название предмета...">
+
+        <label for="lessonTeacher" class="block text-sm font-medium text-[#B0B0B0] mb-1">Преподаватель</label>
+        <input type="text" id="lessonTeacher" class="modal-input" placeholder="ФИО преподавателя...">
+
+        <label for="lessonRoom" class="block text-sm font-medium text-[#B0B0B0] mb-1">Аудитория</label>
+        <input type="text" id="lessonRoom" class="modal-input" placeholder="Номер аудитории...">
+
+        <label for="lessonType" class="block text-sm font-medium text-[#B0B0B0] mb-1">Тип занятия</label>
+        <select id="lessonType" class="modal-select">
+            <option value="Лекция">Лекция</option>
+            <option value="Практика">Практика</option>
+            <option value="Лабораторная">Лабораторная работа</option>
+            <option value="Семинар">Семинар</option>
+        </select>
+
+        <label for="lessonNote" class="block text-sm font-medium text-[#B0B0B0] mb-1">Примечание</label>
+        <textarea id="lessonNote" class="modal-input" rows="3" placeholder="Дополнительная информация..."></textarea>
+      </div>
+      <div class="modal-footer">
+        <button id="deleteLessonBtn" class="btn-secondary" style="display:none;"><i class="fas fa-trash mr-2"></i>Удалить</button>
+        <button id="cancelEditBtn" class="btn-secondary">Отмена</button>
+        <button id="saveLessonBtn" class="btn-primary"><i class="fas fa-save mr-2"></i>Сохранить</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function changeFontSize(size) {
+      const root = document.documentElement;
+      if (size === 'small') {
+        root.style.fontSize = '12px';
+      } else if (size === 'medium') {
+        root.style.fontSize = '15px';
+      } else if (size === 'large') {
+        root.style.fontSize = '18px';
+      }
+    }
+
+    // Основные переменные
+    let currentWeek = 1;
+    let currentGroup = 'ИС-25';
+    let currentView = 'week';
+    let scheduleData = {};
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        changeFontSize('medium');
+        loadSchedule();
+        currentWeek = getCurrentAcademicWeek(); // Устанавливаем текущую неделю при загрузке
+        document.getElementById('currentWeek').textContent = currentWeek;
+        renderSchedule();
+        updateStats();
+    });
+
+    // Загрузка расписания из localStorage
+    function loadSchedule() {
+        const stored = localStorage.getItem('nskSchedule');
+        if (stored) {
+            scheduleData = JSON.parse(stored);
+        }
+        initializeDefaultSchedule();
+    }
+
+    // Инициализация расписания по умолчанию
+    function initializeDefaultSchedule() {
+        const groups = ['ИС-25'];
+
+        groups.forEach(group => {
+            if (!scheduleData[group]) {
+                scheduleData[group] = {
+                    1: createDefaultWeek(),
+                    2: createDefaultWeek(),
+                    3: createDefaultWeek(),
+                    4: createDefaultWeek(),
+                    5: createDefaultWeek(),
+                    6: createDefaultWeek(),
+                    7: createDefaultWeek(),
+                    8: createDefaultWeek(),
+                    9: createDefaultWeek(),
+                    10: createDefaultWeek(),
+                    11: createDefaultWeek(),
+                    12: createDefaultWeek(),
+                    13: createDefaultWeek(),
+                    14: createDefaultWeek(),
+                    15: createDefaultWeek(),
+                    16: createDefaultWeek(),
+                    17: createDefaultWeek(),
+                    18: createDefaultWeek(),
+                    19: createDefaultWeek(),
+                    20: createDefaultWeek(),
+                    21: createDefaultWeek(),
+                    22: createDefaultWeek(),
+                    23: createDefaultWeek(),
+                    24: createDefaultWeek(),
+                    25: createDefaultWeek(),
+                    26: createDefaultWeek(),
+                    27: createDefaultWeek(),
+                    28: createDefaultWeek(),
+                    29: createDefaultWeek(),
+                    30: createDefaultWeek(),
+                    31: createDefaultWeek(),
+                    32: createDefaultWeek(),
+                    33: createDefaultWeek(),
+                    34: createDefaultWeek(),
+                    35: createDefaultWeek(),
+                    36: createDefaultWeek(),
+                    37: createDefaultWeek(),
+                    38: createDefaultWeek(),
+                    39: createDefaultWeek(),
+                    40: createDefaultWeek()
+                };
+            }
+        });
+
+        saveSchedule();
+    }
+
+    // Создание недели по умолчанию
+    function createDefaultWeek() {
+        return {
+            "Понедельник": [
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" }
+            ],
+            "Вторник": [
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" }
+            ],
+            "Среда": [
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" }
+            ],
+            "Четверг": [
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" }
+            ],
+            "Пятница": [
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" }
+            ],
+            "Суббота": [
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" },
+                { subject: "", teacher: "", room: "", type: "" }
+            ]
+        };
+    }
+
+    // Сохранение расписания
+    function saveSchedule() {
+        localStorage.setItem('nskSchedule', JSON.stringify(scheduleData));
+    }
+
+    // Получение текущей учебной недели (от 1 сентября)
+    function getCurrentAcademicWeek() {
+        const now = new Date();
+        const currentYear = now.getFullYear();
+
+        // Дата начала учебного года (1 сентября)
+        let academicYearStart = new Date(currentYear, 8, 1); // 8 = сентябрь (0-11)
+
+        // Если текущая дата раньше 1 сентября, берём предыдущий учебный год
+        if (now < academicYearStart) {
+            academicYearStart = new Date(currentYear - 1, 8, 1);
+        }
+
+        // Вычисляем разницу в миллисекундах
+        const diffTime = now - academicYearStart;
+
+        // Конвертируем в дни и вычисляем неделю
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        const currentWeek = Math.floor(diffDays / 7) + 1; // +1 потому что первая неделя = неделя 1
+
+        // Учебный год обычно имеет до 35-40 недель
+        return Math.min(Math.max(currentWeek, 1), 40); // Ограничиваем от 1 до 40 недель
+    }
+
+    // Функция для получения дат конкретной учебной недели
+    function getAcademicWeekDates(weekNumber) {
+        const currentYear = new Date().getFullYear();
+        let academicYearStart = new Date(currentYear, 8, 1); // 1 сентября
+
+        // Если запрашиваемая неделя может быть в прошлом году
+        if (weekNumber > 30) { // Предполагаем, что с сентября по декабрь ~17 недель
+            academicYearStart = new Date(currentYear - 1, 8, 1);
+        }
+
+        const startDate = new Date(academicYearStart);
+        startDate.setDate(academicYearStart.getDate() + (weekNumber - 1) * 7);
+
+        const endDate = new Date(startDate);
+        endDate.setDate(startDate.getDate() + 6);
+
+        return {
+            start: startDate.toLocaleDateString('ru-RU'),
+            end: endDate.toLocaleDateString('ru-RU')
+        };
+    }
+
+    // Функция для обновления отображения дат недели
+    function updateWeekDatesDisplay() {
+        const weekDates = getAcademicWeekDates(currentWeek);
+        const datesElement = document.getElementById('weekDates');
+        if (datesElement) {
+            datesElement.textContent = `${weekDates.start} - ${weekDates.end}`;
+        }
+    }
+
+    // Смена группы
+    function changeGroup() {
+        currentGroup = document.getElementById('groupSelect').value;
+        document.getElementById('currentGroup').textContent = currentGroup;
+        renderSchedule();
+        updateStats();
+    }
+
+    // Смена недели
+    function changeWeek(direction) {
+        currentWeek += direction;
+        // Ограничиваем учебный год 40 неделями
+        if (currentWeek < 1) currentWeek = 1;
+        if (currentWeek > 40) currentWeek = 40;
+        document.getElementById('currentWeek').textContent = currentWeek;
+        renderSchedule();
+
+        // Показываем даты недели при переключении
+        const weekDates = getAcademicWeekDates(currentWeek);
+        showNotification(`Неделя ${currentWeek}: ${weekDates.start} - ${weekDates.end}`);
+    }
+
+    // Переход к текущей неделе
+    function goToCurrentWeek() {
+        currentWeek = getCurrentAcademicWeek();
+        document.getElementById('currentWeek').textContent = currentWeek;
+        renderSchedule();
+        showNotification('Переход к текущей неделе');
+    }
+
+    // Смена вида (неделя/день)
+    function changeView(view) {
+        currentView = view;
+        document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+        renderSchedule();
+    }
+
+    // Отрисовка расписания
+    function renderSchedule() {
+        const container = document.getElementById('scheduleContainer');
+        const weekData = scheduleData[currentGroup]?.[currentWeek] || {};
+
+        if (currentView === 'week') {
+            container.innerHTML = renderWeekView(weekData);
+        } else {
+            container.innerHTML = renderDayView(weekData);
+        }
+
+        // Обновляем отображение дат недели
+        updateWeekDatesDisplay();
+    }
+
+    // Отрисовка вида недели
+    function renderWeekView(weekData) {
+        const days = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+        const times = ["08:30-09:55", "10:10-11:45", "12:00-13:35", "14:00-15:20", "15:35-16:55", "17:00-18:20"];
+        const currentDay = new Date().getDay() - 1; // 0-5 для Пн-Сб
+
+        let html = `<table class="schedule-table">
+            <thead>
+                <tr>
+                    <th class="lesson-time">Время</th>`;
+
+        days.forEach((day, index) => {
+            const dayClass = index === currentDay ? 'current-day' : '';
+            html += `<th class="${dayClass}">${day}</th>`;
+        });
+
+        html += `</tr></thead><tbody>`;
+
+        times.forEach((time, timeIndex) => {
+            html += `<tr><td class="lesson-time">${time}</td>`;
+
+            days.forEach((day, dayIndex) => {
+                const dayClass = dayIndex === currentDay ? 'current-day' : '';
+                const lesson = weekData[day]?.[timeIndex] || { subject: "-" };
+                const lessonInfo = lesson.subject !== "-" ?
+                    `${lesson.subject} (${lesson.type})<br><small>${lesson.teacher} · ${lesson.room}</small>` :
+                    "-";
+
+                html += `<td class="${dayClass}"
+                    onclick="editLesson('${day}', ${timeIndex})"
+                    data-day="${day}"
+                    data-time="${timeIndex}">
+                    ${lessonInfo}
+                </td>`;
+            });
+
+            html += `</tr>`;
+        });
+
+        html += `</tbody></table>`;
+        return html;
+    }
+
+    // Отрисовка вида дня
+    function renderDayView(weekData) {
+        const days = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+        const currentDayIndex = new Date().getDay() - 1;
+        const dayName = days[Math.max(0, currentDayIndex)];
+        const dayData = weekData[dayName] || [];
+
+        let html = `<h3 class="text-xl font-display text-[#F0F0F0] mb-4">${dayName}</h3>`;
+        html += `<table class="schedule-table"><thead><tr>
+            <th>Время</th>
+            <th>Предмет</th>
+            <th>Тип</th>
+            <th>Преподаватель</th>
+            <th>Аудитория</th>
+        </tr></thead><tbody>`;
+
+        const times = ["08:30-09:55", "10:10-11:45", "12:00-13:35", "14:00-15:20", "15:35-16:55", "17:00-18:20"];
+
+        times.forEach((time, index) => {
+            const lesson = dayData[index] || { subject: "-", type: "", teacher: "", room: "" };
+            html += `<tr onclick="editLesson('${dayName}', ${index})">
+                <td class="lesson-time">${time}</td>
+                <td>${lesson.subject}</td>
+                <td>${lesson.type}</td>
+                <td>${lesson.teacher}</td>
+                <td>${lesson.room}</td>
+            </tr>`;
+        });
+
+        html += `</tbody></table>`;
+        return html;
+    }
+
+    // Обновление статистики
+    function updateStats() {
+        const statsContainer = document.getElementById('scheduleStats');
+        const weekData = scheduleData[currentGroup]?.[currentWeek] || {};
+
+        let totalLessons = 0;
+        let lectureCount = 0;
+        let practiceCount = 0;
+        let labCount = 0;
+
+        Object.values(weekData).forEach(day => {
+            day.forEach(lesson => {
+                if (lesson.subject && lesson.subject !== "-") {
+                    totalLessons++;
+                    if (lesson.type === "Лекция") lectureCount++;
+                    if (lesson.type === "Практика") practiceCount++;
+                    if (lesson.type === "Лабораторная") labCount++;
+                }
+            });
+        });
+
+        statsContainer.innerHTML = `
+            <div>Всего занятий: <span class="text-[#FF5500]">${totalLessons}</span></div>
+            <div>Лекций: <span class="text-[#FF5500]">${lectureCount}</span></div>
+            <div>Практик: <span class="text-[#FF5500]">${practiceCount}</span></div>
+            <div>Лабораторных: <span class="text-[#FF5500]">${labCount}</span></div>
+            <div>Свободных пар: <span class="text-[#FF5500]">${36 - totalLessons}</span></div>
+        `;
+    }
+
+    // Редактирование занятия
+    function editLesson(day, timeIndex) {
+        const modal = document.getElementById('editLessonModal');
+        const lesson = scheduleData[currentGroup]?.[currentWeek]?.[day]?.[timeIndex] || {
+            subject: "", teacher: "", room: "", type: "Лекция", note: ""
+        };
+
+        document.getElementById('modalTitle').textContent = 'Редактировать занятие';
+        document.getElementById('editLessonDay').value = day;
+        document.getElementById('editLessonTime').value = timeIndex;
+        document.getElementById('lessonSubject').value = lesson.subject;
+        document.getElementById('lessonTeacher').value = lesson.teacher;
+        document.getElementById('lessonRoom').value = lesson.room;
+        document.getElementById('lessonType').value = lesson.type || "Лекция";
+        document.getElementById('lessonNote').value = lesson.note || "";
+
+        // Показываем кнопку удаления только если занятие существует
+        const deleteBtn = document.getElementById('deleteLessonBtn');
+        deleteBtn.style.display = lesson.subject ? 'block' : 'none';
+
+        modal.style.display = 'block';
+    }
+
+    // Показ модального окна для нового занятия
+    function showEditModal() {
+        const modal = document.getElementById('editLessonModal');
+        document.getElementById('modalTitle').textContent = 'Добавить занятие';
+        document.getElementById('deleteLessonBtn').style.display = 'none';
+
+        // Сброс полей
+        document.getElementById('editLessonDay').value = '';
+        document.getElementById('editLessonTime').value = '';
+        document.getElementById('lessonSubject').value = '';
+        document.getElementById('lessonTeacher').value = '';
+        document.getElementById('lessonRoom').value = '';
+        document.getElementById('lessonType').value = 'Лекция';
+        document.getElementById('lessonNote').value = '';
+
+        modal.style.display = 'block';
+    }
+
+    // Сохранение занятия
+    document.getElementById('saveLessonBtn').onclick = function() {
+        const day = document.getElementById('editLessonDay').value;
+        const timeIndex = parseInt(document.getElementById('editLessonTime').value);
+        const subject = document.getElementById('lessonSubject').value.trim();
+        const teacher = document.getElementById('lessonTeacher').value.trim();
+        const room = document.getElementById('lessonRoom').value.trim();
+        const type = document.getElementById('lessonType').value;
+        const note = document.getElementById('lessonNote').value.trim();
+
+        if (!subject) {
+            alert('Пожалуйста, введите название предмета.');
+            return;
+        }
+
+        // Инициализация если нет данных
+        if (!scheduleData[currentGroup]) scheduleData[currentGroup] = {};
+        if (!scheduleData[currentGroup][currentWeek]) scheduleData[currentGroup][currentWeek] = {};
+        if (!scheduleData[currentGroup][currentWeek][day]) scheduleData[currentGroup][currentWeek][day] = Array(6).fill().map(() => ({}));
+
+        // Сохранение данных
+        scheduleData[currentGroup][currentWeek][day][timeIndex] = {
+            subject,
+            teacher,
+            room,
+            type,
+            note
+        };
+
+        saveSchedule();
+        renderSchedule();
+        updateStats();
+        document.getElementById('editLessonModal').style.display = 'none';
+        showNotification('Занятие сохранено');
+    };
+
+    // Удаление занятия
+    document.getElementById('deleteLessonBtn').onclick = function() {
+        const day = document.getElementById('editLessonDay').value;
+        const timeIndex = parseInt(document.getElementById('editLessonTime').value);
+
+        if (confirm('Вы уверены, что хотите удалить это занятие?')) {
+            if (scheduleData[currentGroup]?.[currentWeek]?.[day]?.[timeIndex]) {
+                scheduleData[currentGroup][currentWeek][day][timeIndex] = {
+                    subject: "", teacher: "", room: "", type: "", note: ""
+                };
+
+                saveSchedule();
+                renderSchedule();
+                updateStats();
+                document.getElementById('editLessonModal').style.display = 'none';
+                showNotification('Занятие удалено');
+            }
+        }
+    };
+
+    // Экспорт расписания
+    function exportSchedule() {
+        const dataStr = JSON.stringify(scheduleData, null, 2);
+        const dataBlob = new Blob([dataStr], {type: 'application/json'});
+
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(dataBlob);
+        link.download = `schedule_${currentGroup}_week${currentWeek}.json`;
+        link.click();
+
+        showNotification('Расписание экспортировано');
+    }
+
+    // Импорт расписания
+    function importSchedule() {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = '.json';
+
+        input.onchange = e => {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = event => {
+                try {
+                    const importedData = JSON.parse(event.target.result);
+                    Object.assign(scheduleData, importedData);
+                    saveSchedule();
+                    renderSchedule();
+                    updateStats();
+                    showNotification('Расписание импортировано');
+                } catch (error) {
+                    alert('Ошибка при импорте файла: ' + error.message);
+                }
+            };
+
+            reader.readAsText(file);
+        };
+
+        input.click();
+    }
+
+    // Показ уведомлений
+    function showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.innerHTML = `<i class="fas fa-check-circle mr-2"></i>${message}`;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
+    }
+
+    // Закрытие модальных окон
+    document.querySelectorAll('.close-modal').forEach(span => {
+        span.onclick = function() {
+            const modalId = this.getAttribute('data-modal');
+            document.getElementById(modalId).style.display = 'none';
+        }
+    });
+
+    document.getElementById('cancelEditBtn').onclick = function() {
+        document.getElementById('editLessonModal').style.display = 'none';
+    };
+
+    window.onclick = function(event) {
+        if (event.target.classList.contains('modal')) {
+            event.target.style.display = 'none';
+        }
+    }
+
+    // Обработчик для кнопки "+"
+    document.getElementById('addBtn').onclick = showEditModal;
+  </script>
+</body>
+</html>

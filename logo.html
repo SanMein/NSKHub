@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Логотип NSKHub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #121212; /* Фон, как на основном сайте */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh; /* Центрирование по вертикали */
+    }
+
+    .logo-container {
+      text-align: center;
+    }
+
+    .logo {
+      font-family: 'Oswald', sans-serif;
+      font-size: 4rem; /* Размер можно изменить по вкусу */
+      font-weight: 700;
+      color: #F0F0F0; /* Базовый цвет текста */
+    }
+
+    .logo-text {
+      background: linear-gradient(90deg, #FF5500, #FFAA66, #FF5500);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      animation: shine 3s linear infinite;
+      display: inline-block;
+    }
+
+    @keyframes shine {
+      to { background-position: 200% center; }
+    }
+
+    .subtext {
+      color: #B0B0B0;
+      font-size: 0.8rem; /* Меньший размер для подзаголовка */
+      margin-top: 0.2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <h1 class="logo">NSK<span class="logo-text">Hub</span></h1>
+  </div>
+</body>
+</html>
