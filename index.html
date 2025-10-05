@@ -271,123 +271,6 @@
         color: #FF5500;
         font-weight: 600;
     }
-    /* Стили для кнопки "+" */
-    .floating-add-btn {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(145deg, #FF5500, #CC4400);
-      color: white;
-      font-size: 1.5rem;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(255, 85, 0, 0.5);
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-    }
-    .floating-add-btn:hover {
-      transform: scale(1.1) rotate(90deg);
-      box-shadow: 0 6px 20px rgba(255, 85, 0, 0.7);
-    }
-    /* Стили для модального окна */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      animation: fadeIn 0.3s ease-out;
-    }
-    .modal-content {
-      background: linear-gradient(145deg, #1E1E1E, #1A1A1A);
-      margin: 5% auto;
-      padding: 0;
-      border: 1px solid #333;
-      border-radius: 12px;
-      width: 90%;
-      max-width: 600px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-      overflow: hidden;
-      animation: slideIn 0.3s ease-out;
-    }
-    @keyframes slideIn {
-      from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    .modal-header {
-      padding: 1.5rem;
-      background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
-      border-bottom: 2px solid #FF5500;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .modal-header h2 {
-        font-family: 'Oswald', sans-serif;
-        color: #F0F0F0;
-        margin: 0;
-    }
-    .close-modal {
-      color: #B0B0B0;
-      font-size: 1.5rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: color 0.2s ease;
-    }
-    .close-modal:hover {
-        color: #FF5500;
-    }
-    .modal-body {
-      padding: 1.5rem;
-    }
-    .modal-footer {
-      padding: 1rem 1.5rem;
-      background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
-      border-top: 1px solid #333;
-      display: flex;
-      justify-content: flex-end;
-    }
-    .modal-input {
-      width: 100%;
-      padding: 0.7rem;
-      margin-bottom: 1rem;
-      background: #252525;
-      color: #F0F0F0;
-      border: 1px solid #333;
-      border-radius: 6px;
-      font-family: 'Montserrat', sans-serif;
-    }
-    .modal-input:focus {
-        outline: none;
-        border-color: #FF5500;
-    }
-    .modal-preview {
-      background: #252525;
-      border: 1px solid #333;
-      border-radius: 6px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      min-height: 100px;
-      color: #B0B0B0;
-      overflow: auto;
-    }
-    .preview-banner {
-      background: linear-gradient(145deg, #FF5500, #CC4400);
-      padding: 0.5rem;
-      text-align: center;
-      color: white;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
     /* Адаптивность */
     @media (max-width: 768px) {
         .banner-card {
@@ -398,13 +281,6 @@
         }
         .search-input {
             max-width: 100%;
-        }
-        .floating-add-btn {
-            bottom: 1.5rem;
-            right: 1.5rem;
-            width: 50px;
-            height: 50px;
-            font-size: 1.2rem;
         }
     }
   </style>
@@ -428,15 +304,6 @@
         </div>
       </div>
     </div>
-    <nav class="max-w-7xl mx-auto mt-4">
-      <ul class="flex flex-wrap justify-center gap-1 sm:gap-3">
-        <li><a href="#student" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-graduation-cap"></i> Студенту</a></li>
-        <li><a href="#education" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-book-open"></i> Обучение</a></li>
-        <li><a href="#info" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-info-circle"></i> Информация</a></li>
-        <li><a href="#" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-calendar-alt"></i> Новости</a></li>
-        <li><a href="info_contacts.html" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-envelope"></i> Контакты</a></li>
-      </ul>
-    </nav>
   </header>
 
   <main class="flex-1 max-w-7xl mx-auto py-8 px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -450,8 +317,6 @@
         <li><a href="profile.html" class="nav-link"><i class="fas fa-sign-in-alt"></i> Личный кабинет</a></li>
         <li><a href="https://vk.com/public216209140" class="nav-link" target="_blank"><i class="fab fa-vk"></i> Группа ВКонтакте</a></li>
         <li><a href="info_docs.html?category=Учеба" class="nav-link"><i class="fas fa-file-contract"></i> Учебный план</a></li>
-        <li><a href="info_docs.html?category=Учеба" class="nav-link"><i class="fas fa-tasks"></i> Задания и оценки</a></li>
-        <li><a href="schedule.html" class="nav-link"><i class="fas fa-calendar-check"></i> Расписание сессии</a></li>
       </ul>
     </section>
 
@@ -461,8 +326,7 @@
       </div>
       <h2>Обучение</h2>
       <ul class="space-y-2 text-base font-light">
-        <li><a href="schedule.html#bell" class="nav-link"><i class="fas fa-bell"></i> Расписание звонков</a></li>
-        <li><a href="schedule.html" class="nav-link"><i class="fas fa-calendar"></i> Расписание уроков</a></li>
+        <li><a href="schedule.html" class="nav-link"><i class="fas fa-calendar"></i> Расписание занятий</a></li>
         <li><a href="links.html" class="nav-link"><i class="fas fa-link"></i> Полезные ссылки</a></li>
         <li><a href="#education" class="nav-link" onclick="alert('Раздел в разработке')"><i class="fas fa-newspaper"></i> Последние новости</a></li>
         <li><a href="#education" class="nav-link" onclick="alert('Раздел в разработке')"><i class="fas fa-book"></i> Электронная библиотека</a></li>
@@ -478,8 +342,7 @@
       <ul class="space-y-2 text-base font-light">
         <li><a href="info_o_college.html" class="nav-link"><i class="fas fa-school"></i> О колледже</a></li>
         <li><a href="info_obsh.html" class="nav-link"><i class="fas fa-home"></i> Общежитие</a></li>
-        <li><a href="info_contacts.html" class="nav-link"><i class="fas fa-phone-alt"></i> Контакты</a></li>
-        <li><a href="info_contacts.html#address" class="nav-link"><i class="fas fa-map-marker-alt"></i> Как добраться</a></li>
+        <li><a href="info_contacts.html" class="nav-link"><i class="fas fa-map-marker-alt"></i> Контакты и адрес</a></li>
         <li><a href="info_docs.html" class="nav-link"><i class="fas fa-file-alt"></i> Документы</a></li>
         <li><a href="#info" class="nav-link" onclick="alert('Раздел в разработке')"><i class="fas fa-briefcase"></i> Карьера выпускников</a></li>
       </ul>
@@ -501,7 +364,7 @@
       <div class="footer-section">
         <h3><i class="fas fa-phone"></i> Контакты</h3>
         <p class="text-[#B0B0B0] font-light">
-          <span class="contact-highlight"><i class="fas fa-phone-alt mr-2"></i> Приёмная:</span> +7 (3466) 67-23-28<br>
+          <span class="contact-highlight mt-3 block"><i class="fas fa-home mr-2"></i> Приёмная:</span> +7 (3466) 67-23-28<br>
           <a href="mailto:info@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> info@nskcollege.ru</a><br>
           <span class="contact-highlight mt-3 block"><i class="fas fa-home mr-2"></i> Общежитие:</span> +7 (3466) 67-02-38<br>
           <a href="mailto:hostel@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> hostel@nskcollege.ru</a>
@@ -525,38 +388,6 @@
     </div>
   </footer>
 
-  <!-- Кнопка "+" -->
-  <button id="addBtn" class="floating-add-btn" title="Создать документ">
-    <i class="fas fa-plus"></i>
-  </button>
-
-  <!-- Модальное окно -->
-  <div id="createDocModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Создать документ</h2>
-        <span class="close-modal">&times;</span>
-      </div>
-      <div class="modal-body">
-        <div class="preview-banner">
-          Предпросмотр документа
-        </div>
-        <div id="previewContent" class="modal-preview">
-          Введите название и описание для предпросмотра.
-        </div>
-        <label for="docName" class="block text-sm font-medium text-[#B0B0B0] mb-1">Имя документа</label>
-        <input type="text" id="docName" class="modal-input" placeholder="Введите название документа...">
-        <label for="docDesc" class="block text-sm font-medium text-[#B0B0B0] mb-1">Описание документа</label>
-        <textarea id="docDesc" class="modal-input" rows="3" placeholder="Введите описание документа..."></textarea>
-        <label for="docFile" class="block text-sm font-medium text-[#B0B0B0] mb-1">Прикрепить файл (.md, .txt)</label>
-        <input type="file" id="docFile" class="modal-input" accept=".md,.txt">
-      </div>
-      <div class="modal-footer">
-        <button id="createDocBtn" class="btn-primary"><i class="fas fa-save mr-2"></i>Создать документ</button>
-      </div>
-    </div>
-  </div>
-
   <script>
     function changeFontSize(size) {
       const root = document.documentElement;
@@ -571,57 +402,6 @@
     document.addEventListener('DOMContentLoaded', (event) => {
         changeFontSize('medium');
     });
-
-    // Логика для модального окна
-    const modal = document.getElementById('createDocModal');
-    const btn = document.getElementById('addBtn');
-    const span = document.querySelector('.close-modal');
-    const createBtn = document.getElementById('createDocBtn');
-    const docNameInput = document.getElementById('docName');
-    const docDescInput = document.getElementById('docDesc');
-    const previewContent = document.getElementById('previewContent');
-
-    // Обновление предпросмотра
-    function updatePreview() {
-        const name = docNameInput.value.trim() || 'Новый документ';
-        const desc = docDescInput.value.trim() || 'Без описания.';
-        previewContent.innerHTML = `<strong>${name}</strong><br><small>${desc}</small>`;
-    }
-
-    docNameInput.addEventListener('input', updatePreview);
-    docDescInput.addEventListener('input', updatePreview);
-
-    btn.onclick = function() {
-        modal.style.display = 'block';
-        // Сброс формы при открытии
-        docNameInput.value = '';
-        docDescInput.value = '';
-        document.getElementById('docFile').value = '';
-        updatePreview(); // Обновить предпросмотр с пустыми полями
-    }
-
-    span.onclick = function() {
-        modal.style.display = 'none';
-    }
-
-    window.onclick = function(event) {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    }
-
-    createBtn.onclick = function() {
-        const name = docNameInput.value.trim();
-        const desc = docDescInput.value.trim();
-        if (name) {
-            // Симуляция создания документа
-            alert(`Документ "${name}" создан!`);
-            // В реальном приложении здесь был бы код для сохранения данных
-            modal.style.display = 'none';
-        } else {
-            alert('Пожалуйста, введите имя документа.');
-        }
-    }
 
     // --- Функционал поиска на главной странице ---
     const searchInput = document.getElementById('mainSearch');
