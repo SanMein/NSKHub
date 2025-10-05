@@ -54,21 +54,21 @@
 ## 🛡️ Конфиденциальность
 
 - Все данные хранятся только на вашем устройстве (localStorage).
-- [Политика конфиденциальности](privacy.html) размещена на сайте.
+- [Политика конфиденциальности](https://sanmein.github.io/NSKHub/privacy.html) размещена на сайте.
 
 ---
 
 ## 📎 Быстрые ссылки
 
-- [Главная страница](index.html)
-- [Моя группа](group.html)
-- [Расписание](schedule.html)
-- [Документы](info_docs.html)
-- [Контакты](info_contacts.html)
-- [Полезные ссылки](links.html)
-- [Общежитие](info_obsh.html)
-- [О колледже](info_o_college.html)
-- [Политика конфиденциальности](privacy.html)
+- [Главная страница](https://sanmein.github.io/NSKHub/index.html)
+- [Моя группа](https://sanmein.github.io/NSKHub/group.html)
+- [Расписание](https://sanmein.github.io/NSKHub/schedule.html)
+- [Документы](https://sanmein.github.io/NSKHub/info_docs.html)
+- [Контакты](https://sanmein.github.io/NSKHub/info_contacts.html)
+- [Полезные ссылки](https://sanmein.github.io/NSKHub/links.html)
+- [Общежитие](https://sanmein.github.io/NSKHub/info_obsh.html)
+- [О колледже](https://sanmein.github.io/NSKHub/info_o_college.html)
+- [Политика конфиденциальности](https://sanmein.github.io/NSKHub/privacy.html)
 
 ---
 
@@ -86,4 +86,4 @@
 ## 📝 Лицензия
 
 © 2025 NSKHub. Все права защищены.  
-Для вопросов и предложений: [wararsmir@gmail.com](mailto:wararsmir@gmail.com)
+Для вопросов и предложений: [wararsmir@gmail.com](https://wararsmir@gmail.com)
