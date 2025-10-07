@@ -292,30 +292,6 @@
         color: #FF5500;
         font-weight: 600;
     }
-    /* Стили для кнопки "+" */
-    .floating-add-btn {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(145deg, #FF5500, #CC4400);
-      color: white;
-      font-size: 1.5rem;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(255, 85, 0, 0.5);
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-    }
-    .floating-add-btn:hover {
-      transform: scale(1.1) rotate(90deg);
-      box-shadow: 0 6px 20px rgba(255, 85, 0, 0.7);
-    }
     /* Стили для модального окна */
     .modal {
       display: none;
@@ -514,13 +490,6 @@
         .search-input {
             max-width: 100%;
         }
-        .floating-add-btn {
-            bottom: 1.5rem;
-            right: 1.5rem;
-            width: 50px;
-            height: 50px;
-            font-size: 1.2rem;
-        }
         .control-panel {
             flex-direction: column;
             align-items: stretch;
@@ -575,7 +544,7 @@
         <div class="group-selector">
             <label class="text-[#B0B0B0] mr-2">Группа:</label>
             <select id="groupSelect" class="modal-select w-auto" onchange="changeGroup()">
-                <option value="СТ-21-01">ИС-25</option>
+                <!-- Группы будут заполнены из JSON -->
             </select>
         </div>
 
@@ -680,11 +649,6 @@
     </div>
   </footer>
 
-  <!-- Кнопка "+" -->
-  <button id="addBtn" class="floating-add-btn" title="Добавить занятие">
-    <i class="fas fa-plus"></i>
-  </button>
-
   <!-- Модальное окно редактирования занятия -->
   <div id="editLessonModal" class="modal">
     <div class="modal-content">
@@ -745,74 +709,51 @@
 
     document.addEventListener('DOMContentLoaded', (event) => {
         changeFontSize('medium');
-        loadSchedule();
-        currentWeek = getCurrentAcademicWeek(); // Устанавливаем текущую неделю при загрузке
+        loadScheduleFromFile();
+        currentWeek = getCurrentAcademicWeek();
         document.getElementById('currentWeek').textContent = currentWeek;
         renderSchedule();
         updateStats();
     });
 
-    // Загрузка расписания из localStorage
-    function loadSchedule() {
+    // Загрузка расписания из JSON файла
+    async function loadScheduleFromFile() {
+        try {
+            const response = await fetch('schedule.json');
+            if (!response.ok) {
+                throw new Error('Файл schedule.json не найден');
+            }
+            scheduleData = await response.json();
+            updateGroupsDropdown();
+            renderSchedule();
+            updateStats();
+            showNotification('Расписание загружено из файла');
+        } catch (error) {
+            console.error('Ошибка загрузки расписания:', error);
+            showNotification('Ошибка загрузки расписания. Используется локальное хранилище.');
+            loadScheduleFromStorage();
+        }
+    }
+
+    // Загрузка расписания из localStorage (резервный вариант)
+    function loadScheduleFromStorage() {
         const stored = localStorage.getItem('nskSchedule');
         if (stored) {
             scheduleData = JSON.parse(stored);
+        } else {
+            // Если нет данных, создаем пустую структуру
+            scheduleData = {
+                "ИС-25": {
+                    "1": createDefaultWeek(),
+                    "2": createDefaultWeek(),
+                    "3": createDefaultWeek(),
+                    "4": createDefaultWeek(),
+                    "5": createDefaultWeek(),
+                    "6": createDefaultWeek()
+                }
+            };
         }
-        initializeDefaultSchedule();
-    }
-
-    // Инициализация расписания по умолчанию
-    function initializeDefaultSchedule() {
-        const groups = ['ИС-25'];
-
-        groups.forEach(group => {
-            if (!scheduleData[group]) {
-                scheduleData[group] = {
-                    1: createDefaultWeek(),
-                    2: createDefaultWeek(),
-                    3: createDefaultWeek(),
-                    4: createDefaultWeek(),
-                    5: createDefaultWeek(),
-                    6: createDefaultWeek(),
-                    7: createDefaultWeek(),
-                    8: createDefaultWeek(),
-                    9: createDefaultWeek(),
-                    10: createDefaultWeek(),
-                    11: createDefaultWeek(),
-                    12: createDefaultWeek(),
-                    13: createDefaultWeek(),
-                    14: createDefaultWeek(),
-                    15: createDefaultWeek(),
-                    16: createDefaultWeek(),
-                    17: createDefaultWeek(),
-                    18: createDefaultWeek(),
-                    19: createDefaultWeek(),
-                    20: createDefaultWeek(),
-                    21: createDefaultWeek(),
-                    22: createDefaultWeek(),
-                    23: createDefaultWeek(),
-                    24: createDefaultWeek(),
-                    25: createDefaultWeek(),
-                    26: createDefaultWeek(),
-                    27: createDefaultWeek(),
-                    28: createDefaultWeek(),
-                    29: createDefaultWeek(),
-                    30: createDefaultWeek(),
-                    31: createDefaultWeek(),
-                    32: createDefaultWeek(),
-                    33: createDefaultWeek(),
-                    34: createDefaultWeek(),
-                    35: createDefaultWeek(),
-                    36: createDefaultWeek(),
-                    37: createDefaultWeek(),
-                    38: createDefaultWeek(),
-                    39: createDefaultWeek(),
-                    40: createDefaultWeek()
-                };
-            }
-        });
-
-        saveSchedule();
+        updateGroupsDropdown();
     }
 
     // Создание недели по умолчанию
@@ -869,7 +810,25 @@
         };
     }
 
-    // Сохранение расписания
+    // Обновление выпадающего списка групп
+    function updateGroupsDropdown() {
+        const groupSelect = document.getElementById('groupSelect');
+        groupSelect.innerHTML = '';
+
+        Object.keys(scheduleData).forEach(group => {
+            const option = document.createElement('option');
+            option.value = group;
+            option.textContent = group;
+            groupSelect.appendChild(option);
+        });
+
+        if (groupSelect.options.length > 0) {
+            currentGroup = groupSelect.value;
+            document.getElementById('currentGroup').textContent = currentGroup;
+        }
+    }
+
+    // Сохранение расписания в localStorage
     function saveSchedule() {
         localStorage.setItem('nskSchedule', JSON.stringify(scheduleData));
     }
@@ -894,8 +853,8 @@
         const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
         const currentWeek = Math.floor(diffDays / 7) + 1; // +1 потому что первая неделя = неделя 1
 
-        // Учебный год обычно имеет до 35-40 недель
-        return Math.min(Math.max(currentWeek, 1), 40); // Ограничиваем от 1 до 40 недель
+        // Ограничиваем учебный год 40 неделями
+        return Math.min(Math.max(currentWeek, 1), 40);
     }
 
     // Функция для получения дат конкретной учебной недели
@@ -904,7 +863,7 @@
         let academicYearStart = new Date(currentYear, 8, 1); // 1 сентября
 
         // Если запрашиваемая неделя может быть в прошлом году
-        if (weekNumber > 30) { // Предполагаем, что с сентября по декабрь ~17 недель
+        if (weekNumber > 30) {
             academicYearStart = new Date(currentYear - 1, 8, 1);
         }
 
@@ -1005,8 +964,8 @@
 
             days.forEach((day, dayIndex) => {
                 const dayClass = dayIndex === currentDay ? 'current-day' : '';
-                const lesson = weekData[day]?.[timeIndex] || { subject: "-" };
-                const lessonInfo = lesson.subject !== "-" ?
+                const lesson = weekData[day]?.[timeIndex] || { subject: "", teacher: "", room: "", type: "" };
+                const lessonInfo = lesson.subject && lesson.subject !== "" ?
                     `${lesson.subject} (${lesson.type})<br><small>${lesson.teacher} · ${lesson.room}</small>` :
                     "-";
 
@@ -1070,7 +1029,7 @@
 
         Object.values(weekData).forEach(day => {
             day.forEach(lesson => {
-                if (lesson.subject && lesson.subject !== "-") {
+                if (lesson.subject && lesson.subject !== "") {
                     totalLessons++;
                     if (lesson.type === "Лекция") lectureCount++;
                     if (lesson.type === "Практика") practiceCount++;
@@ -1213,6 +1172,7 @@
                     const importedData = JSON.parse(event.target.result);
                     Object.assign(scheduleData, importedData);
                     saveSchedule();
+                    updateGroupsDropdown();
                     renderSchedule();
                     updateStats();
                     showNotification('Расписание импортировано');
@@ -1257,9 +1217,6 @@
             event.target.style.display = 'none';
         }
     }
-
-    // Обработчик для кнопки "+"
-    document.getElementById('addBtn').onclick = showEditModal;
   </script>
 </body>
 </html>
