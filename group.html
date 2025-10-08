@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Моя группа - NSKHub</title>
     <link rel="icon" type="image/png" href="logo.png"/>
+    <title>NSKHub - Нижневартовский Строительный Колледж</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -40,8 +40,8 @@
         }
       }
     }
-    </script>
-    <style>
+  </script>
+  <style>
     body {
       background: linear-gradient(180deg, #121212 0%, #1A1A1A 100%);
       color: #F0F0F0;
@@ -69,6 +69,10 @@
       z-index: 50;
       border-bottom: 3px solid #FF5500;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+    }
+    .header-hidden {
+      transform: translateY(-100%);
     }
     .banner-card {
       background: linear-gradient(145deg, #1E1E1E, #1A1A1A);
@@ -82,6 +86,7 @@
       height: 100%;
       position: relative;
       overflow: hidden;
+      cursor: pointer;
     }
     .banner-card::before {
         content: '';
@@ -192,8 +197,8 @@
         margin-right: 8px;
     }
     .btn-secondary {
-      background: linear-gradient(90deg, #444, #555);
-      color: #F0F0F0;
+      background: linear-gradient(90deg, #2A2A2A, #3A3A3A);
+      color: #FFFFFF;
       padding: 0.7rem 1.3rem;
       border: none;
       border-radius: 30px;
@@ -204,14 +209,30 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 10px rgba(255, 85, 0, 0.3);
       text-transform: uppercase;
       font-size: 0.9rem;
     }
     .btn-secondary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
-      background: linear-gradient(90deg, #555, #666);
+      box-shadow: 0 6px 15px rgba(255, 85, 0, 0.5);
+      background: linear-gradient(90deg, #3A3A3A, #4A4A4A);
+    }
+    .btn-secondary:active {
+      transform: translateY(0);
+    }
+    .btn-secondary i {
+        margin-right: 8px;
+    }
+    .btn-disabled {
+        background: #444;
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
+    .btn-disabled:hover {
+        transform: none;
+        box-shadow: 0 4px 10px rgba(255, 85, 0, 0.3);
+        background: #444;
     }
     .font-size-toggle span {
       cursor: pointer;
@@ -292,127 +313,125 @@
         color: #FF5500;
         font-weight: 600;
     }
+    /* Специфичные стили для group.html */
+    .student-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem;
+        border-bottom: 1px solid #333;
+        transition: background-color 0.2s ease;
+    }
+    .student-item:hover {
+        background-color: rgba(255, 85, 0, 0.05);
+        border-radius: 6px;
+    }
+    .student-actions {
+        display: flex;
+        gap: 0.5rem;
+    }
+    .student-actions button {
+        padding: 0.4rem 0.6rem;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        transition: all 0.2s ease;
+    }
+    .status-active { color: #4ade80; }
+    .status-inactive { color: #94a3b8; }
+    .status-academic_leave { color: #fbbf24; }
     /* Стили для модальных окон */
     .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      animation: fadeIn 0.3s ease-out;
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        animation: fadeIn 0.3s ease-out;
     }
     .modal-content {
-      background: linear-gradient(145deg, #1E1E1E, #1A1A1A);
-      margin: 5% auto;
-      padding: 0;
-      border: 1px solid #333;
-      border-radius: 12px;
-      width: 90%;
-      max-width: 500px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-      overflow: hidden;
-      animation: slideIn 0.3s ease-out;
-    }
-    @keyframes slideIn {
-      from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+        background: linear-gradient(145deg, #1E1E1E, #1A1A1A);
+        margin: 5% auto;
+        padding: 0;
+        border: 1px solid #333;
+        border-radius: 12px;
+        width: 90%;
+        max-width: 500px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        overflow: hidden;
     }
     .modal-header {
-      padding: 1.5rem;
-      background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
-      border-bottom: 2px solid #FF5500;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid #333;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
     .modal-header h2 {
         font-family: 'Oswald', sans-serif;
         color: #F0F0F0;
-        margin: 0;
+        font-weight: 600;
     }
-    .close-modal {
-      color: #B0B0B0;
-      font-size: 1.5rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: color 0.2s ease;
+    .modal-close {
+        background: none;
+        border: none;
+        color: #B0B0B0;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: color 0.2s ease;
     }
-    .close-modal:hover {
+    .modal-close:hover {
         color: #FF5500;
     }
     .modal-body {
-      padding: 1.5rem;
+        padding: 1.5rem;
     }
     .modal-footer {
-      padding: 1rem 1.5rem;
-      background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
-      border-top: 1px solid #333;
-      display: flex;
-      justify-content: flex-end;
-      gap: 1rem;
+        padding: 1rem 1.5rem;
+        border-top: 1px solid #333;
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
     }
-    .modal-input {
-      width: 100%;
-      padding: 0.7rem;
-      margin-bottom: 1rem;
-      background: #252525;
-      color: #F0F0F0;
-      border: 1px solid #333;
-      border-radius: 6px;
-      font-family: 'Montserrat', sans-serif;
+    .form-group {
+        margin-bottom: 1rem;
     }
-    .modal-input:focus {
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #B0B0B0;
+    }
+    .form-control {
+        width: 100%;
+        padding: 0.7rem;
+        background: #252525;
+        border: 1px solid #333;
+        border-radius: 6px;
+        color: #F0F0F0;
+        font-family: 'Montserrat', sans-serif;
+    }
+    .form-control:focus {
         outline: none;
         border-color: #FF5500;
+        box-shadow: 0 0 0 2px rgba(255, 85, 0, 0.2);
     }
-    .modal-select {
-      width: 100%;
-      padding: 0.7rem;
-      margin-bottom: 1rem;
-      background: #252525;
-      color: #F0F0F0;
-      border: 1px solid #333;
-      border-radius: 6px;
-      font-family: 'Montserrat', sans-serif;
+    .notification {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        background-color: #4ade80; /* Успешно */
+        color: white;
+        font-weight: 500;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        z-index: 1001;
+        display: none;
     }
-    /* Стили для списка студентов */
-    .student-list {
-      max-height: 400px;
-      overflow-y: auto;
-    }
-    .student-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.75rem;
-      border-bottom: 1px solid #333;
-      transition: background-color 0.2s ease;
-    }
-    .student-item:hover {
-      background-color: rgba(255, 85, 0, 0.1);
-    }
-    .student-item:last-child {
-      border-bottom: none;
-    }
-    .student-actions {
-      display: flex;
-      gap: 0.5rem;
-    }
-    .action-btn {
-      background: none;
-      border: none;
-      color: #B0B0B0;
-      cursor: pointer;
-      padding: 0.3rem;
-      border-radius: 4px;
-      transition: all 0.2s ease;
-    }
-    .action-btn:hover {
-      color: #FF5500;
-      background-color: rgba(255, 85, 0, 0.1);
+    .notification.error {
+        background-color: #ef4444; /* Ошибка */
     }
     /* Адаптивность */
     @media (max-width: 768px) {
@@ -433,37 +452,56 @@
         .student-actions {
             align-self: flex-end;
         }
-        .header-controls {
-            flex-direction: column;
-            gap: 1rem;
-            width: 100%;
-        }
-        .search-back-container {
-            flex-direction: column;
-            width: 100%;
+        .student-list-grid {
+            grid-template-columns: 1fr;
         }
     }
-    </style>
+    @media (min-width: 1024px) {
+        .student-list-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    .sort-btn {
+        background: #2A2A2A;
+        border: 1px solid #333;
+        color: #B0B0B0;
+        padding: 0.4rem 0.8rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    .sort-btn:hover {
+        background: #3A3A3A;
+        color: #FFAA66;
+    }
+    .sort-btn.active {
+        background: #FF5500;
+        color: white;
+        border-color: #FF7733;
+    }
+  </style>
 </head>
 <body class="min-h-screen flex flex-col">
-  <header class="py-4 px-4 sm:px-6">
+  <header class="py-4 px-4 sm:px-6" id="mainHeader">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
       <div class="text-center sm:text-left">
         <h1 class="text-2xl sm:text-3xl font-bold text-[#F0F0F0] font-display">NSK<span class="gradient-text">Hub</span></h1>
         <p class="text-sm text-[#B0B0B0] font-light mt-1">Нижневартовский Строительный Колледж</p>
       </div>
-      <div class="header-controls flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+      <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
         <div class="font-size-toggle flex items-center bg-surface p-1 rounded-lg">
           <span class="text-xs sm:text-sm" onclick="changeFontSize('small')"><i class="fas fa-text-height"></i> М</span>
           <span class="text-sm sm:text-base" onclick="changeFontSize('medium')"><i class="fas fa-text-height"></i> С</span>
           <span class="text-base sm:text-lg" onclick="changeFontSize('large')"><i class="fas fa-text-height"></i> Б</span>
         </div>
-        <div class="search-back-container flex items-center gap-4 w-full sm:w-auto">
-          <div class="search-block w-full sm:w-auto">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" class="search-input" placeholder="Поиск студентов..." id="studentSearch">
-          </div>
-          <a href="index.html" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors whitespace-nowrap"><i class="fas fa-arrow-left mr-2"></i> Назад</a>
+        <div class="search-block w-full sm:w-auto">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" class="search-input" placeholder="Поиск по сайту..." id="mainSearch">
+        </div>
+        <div class="whitespace-nowrap">
+            <a href="index.html" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors">
+                <i class="fas fa-arrow-left mr-2"></i> Назад
+            </a>
         </div>
       </div>
     </div>
@@ -472,25 +510,8 @@
   <main class="flex-1 max-w-7xl mx-auto py-8 px-4 sm:px-6">
     <div class="text-center mb-8">
         <h2 class="text-3xl font-bold text-[#F0F0F0] font-display mb-2">Моя группа</h2>
-        <p class="text-[#B0B0B0]">Управление информацией о группе и студентах</p>
+        <p class="text-[#B0B0B0]">Управление информацией и списком студентов</p>
     </div>
-
-    <!-- Панель управления -->
-    <div class="flex flex-wrap gap-4 mb-6 p-4 bg-surface rounded-lg border border-gray-600">
-        <button class="btn-primary" onclick="showAddStudentModal()">
-            <i class="fas fa-user-plus mr-2"></i>Добавить студента
-        </button>
-        <button class="btn-secondary" onclick="showGroupSettingsModal()">
-            <i class="fas fa-cog mr-2"></i>Настройки группы
-        </button>
-        <button class="btn-secondary" onclick="exportGroupData()">
-            <i class="fas fa-download mr-2"></i>Экспорт данных
-        </button>
-        <button class="btn-secondary" onclick="importGroupData()">
-            <i class="fas fa-upload mr-2"></i>Импорт данных
-        </button>
-    </div>
-
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <!-- Основная информация о группе -->
         <section class="banner-card">
@@ -503,27 +524,33 @@
             </div>
             <div class="mt-4">
                 <button class="btn-secondary w-full" onclick="showEditGroupModal()">
-                    <i class="fas fa-edit mr-2"></i>Редактировать информацию
+                    <i class="fas fa-edit mr-2"></i>Редактировать группу
                 </button>
             </div>
         </section>
-
         <!-- Список студентов -->
         <section class="banner-card">
             <div class="banner-icon">
-                <i class="fas fa-user-graduate"></i>
+                <i class="fas fa-user-friends"></i>
             </div>
             <h2>Список студентов</h2>
-            <div class="student-list" id="studentsList">
+            <div class="search-block w-full mb-4">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Поиск студентов..." id="studentSearch">
+            </div>
+            <div class="flex justify-center gap-2 mb-4">
+                <button id="sortAlphaBtn" class="sort-btn" onclick="sortStudents('alpha')">А↔Я</button>
+                <button id="sortNumBtn" class="sort-btn" onclick="sortStudents('number')">123</button>
+            </div>
+            <div class="student-list student-list-grid grid grid-cols-1 gap-3" id="studentsList">
                 <!-- Список студентов будет загружен через JavaScript -->
             </div>
             <div class="mt-4">
-                <button class="btn-primary w-full" onclick="showAddStudentModal()">
+                <button id="addStudentBtn" class="btn-primary w-full" onclick="showAddStudentModal()">
                     <i class="fas fa-plus mr-2"></i>Добавить студента
                 </button>
             </div>
         </section>
-
         <!-- Статистика группы -->
         <section class="banner-card">
             <div class="banner-icon">
@@ -534,7 +561,6 @@
                 <!-- Статистика будет загружена через JavaScript -->
             </div>
         </section>
-
         <!-- Быстрые действия -->
         <section class="banner-card">
             <div class="banner-icon">
@@ -542,11 +568,8 @@
             </div>
             <h2>Быстрые действия</h2>
             <div class="space-y-3">
-                <button class="btn-secondary w-full" onclick="generateAttendanceReport()">
-                    <i class="fas fa-clipboard-list mr-2"></i>Отчёт по посещаемости
-                </button>
-                <button class="btn-secondary w-full" onclick="sendGroupNotification()">
-                    <i class="fas fa-bell mr-2"></i>Уведомление группе
+                <button class="btn-secondary w-full" onclick="sendReport()">
+                    <i class="fas fa-paper-plane mr-2"></i>Отправить отчёт
                 </button>
                 <button class="btn-secondary w-full" onclick="showScheduleModal()">
                     <i class="fas fa-calendar mr-2"></i>Расписание занятий
@@ -556,14 +579,127 @@
     </div>
   </main>
 
+  <!-- Модальное окно: Редактировать группу -->
+  <div id="editGroupModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h2>Редактировать группу</h2>
+              <button class="modal-close" onclick="closeModal('editGroupModal')">&times;</button>
+          </div>
+          <div class="modal-body">
+              <div class="form-group">
+                  <label for="groupNameInput">Название группы</label>
+                  <input type="text" id="groupNameInput" class="form-control" placeholder="Введите название">
+              </div>
+              <div class="form-group">
+                  <label for="groupCurator">Куратор</label>
+                  <input type="text" id="groupCurator" class="form-control" placeholder="Введите ФИО куратора">
+              </div>
+              <div class="form-group">
+                  <label for="groupSpecialty">Специальность</label>
+                  <input type="text" id="groupSpecialty" class="form-control" placeholder="Введите специальность">
+              </div>
+              <div class="form-group">
+                  <label for="groupCourse">Курс</label>
+                  <select id="groupCourse" class="form-control">
+                      <option value="1">1 курс</option>
+                      <option value="2">2 курс</option>
+                      <option value="3">3 курс</option>
+                      <option value="4">4 курс</option>
+                  </select>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button class="btn-secondary" onclick="closeModal('editGroupModal')">Отмена</button>
+              <button class="btn-primary" onclick="saveGroupInfo()">Сохранить</button>
+          </div>
+      </div>
+  </div>
+
+  <!-- Модальное окно: Добавить студента -->
+  <div id="addStudentModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h2>Добавить студента</h2>
+              <button class="modal-close" onclick="closeModal('addStudentModal')">&times;</button>
+          </div>
+          <div class="modal-body">
+              <div class="form-group">
+                  <label for="newStudentName">ФИО студента</label>
+                  <input type="text" id="newStudentName" class="form-control" placeholder="Введите ФИО">
+              </div>
+              <div class="form-group">
+                  <label for="newStudentStatus">Статус</label>
+                  <select id="newStudentStatus" class="form-control">
+                      <option value="active">Активный</option>
+                      <option value="inactive">Неактивный</option>
+                      <option value="academic_leave">Академ. отпуск</option>
+                  </select>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button class="btn-secondary" onclick="closeModal('addStudentModal')">Отмена</button>
+              <button class="btn-primary" onclick="addStudent()">Добавить</button>
+          </div>
+      </div>
+  </div>
+
+  <!-- Модальное окно: Редактировать студента -->
+  <div id="editStudentModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h2>Редактировать студента</h2>
+              <button class="modal-close" onclick="closeModal('editStudentModal')">&times;</button>
+          </div>
+          <div class="modal-body">
+              <div class="form-group">
+                  <label for="editStudentName">ФИО студента</label>
+                  <input type="text" id="editStudentName" class="form-control" placeholder="Введите ФИО">
+              </div>
+              <div class="form-group">
+                  <label for="editStudentStatus">Статус</label>
+                  <select id="editStudentStatus" class="form-control">
+                      <option value="active">Активный</option>
+                      <option value="inactive">Неактивный</option>
+                      <option value="academic_leave">Академ. отпуск</option>
+                  </select>
+              </div>
+          </div>
+          <div class="modal-footer">
+              <button class="btn-secondary" onclick="closeModal('editStudentModal')">Отмена</button>
+              <button class="btn-primary" onclick="updateStudent()">Сохранить</button>
+          </div>
+      </div>
+  </div>
+
+  <!-- Модальное окно: Расписание -->
+  <div id="scheduleModal" class="modal">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h2>Расписание занятий</h2>
+              <button class="modal-close" onclick="closeModal('scheduleModal')">&times;</button>
+          </div>
+          <div class="modal-body">
+              <p>Функционал расписания будет добавлен позже.</p>
+          </div>
+          <div class="modal-footer">
+              <button class="btn-primary" onclick="closeModal('scheduleModal')">Закрыть</button>
+          </div>
+      </div>
+  </div>
+
+  <div id="notification" class="notification"></div>
+
   <footer class="py-6 px-4 sm:px-6">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
       <div class="footer-section">
         <h3><i class="fas fa-link"></i> Полезные ссылки</h3>
         <p>
-          <a href="https://nsk-sdo.ru/" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Дистанционное обучение</a>
-          <a href="rules.html" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Правила распорядка</a>
-          <a href="scholarship.html" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Стипендии и льготы</a>
+          <a href="distance.html" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Дистанционное обучение</a>
+          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Профсоюз студентов</a>
+          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Студенческий совет</a>
+          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Правила распорядка</a>
+          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Стипендии и льготы</a>
         </p>
       </div>
       <div class="footer-section">
@@ -593,289 +729,23 @@
     </div>
   </footer>
 
-  <!-- Модальные окна -->
-  <div id="addStudentModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Добавить студента</h2>
-        <span class="close-modal" onclick="closeModal('addStudentModal')">&times;</span>
-      </div>
-      <div class="modal-body">
-        <input type="text" id="studentName" class="modal-input" placeholder="ФИО студента">
-        <input type="email" id="studentEmail" class="modal-input" placeholder="Email">
-        <input type="tel" id="studentPhone" class="modal-input" placeholder="Телефон">
-        <select id="studentStatus" class="modal-select">
-          <option value="active">Активный</option>
-          <option value="inactive">Неактивный</option>
-          <option value="academic_leave">Академический отпуск</option>
-        </select>
-      </div>
-      <div class="modal-footer">
-        <button class="btn-secondary" onclick="closeModal('addStudentModal')">Отмена</button>
-        <button class="btn-primary" onclick="addStudent()">Добавить</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="editGroupModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Редактировать группу</h2>
-        <span class="close-modal" onclick="closeModal('editGroupModal')">&times;</span>
-      </div>
-      <div class="modal-body">
-        <input type="text" id="groupName" class="modal-input" placeholder="Название группы">
-        <input type="text" id="groupCurator" class="modal-input" placeholder="Куратор">
-        <input type="text" id="groupSpecialty" class="modal-input" placeholder="Специальность">
-        <input type="number" id="groupCourse" class="modal-input" placeholder="Курс">
-      </div>
-      <div class="modal-footer">
-        <button class="btn-secondary" onclick="closeModal('editGroupModal')">Отмена</button>
-        <button class="btn-primary" onclick="saveGroupInfo()">Сохранить</button>
-      </div>
-    </div>
-  </div>
-
   <script>
-    // Данные группы
+    // --- Глобальные переменные ---
+    const MAX_STUDENTS = 25;
     let groupData = {
-        name: 'ИС-25',
-        curator: '',
-        specialty: 'Информационные системы',
+        name: "Группа по умолчанию",
+        curator: "Куратор не указан",
+        specialty: "Информационные системы",
         course: 2,
-        students: []
+        students: [
+            { id: 1, name: "Иванов Иван Иванович", status: "active" },
+            { id: 2, name: "Петрова Мария Семёновна", status: "inactive" },
+            { id: 3, name: "Сидоров Алексей Петрович", status: "academic_leave" }
+        ],
+        currentSort: 'alpha' // 'alpha' или 'number'
     };
 
-    // Загрузка данных из localStorage
-    function loadGroupData() {
-        const saved = localStorage.getItem('nskGroupData');
-        if (saved) {
-            groupData = JSON.parse(saved);
-        }
-        renderGroupData();
-    }
-
-    // Сохранение данных в localStorage
-    function saveGroupData() {
-        localStorage.setItem('nskGroupData', JSON.stringify(groupData));
-        renderGroupData();
-    }
-
-    // Отрисовка данных группы
-    function renderGroupData() {
-        // Основная информация
-        document.getElementById('groupInfo').innerHTML = `
-            <div><span class="contact-highlight">Группа:</span> ${groupData.name}</div>
-            <div><span class="contact-highlight">Куратор:</span> ${groupData.curator || 'Не указан'}</div>
-            <div><span class="contact-highlight">Специальность:</span> ${groupData.specialty}</div>
-            <div><span class="contact-highlight">Курс:</span> ${groupData.course}</div>
-            <div><span class="contact-highlight">Количество студентов:</span> ${groupData.students.length}</div>
-        `;
-
-        // Список студентов
-        const studentsList = document.getElementById('studentsList');
-        studentsList.innerHTML = groupData.students.length > 0 ?
-            groupData.students.map((student, index) => `
-                <div class="student-item">
-                    <div>
-                        <div class="font-semibold">${student.name}</div>
-                        <div class="text-sm text-[#B0B0B0]">${student.email} • ${student.phone}</div>
-                        <span class="text-xs px-2 py-1 rounded ${
-                            student.status === 'active' ? 'bg-green-600' :
-                            student.status === 'inactive' ? 'bg-red-600' : 'bg-yellow-600'
-                        }">${getStatusText(student.status)}</span>
-                    </div>
-                    <div class="student-actions">
-                        <button class="action-btn" onclick="editStudent(${index})" title="Редактировать">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="action-btn" onclick="deleteStudent(${index})" title="Удалить">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-            `).join('') :
-            '<div class="text-center text-[#B0B0B0] py-4">Студенты не добавлены</div>';
-
-        // Статистика
-        const activeStudents = groupData.students.filter(s => s.status === 'active').length;
-        document.getElementById('groupStats').innerHTML = `
-            <div><span class="contact-highlight">Всего студентов:</span> ${groupData.students.length}</div>
-            <div><span class="contact-highlight">Активных:</span> ${activeStudents}</div>
-            <div><span class="contact-highlight">Неактивных:</span> ${groupData.students.length - activeStudents}</div>
-            <div><span class="contact-highlight">Заполненность:</span> ${Math.round((groupData.students.length / 30) * 100)}%</div>
-        `;
-    }
-
-    function getStatusText(status) {
-        const statusMap = {
-            'active': 'Активный',
-            'inactive': 'Неактивный',
-            'academic_leave': 'Академотпуск'
-        };
-        return statusMap[status] || status;
-    }
-
-    // Функции для модальных окон
-    function showModal(modalId) {
-        document.getElementById(modalId).style.display = 'block';
-    }
-
-    function closeModal(modalId) {
-        document.getElementById(modalId).style.display = 'none';
-    }
-
-    function showAddStudentModal() {
-        document.getElementById('studentName').value = '';
-        document.getElementById('studentEmail').value = '';
-        document.getElementById('studentPhone').value = '';
-        document.getElementById('studentStatus').value = 'active';
-        showModal('addStudentModal');
-    }
-
-    function showEditGroupModal() {
-        document.getElementById('groupName').value = groupData.name;
-        document.getElementById('groupCurator').value = groupData.curator;
-        document.getElementById('groupSpecialty').value = groupData.specialty;
-        document.getElementById('groupCourse').value = groupData.course;
-        showModal('editGroupModal');
-    }
-
-    // Добавление студента
-    function addStudent() {
-        const name = document.getElementById('studentName').value.trim();
-        const email = document.getElementById('studentEmail').value.trim();
-        const phone = document.getElementById('studentPhone').value.trim();
-        const status = document.getElementById('studentStatus').value;
-
-        if (name) {
-            groupData.students.push({
-                name,
-                email,
-                phone,
-                status,
-                id: Date.now()
-            });
-            saveGroupData();
-            closeModal('addStudentModal');
-            showNotification('Студент добавлен');
-        } else {
-            alert('Пожалуйста, введите ФИО студента');
-        }
-    }
-
-    // Редактирование студента
-    function editStudent(index) {
-        const student = groupData.students[index];
-        if (confirm(`Редактировать студента ${student.name}?`)) {
-            const newName = prompt('ФИО студента:', student.name);
-            if (newName) {
-                groupData.students[index].name = newName;
-                saveGroupData();
-                showNotification('Данные студента обновлены');
-            }
-        }
-    }
-
-    // Удаление студента
-    function deleteStudent(index) {
-        const student = groupData.students[index];
-        if (confirm(`Удалить студента ${student.name}?`)) {
-            groupData.students.splice(index, 1);
-            saveGroupData();
-            showNotification('Студент удалён');
-        }
-    }
-
-    // Сохранение информации о группе
-    function saveGroupInfo() {
-        groupData.name = document.getElementById('groupName').value;
-        groupData.curator = document.getElementById('groupCurator').value;
-        groupData.specialty = document.getElementById('groupSpecialty').value;
-        groupData.course = parseInt(document.getElementById('groupCourse').value);
-        saveGroupData();
-        closeModal('editGroupModal');
-        showNotification('Информация о группе сохранена');
-    }
-
-    // Поиск студентов
-    document.getElementById('studentSearch').addEventListener('input', function(e) {
-        const searchTerm = e.target.value.toLowerCase();
-        const studentItems = document.querySelectorAll('.student-item');
-
-        studentItems.forEach(item => {
-            const text = item.textContent.toLowerCase();
-            item.style.display = text.includes(searchTerm) ? 'flex' : 'none';
-        });
-    });
-
-    // Дополнительные функции
-    function generateAttendanceReport() {
-        showNotification('Отчёт по посещаемости сгенерирован');
-    }
-
-    function sendGroupNotification() {
-        const message = prompt('Введите сообщение для группы:');
-        if (message) {
-            showNotification('Уведомление отправлено группе');
-        }
-    }
-
-    function showScheduleModal() {
-        showNotification('Переход к расписанию группы');
-        // В реальном приложении здесь будет переход на страницу расписания
-    }
-
-    function exportGroupData() {
-        const dataStr = JSON.stringify(groupData, null, 2);
-        const dataBlob = new Blob([dataStr], {type: 'application/json'});
-        const url = URL.createObjectURL(dataBlob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = `group_${groupData.name}_data.json`;
-        link.click();
-        showNotification('Данные группы экспортированы');
-    }
-
-    function importGroupData() {
-        const input = document.createElement('input');
-        input.type = 'file';
-        input.accept = '.json';
-        input.onchange = e => {
-            const file = e.target.files[0];
-            const reader = new FileReader();
-            reader.onload = event => {
-                try {
-                    const importedData = JSON.parse(event.target.result);
-                    groupData = importedData;
-                    saveGroupData();
-                    showNotification('Данные группы импортированы');
-                } catch (error) {
-                    alert('Ошибка при импорте файла');
-                }
-            };
-            reader.readAsText(file);
-        };
-        input.click();
-    }
-
-    function showGroupSettingsModal() {
-        showNotification('Настройки группы открыты');
-        // В реальном приложении здесь будет модальное окно с настройками
-    }
-
-    function showNotification(message) {
-        // Создание временного уведомления
-        const notification = document.createElement('div');
-        notification.className = 'fixed top-4 right-4 bg-primary text-white px-4 py-2 rounded-lg shadow-lg z-50';
-        notification.textContent = message;
-        document.body.appendChild(notification);
-
-        setTimeout(() => {
-            notification.remove();
-        }, 3000);
-    }
-
+    // --- Функции для работы с шрифтами и поиском (как в index.html) ---
     function changeFontSize(size) {
       const root = document.documentElement;
       if (size === 'small') {
@@ -887,19 +757,313 @@
       }
     }
 
-    // Закрытие модальных окон при клике вне их
-    window.onclick = function(event) {
-        if (event.target.classList.contains('modal')) {
-            event.target.style.display = 'none';
+    // --- Скрытие/показ хидера при прокрутке на мобильных ---
+    let lastScrollY = window.scrollY;
+    const header = document.getElementById('mainHeader');
+    const scrollThreshold = 10;
+
+    window.addEventListener('scroll', () => {
+        const isMobile = window.innerWidth <= 768;
+        if (!isMobile) {
+            header.classList.remove('header-hidden');
+            return;
+        }
+
+        const currentScrollY = window.scrollY;
+        if (Math.abs(currentScrollY - lastScrollY) < scrollThreshold) {
+            return;
+        }
+
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            header.classList.add('header-hidden');
+        } else {
+            header.classList.remove('header-hidden');
+        }
+        lastScrollY = currentScrollY;
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            header.classList.remove('header-hidden');
+        }
+    });
+
+    // --- Функции для модальных окон ---
+    function showModal(modalId) {
+        document.getElementById(modalId).style.display = 'block';
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+    }
+
+    // --- Функции для работы с данными группы ---
+    function loadGroupData() {
+        const saved = localStorage.getItem('nskGroupData');
+        if (saved) {
+            groupData = JSON.parse(saved);
+            // Убедимся, что currentSort установлен
+            if (groupData.currentSort === undefined) {
+                groupData.currentSort = 'alpha';
+            }
+        }
+        renderGroupData();
+        updateAddButtonState();
+        applyCurrentSort();
+    }
+
+    function saveGroupData() {
+        localStorage.setItem('nskGroupData', JSON.stringify(groupData));
+        renderGroupData();
+        updateAddButtonState();
+    }
+
+    function renderGroupData() {
+        // Основная информация
+        document.getElementById('groupInfo').innerHTML = `
+            <div><span class="contact-highlight">Группа:</span> ${groupData.name}</div>
+            <div><span class="contact-highlight">Куратор:</span> ${groupData.curator}</div>
+            <div><span class="contact-highlight">Специальность:</span> ${groupData.specialty}</div>
+            <div><span class="contact-highlight">Курс:</span> ${groupData.course}</div>
+            <div><span class="contact-highlight">По списку:</span> ${MAX_STUDENTS} чел.</div>
+            <div><span class="contact-highlight">Текущее кол-во:</span> ${groupData.students.length} чел.</div>
+        `;
+
+        // Список студентов
+        renderStudentList();
+
+        // Статистика
+        const activeStudents = groupData.students.filter(s => s.status === 'active').length;
+        document.getElementById('groupStats').innerHTML = `
+            <div><span class="contact-highlight">Всего студентов:</span> ${groupData.students.length}</div>
+            <div><span class="contact-highlight">Активных:</span> ${activeStudents}</div>
+            <div><span class="contact-highlight">Неактивных:</span> ${groupData.students.length - activeStudents}</div>
+            <div><span class="contact-highlight">Заполненность:</span> ${Math.round((groupData.students.length / MAX_STUDENTS) * 100)}%</div>
+        `;
+    }
+
+    function getStatusText(status) {
+        const statusMap = {
+            'active': 'Активный',
+            'inactive': 'Неактивный',
+            'academic_leave': 'Академ. отпуск'
+        };
+        return statusMap[status] || status;
+    }
+
+    // --- Функции для работы со студентами ---
+    function renderStudentList() {
+        const studentsList = document.getElementById('studentsList');
+        studentsList.innerHTML = '';
+        groupData.students.forEach((student, index) => {
+            const statusClass = student.status === 'active' ? 'status-active' : student.status === 'inactive' ? 'status-inactive' : 'status-academic_leave';
+            const statusText = getStatusText(student.status);
+            const studentItem = document.createElement('div');
+            studentItem.className = 'student-item';
+            studentItem.innerHTML = `
+                <div>
+                    <div>${student.name}</div>
+                    <div class="${statusClass}">${statusText}</div>
+                </div>
+                <div class="student-actions">
+                    <button class="btn-secondary" onclick="showEditStudentModal(${index})"><i class="fas fa-edit"></i></button>
+                    <button class="btn-secondary" onclick="deleteStudent(${index})"><i class="fas fa-trash"></i></button>
+                </div>
+            `;
+            studentsList.appendChild(studentItem);
+        });
+    }
+
+    function showAddStudentModal() {
+        if (groupData.students.length >= MAX_STUDENTS) {
+            showNotification(`Невозможно добавить студента: достигнут лимит в ${MAX_STUDENTS} человек.`, 'error');
+            return;
+        }
+        document.getElementById('newStudentName').value = '';
+        document.getElementById('newStudentStatus').value = 'active';
+        showModal('addStudentModal');
+    }
+
+    function addStudent() {
+        const name = document.getElementById('newStudentName').value.trim();
+        const status = document.getElementById('newStudentStatus').value;
+        if (!name) {
+            showNotification('Введите имя студента', 'error');
+            return;
+        }
+        if (groupData.students.length >= MAX_STUDENTS) {
+            showNotification(`Невозможно добавить студента: достигнут лимит в ${MAX_STUDENTS} человек.`, 'error');
+            closeModal('addStudentModal');
+            return;
+        }
+        const newStudent = {
+            id: Date.now(), // Простой способ генерации ID
+            name: name,
+            status: status
+        };
+        groupData.students.push(newStudent);
+        saveGroupData();
+        closeModal('addStudentModal');
+        showNotification('Студент добавлен');
+    }
+
+    function showEditStudentModal(index) {
+        const student = groupData.students[index];
+        document.getElementById('editStudentName').value = student.name;
+        document.getElementById('editStudentStatus').value = student.status;
+        document.getElementById('editStudentModal').dataset.studentIndex = index;
+        showModal('editStudentModal');
+    }
+
+    function updateStudent() {
+        const index = parseInt(document.getElementById('editStudentModal').dataset.studentIndex);
+        const newName = document.getElementById('editStudentName').value.trim();
+        const newStatus = document.getElementById('editStudentStatus').value;
+        if (!newName) {
+            showNotification('Введите имя студента', 'error');
+            return;
+        }
+        if (index >= 0 && index < groupData.students.length) {
+            groupData.students[index].name = newName;
+            groupData.students[index].status = newStatus;
+            saveGroupData();
+            closeModal('editStudentModal');
+            showNotification('Данные студента обновлены');
         }
     }
 
-    // Инициализация при загрузке
+    function deleteStudent(index) {
+        const student = groupData.students[index];
+        if (confirm(`Удалить студента ${student.name}?`)) {
+            groupData.students.splice(index, 1);
+            saveGroupData();
+            showNotification('Студент удалён');
+        }
+    }
+
+    // --- Функции для работы с информацией о группе ---
+    function showEditGroupModal() {
+        document.getElementById('groupNameInput').value = groupData.name;
+        document.getElementById('groupCurator').value = groupData.curator;
+        document.getElementById('groupSpecialty').value = groupData.specialty || '';
+        document.getElementById('groupCourse').value = groupData.course || 1;
+        showModal('editGroupModal');
+    }
+
+    function saveGroupInfo() {
+        const newName = document.getElementById('groupNameInput').value.trim();
+        if (!newName) {
+            showNotification('Введите название группы', 'error');
+            return;
+        }
+        groupData.name = newName;
+        groupData.curator = document.getElementById('groupCurator').value.trim() || 'Куратор не указан';
+        groupData.specialty = document.getElementById('groupSpecialty').value.trim();
+        const newCourse = parseInt(document.getElementById('groupCourse').value);
+        groupData.course = isNaN(newCourse) ? groupData.course : newCourse;
+        saveGroupData();
+        closeModal('editGroupModal');
+        showNotification('Информация о группе сохранена');
+    }
+
+    // --- Функции для поиска студентов ---
+    document.getElementById('studentSearch').addEventListener('input', function(e) {
+        const searchTerm = e.target.value.toLowerCase();
+        const studentItems = document.querySelectorAll('#studentsList .student-item');
+        studentItems.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            item.style.display = text.includes(searchTerm) ? 'flex' : 'none';
+        });
+    });
+
+    // --- Функции для сортировки студентов ---
+    function sortStudents(type) {
+        groupData.currentSort = type;
+        // Сортировка по алфавиту (ФИО)
+        if (type === 'alpha') {
+            groupData.students.sort((a, b) => a.name.localeCompare(b.name));
+        }
+        // Сортировка по ID (номер в списке)
+        if (type === 'number') {
+            groupData.students.sort((a, b) => a.id - b.id);
+        }
+        saveGroupData(); // Сохраняем порядок
+        applyCurrentSort(); // Обновляем UI
+        updateSortButtons(); // Обновляем активные кнопки
+    }
+
+    function applyCurrentSort() {
+        renderStudentList(); // Перерисовываем список в текущем порядке
+        // Применяем фильтр поиска, если он активен
+        const searchInput = document.getElementById('studentSearch');
+        if (searchInput.value) {
+            // Имитируем ввод, чтобы сработал фильтр
+            const event = new Event('input');
+            searchInput.dispatchEvent(event);
+        }
+    }
+
+    function updateSortButtons() {
+        const alphaBtn = document.getElementById('sortAlphaBtn');
+        const numBtn = document.getElementById('sortNumBtn');
+        alphaBtn.classList.toggle('active', groupData.currentSort === 'alpha');
+        numBtn.classList.toggle('active', groupData.currentSort === 'number');
+    }
+
+    // --- Функции для уведомлений ---
+    function showNotification(message, type = 'success') {
+        const notification = document.getElementById('notification');
+        notification.textContent = message;
+        notification.className = 'notification'; // Сброс классов
+        if (type === 'error') {
+            notification.classList.add('error');
+        }
+        notification.style.display = 'block';
+        if (window.notificationTimeout) {
+            clearTimeout(window.notificationTimeout);
+        }
+        window.notificationTimeout = setTimeout(() => {
+            notification.style.display = 'none';
+        }, 3000);
+    }
+
+    // --- Функции для быстрых действий ---
+    function sendReport() {
+        const reportSubject = prompt('Введите тему отчёта:');
+        if (reportSubject) {
+            showNotification(`Отчёт "${reportSubject}" отправлен.`);
+        }
+    }
+
+    function showScheduleModal() {
+        showModal('scheduleModal');
+    }
+
+    // --- Вспомогательные функции ---
+    function updateAddButtonState() {
+        const addButton = document.getElementById('addStudentBtn');
+        if (groupData.students.length >= MAX_STUDENTS) {
+            addButton.classList.add('btn-disabled');
+            addButton.onclick = null; // Убираем обработчик
+        } else {
+            addButton.classList.remove('btn-disabled');
+            addButton.onclick = showAddStudentModal; // Восстанавливаем обработчик
+        }
+    }
+
+    // --- Инициализация при загрузке ---
     document.addEventListener('DOMContentLoaded', () => {
         changeFontSize('medium');
         loadGroupData();
+        updateSortButtons(); // Устанавливаем активную кнопку сортировки при загрузке
+
+        // Закрытие модальных окон при клике вне их
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        };
     });
   </script>
 </body>
 </html>
-
