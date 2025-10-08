@@ -1,931 +1,967 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Документы - NSKHub</title>
-  <link rel="icon" type="image/png" href="logo.png"/>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: '#FF5500',
-            primaryLight: '#FF7733',
-            primaryDark: '#CC4400',
-            primaryMuted: '#FFAA66',
-            background: '#121212',
-            surface: '#1E1E1E',
-            surfaceLight: '#2A2A2A',
-            textPrimary: '#F0F0F0',
-            textSecondary: '#B0B0B0',
-            accent: '#FFD700',
-            gray900: '#111111',
-            gray800: '#1A1A1A',
-            gray700: '#252525',
-            gray600: '#333333',
-          },
-          fontFamily: {
-            'display': ['Oswald', 'sans-serif'],
-            'body': ['Montserrat', 'sans-serif'],
-          },
-          boxShadow: {
-            'card': '0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 85, 0, 0.1)',
-            'card-hover': '0 15px 35px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 85, 0, 0.2)',
-            'glow': '0 0 15px rgba(255, 85, 0, 0.3)',
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Документы - NSKHub</title>
+    <link rel="icon" type="image/png" href="logo.png"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF5500',
+                        primaryLight: '#FF7733',
+                        primaryDark: '#CC4400',
+                        primaryMuted: '#FFAA66',
+                        background: '#121212',
+                        surface: '#1E1E1E',
+                        surfaceLight: '#2A2A2A',
+                        textPrimary: '#F0F0F0',
+                        textSecondary: '#B0B0B0',
+                        accent: '#FFD700',
+                        gray900: '#111111',
+                        gray800: '#1A1A1A',
+                        gray700: '#252525',
+                        gray600: '#333333',
+                    },
+                    fontFamily: {
+                        'display': ['Oswald', 'sans-serif'],
+                        'body': ['Montserrat', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'card': '0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 85, 0, 0.1)',
+                        'card-hover': '0 15px 35px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 85, 0, 0.2)',
+                        'glow': '0 0 15px rgba(255, 85, 0, 0.3)',
+                    }
+                }
+            }
         }
-      }
-    }
-  </script>
-  <style>
-    body {
-      background: linear-gradient(180deg, #121212 0%, #1A1A1A 100%);
-      color: #F0F0F0;
-      font-family: 'Montserrat', sans-serif;
-      animation: fadeIn 0.8s ease-out;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .gradient-text {
-      background: linear-gradient(90deg, #FF5500, #FFAA66, #FF5500);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-size: 200% auto;
-      animation: shine 3s linear infinite;
-    }
-    @keyframes shine {
-      to { background-position: 200% center; }
-    }
-    header {
-      background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      border-bottom: 3px solid #FF5500;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-    }
-    .banner-card {
-      background: linear-gradient(145deg, #1E1E1E, #1A1A1A);
-      border: 1px solid #333;
-      border-radius: 12px;
-      padding: 1.75rem;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 85, 0, 0.05);
-      transition: all 0.3s ease, transform 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      position: relative;
-      overflow: hidden;
-    }
-    .banner-card::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 3px;
-        background: linear-gradient(90deg, #FF5500, #FFAA66);
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: transform 0.3s ease;
-    }
-    .banner-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 85, 0, 0.1);
-      border-color: #FF5500;
-    }
-    .banner-card:hover::before {
-        transform: scaleX(1);
-    }
-    .banner-icon {
-      background: linear-gradient(145deg, #FF5500, #CC4400);
-      width: 60px;
-      height: 60px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.25rem;
-      box-shadow: 0 4px 10px rgba(255, 85, 0, 0.4);
-      align-self: flex-start;
-    }
-    .banner-icon i {
-        font-size: 1.75rem;
-        color: #FFFFFF;
-    }
-    .banner-card h2 {
-        font-family: 'Oswald', sans-serif;
-        font-size: 1.6rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-        color: #F0F0F0;
-        text-align: center;
-        letter-spacing: 0.5px;
-    }
-    .banner-card ul {
-        flex-grow: 1;
-        margin-bottom: 1.5rem;
-    }
-    .banner-card li {
-        margin-bottom: 0.8rem;
-        padding-bottom: 0.8rem;
-        border-bottom: 1px solid #333;
-    }
-    .banner-card li:last-child {
-        margin-bottom: 0;
-        padding-bottom: 0;
-        border-bottom: none;
-    }
-    .nav-link {
-      color: #B0B0B0;
-      text-decoration: none;
-      font-weight: 500;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-    }
-    .nav-link i {
-        margin-right: 8px;
-        font-size: 0.9em;
-        min-width: 20px;
-        text-align: center;
-        color: #FF5500;
-    }
-    .nav-link:hover {
-      color: #FFAA66;
-      text-decoration: none;
-    }
-    .nav-link:hover i {
-        transform: translateX(3px);
-        color: #FFAA66;
-    }
-    .btn-primary {
-      background: linear-gradient(90deg, #FF5500, #FF7733);
-      color: #FFFFFF;
-      padding: 0.7rem 1.3rem;
-      border: none;
-      border-radius: 30px;
-      font-weight: 600;
-      font-family: 'Oswald', sans-serif;
-      letter-spacing: 0.5px;
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 10px rgba(255, 85, 0, 0.3);
-      text-transform: uppercase;
-      font-size: 0.9rem;
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(255, 85, 0, 0.5);
-      background: linear-gradient(90deg, #FF7733, #FF5500);
-    }
-    .btn-primary:active {
-      transform: translateY(0);
-    }
-    .btn-primary i {
-        margin-right: 8px;
-    }
-    .font-size-toggle span {
-      cursor: pointer;
-      margin: 0 0.4rem;
-      padding: 0.4rem 0.7rem;
-      border-radius: 4px;
-      color: #B0B0B0;
-      font-weight: 500;
-      transition: all 0.2s ease;
-      background-color: rgba(255, 255, 255, 0.05);
-      border: 1px solid transparent;
-    }
-    .font-size-toggle span:hover {
-      background-color: rgba(255, 85, 0, 0.1);
-      color: #FFAA66;
-      border-color: #FF5500;
-    }
-    .search-block {
-      position: relative;
-    }
-    .search-input {
-      background: #1E1E1E;
-      color: #F0F0F0;
-      border: 2px solid #333;
-      border-radius: 30px;
-      padding: 0.7rem 1.2rem 0.7rem 2.7rem;
-      font-size: 0.95rem;
-      font-family: 'Montserrat', sans-serif;
-      transition: all 0.3s ease;
-      width: 100%;
-      max-width: 250px;
-    }
-    .search-input:focus {
-      border-color: #FF5500;
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(255, 85, 0, 0.2);
-      background: #252525;
-    }
-    .search-icon {
-        position: absolute;
-        left: 1.2rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #B0B0B0;
-    }
-    footer {
-      background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
-      border-top: 3px solid #FF5500;
-      box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
-    }
-    .footer-section h3 {
-        color: #FF5500;
-        font-family: 'Oswald', sans-serif;
-        font-size: 1.2rem;
-        font-weight: 600;
-        margin-bottom: 1.2rem;
-        border-bottom: 1px solid #333;
-        padding-bottom: 0.6rem;
-        display: flex;
-        align-items: center;
-    }
-    .footer-section h3 i {
-        margin-right: 10px;
-        font-size: 1.1rem;
-    }
-    .footer-link {
-        display: block;
-        margin-bottom: 0.6rem;
-        color: #B0B0B0;
-        transition: color 0.2s ease;
-        text-decoration: none;
-    }
-    .footer-link:hover {
-        color: #FFAA66;
-        text-decoration: underline;
-    }
-    .contact-highlight {
-        color: #FF5500;
-        font-weight: 600;
-    }
-    /* Стили для кнопки "+" на мини-странице */
-    .floating-add-btn {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: linear-gradient(145deg, #FF5500, #CC4400);
-      color: white;
-      font-size: 1.5rem;
-      border: none;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(255, 85, 0, 0.5);
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-    }
-    .floating-add-btn:hover {
-      transform: scale(1.1) rotate(90deg);
-      box-shadow: 0 6px 20px rgba(255, 85, 0, 0.7);
-    }
-    /* Стили для модального окна */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      animation: fadeIn 0.3s ease-out;
-    }
-    .modal-content {
-      background: linear-gradient(145deg, #1E1E1E, #1A1A1A);
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      padding: 0;
-      border: 1px solid #333;
-      border-radius: 12px;
-      width: 90%;
-      max-width: 700px; /* Увеличено */
-      max-height: 90vh;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-      overflow: hidden;
-      animation: slideIn 0.3s ease-out;
-    }
-    @keyframes slideIn {
-      from { transform: translate(-50%, -40%); opacity: 0; }
-      to { transform: translate(-50%, -50%); opacity: 1; }
-    }
-    .modal-header {
-      padding: 1.5rem;
-      background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
-      border-bottom: 2px solid #FF5500;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .modal-header h2 {
-        font-family: 'Oswald', sans-serif;
-        color: #F0F0F0;
-        margin: 0;
-    }
-    .close-modal {
-      color: #B0B0B0;
-      font-size: 1.5rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: color 0.2s ease;
-    }
-    .close-modal:hover {
-        color: #FF5500;
-    }
-    .modal-body {
-      max-height: 60vh;
-      overflow-y: auto;
-      padding: 1.5rem;
-    }
-    .modal-footer {
-      padding: 1rem 1.5rem;
-      background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
-      border-top: 1px solid #333;
-      display: flex;
-      justify-content: flex-end;
-      gap: 1rem;
-    }
-    .modal-input {
-      width: 100%;
-      padding: 0.7rem;
-      margin-bottom: 1rem;
-      background: #252525;
-      color: #F0F0F0;
-      border: 1px solid #333;
-      border-radius: 6px;
-      font-family: 'Montserrat', sans-serif;
-    }
-    .modal-input:focus {
-        outline: none;
-        border-color: #FF5500;
-    }
-    .modal-preview {
-      background: #252525;
-      border: 1px solid #333;
-      border-radius: 6px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      min-height: 100px;
-      color: #B0B0B0;
-      overflow: auto;
-    }
-    .preview-banner {
-      background: linear-gradient(145deg, #FF5500, #CC4400);
-      padding: 0.5rem;
-      text-align: center;
-      color: white;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-    /* Стили для списка документов */
-    .docs-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1.5rem;
-    }
-    .doc-card {
-        background: linear-gradient(145deg, #2A2A2A, #1E1E1E);
-        border: 1px solid #333;
-        border-radius: 12px;
-        padding: 1.5rem;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-        display: flex;
-        flex-direction: column;
-    }
-    .doc-card:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-        border-color: #FF5500;
-    }
-    .doc-icon {
-        background: linear-gradient(145deg, #FF5500, #CC4400);
-        width: 40px;
-        height: 40px;
-        border-radius: 6px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 1rem;
-        align-self: flex-start;
-    }
-    .doc-icon i {
-        font-size: 1.2rem;
-        color: #FFFFFF;
-    }
-    .doc-card h3 {
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 600;
-        color: #F0F0F0;
-        margin-bottom: 0.5rem;
-    }
-    .doc-card p {
-        color: #B0B0B0;
-        font-size: 0.9rem;
-        margin-bottom: 1rem;
-        flex-grow: 1;
-    }
-    .doc-card .btn-group {
-        display: flex;
-        gap: 0.5rem;
-        justify-content: space-between;
-    }
-    .btn-secondary {
-      background: linear-gradient(90deg, #444, #555);
-      color: #F0F0F0;
-      padding: 0.5rem;
-      border: none;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      flex: 1;
-    }
-    .btn-secondary:hover {
-      background: linear-gradient(90deg, #555, #666);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-    .btn-secondary i {
-        margin-right: 4px;
-    }
-    .btn-edit {
-        background: linear-gradient(90deg, #3498db, #2980b9);
-    }
-    .btn-edit:hover {
-        background: linear-gradient(90deg, #2980b9, #3498db);
-    }
-    .btn-delete {
-        background: linear-gradient(90deg, #e74c3c, #c0392b);
-    }
-    .btn-delete:hover {
-        background: linear-gradient(90deg, #c0392b, #e74c3c);
-    }
-    /* Стили для модального окна просмотра */
-    .view-modal-content {
-      max-width: 800px;
-      width: 90%;
-    }
-    .view-modal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem 1.5rem;
-        background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
-        border-bottom: 1px solid #333;
-    }
-    .view-modal-header h3 {
-        margin: 0;
-        color: #F0F0F0;
-        font-family: 'Oswald', sans-serif;
-    }
-    .view-modal-body {
-        padding: 1.5rem;
-        background: #252525;
-        max-height: 60vh;
-        overflow-y: auto;
-    }
-    .view-modal-content pre {
-        background: #1A1A1A;
-        padding: 1rem;
-        border-radius: 6px;
-        overflow: auto;
-        white-space: pre-wrap; /* Для переноса слов */
-        word-wrap: break-word; /* Для переноса слов */
-        color: #F0F0F0;
-        font-family: 'Courier New', monospace; /* Моноширинный шрифт */
-        font-size: 0.9rem;
-        line-height: 1.4;
-    }
-    /* Адаптивность */
-    @media (max-width: 768px) {
+    </script>
+    <style>
+        body {
+            background: linear-gradient(180deg, #121212 0%, #1A1A1A 100%);
+            color: #F0F0F0;
+            font-family: 'Montserrat', sans-serif;
+            animation: fadeIn 0.8s ease-out;
+            padding-top: 0; /* Убираем отступ, так как хедер фиксированный */
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #FF5500, #FFAA66, #FF5500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 3s linear infinite;
+        }
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+        header {
+            background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 3px solid #FF5500;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+        .header-hidden {
+            transform: translateY(-100%);
+        }
         .banner-card {
-            padding: 1.5rem;
+            background: linear-gradient(145deg, #1E1E1E, #1A1A1A);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1.75rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 85, 0, 0.05);
+            transition: all 0.3s ease, transform 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .banner-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: linear-gradient(90deg, #FF5500, #FFAA66);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        .banner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 85, 0, 0.1);
+            border-color: #FF5500;
+        }
+        .banner-card:hover::before {
+            transform: scaleX(1);
+        }
+        .banner-icon {
+            background: linear-gradient(145deg, #FF5500, #CC4400);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 4px 10px rgba(255, 85, 0, 0.4);
+            align-self: center;
+        }
+        .banner-icon i {
+            font-size: 1.75rem;
+            color: #FFFFFF;
         }
         .banner-card h2 {
-            font-size: 1.4rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #F0F0F0;
+            text-align: center;
+            letter-spacing: 0.5px;
         }
-        .search-input {
-            max-width: 100%;
+        .banner-card ul {
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
         }
-        .floating-add-btn {
-            bottom: 1.5rem;
-            right: 1.5rem;
-            width: 50px;
-            height: 50px;
-            font-size: 1.2rem;
+        .banner-card li {
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid #333;
         }
-        .docs-grid {
-            grid-template-columns: 1fr;
+        .banner-card li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
         }
-        .doc-card .btn-group {
-            flex-direction: column;
-            gap: 0.5rem;
+        .nav-link {
+            color: #B0B0B0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+        .nav-link i {
+            margin-right: 8px;
+            font-size: 0.9em;
+            min-width: 20px;
+            text-align: center;
+            color: #FF5500;
+        }
+        .nav-link:hover {
+            color: #FFAA66;
+            text-decoration: none;
+        }
+        .nav-link:hover i {
+            transform: translateX(3px);
+            color: #FFAA66;
+        }
+        .btn-primary, .btn-secondary {
+            color: #FFFFFF;
+            padding: 0.7rem 1.3rem;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(255, 85, 0, 0.3);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #FF5500, #FF7733);
         }
         .btn-secondary {
+            background: linear-gradient(90deg, #2A2A2A, #3A3A3A);
+        }
+        .btn-primary:hover, .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(255, 85, 0, 0.5);
+        }
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #FF7733, #FF5500);
+        }
+        .btn-secondary:hover {
+            background: linear-gradient(90deg, #3A3A3A, #4A4A4A);
+        }
+        .btn-primary:active, .btn-secondary:active {
+            transform: translateY(0);
+        }
+        .btn-primary i, .btn-secondary i {
+            margin-right: 8px;
+        }
+        .font-size-toggle span {
+            cursor: pointer;
+            margin: 0 0.4rem;
+            padding: 0.4rem 0.7rem;
+            border-radius: 4px;
+            color: #B0B0B0;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid transparent;
+        }
+        .font-size-toggle span:hover {
+            background-color: rgba(255, 85, 0, 0.1);
+            color: #FFAA66;
+            border-color: #FF5500;
+        }
+        .search-block {
+            position: relative;
+        }
+        .search-input {
+            background: #1E1E1E;
+            color: #F0F0F0;
+            border: 2px solid #333;
+            border-radius: 30px;
+            padding: 0.7rem 1.2rem 0.7rem 2.7rem;
+            font-size: 0.95rem;
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 250px;
+        }
+        .search-input:focus {
+            border-color: #FF5500;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 85, 0, 0.2);
+            background: #252525;
+        }
+        .search-icon {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #B0B0B0;
+        }
+        footer {
+            background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
+            border-top: 3px solid #FF5500;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.3);
+        }
+        .footer-section h3 {
+            color: #FF5500;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid #333;
+            padding-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+        }
+        .footer-section h3 i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+        .footer-link {
+            display: block;
+            margin-bottom: 0.6rem;
+            color: #B0B0B0;
+            transition: color 0.2s ease;
+            text-decoration: none;
+        }
+        .footer-link:hover {
+            color: #FFAA66;
+            text-decoration: underline;
+        }
+        .contact-highlight {
+            color: #FF5500;
+            font-weight: 600;
+        }
+        /* Специфичные стили для документов */
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        @media (min-width: 768px) {
+            .docs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .docs-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        .doc-card {
+            background: linear-gradient(145deg, #2A2A2A, #1E1E1E);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1.25rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .doc-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 85, 0, 0.1);
+            border-color: #FF5500;
+        }
+        .doc-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .doc-icon-large {
+            background: linear-gradient(145deg, #FF5500, #CC4400);
+            width: 45px;
+            height: 45px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
             justify-content: center;
+            flex-shrink: 0;
+        }
+        .doc-icon-large i {
+            font-size: 1.25rem;
+            color: white;
+        }
+        .doc-details {
+            flex-grow: 1;
+            min-width: 0; /* Позволяет сжиматься */
+        }
+        .doc-card h3 {
+            font-family: 'Oswald', sans-serif;
+            color: #F0F0F0;
+            margin-bottom: 0.25rem;
+            font-size: 1.1rem;
+        }
+        .doc-card p {
+            color: #B0B0B0;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+        .doc-card .content-preview {
+            color: #888;
+            font-size: 0.8rem;
+            font-style: italic;
+            margin-bottom: 0.75rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .btn-group button {
+            padding: 0.4rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            transition: all 0.2s ease;
+        }
+        .btn-group button:hover {
+            transform: scale(1.05);
+        }
+        .btn-view {
+            background-color: #2A2A2A;
+            color: #F0F0F0;
+            border: 1px solid #333;
+        }
+        .btn-view:hover {
+            background-color: #3A3A3A;
+            border-color: #FF5500;
+        }
+        .btn-download, .btn-edit, .btn-export {
+            background-color: #FF5500;
+            color: white;
+        }
+        .btn-download:hover, .btn-edit:hover, .btn-export:hover {
+            background-color: #FF7733;
+        }
+        /* Стили для модального окна */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeIn 0.3s ease-out;
         }
         .modal-content {
-            max-width: 95vw; /* Адаптивность ширины модального окна */
+            background: linear-gradient(145deg, #1E1E1E, #1A1A1A);
+            margin: 5% auto;
+            padding: 0;
+            border: 1px solid #333;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 700px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            max-height: 80vh;
         }
-    }
-  </style>
+        .modal-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .modal-header h2 {
+            font-family: 'Oswald', sans-serif;
+            color: #F0F0F0;
+            font-weight: 600;
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            color: #B0B0B0;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        .modal-close:hover {
+            color: #FF5500;
+        }
+        .modal-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #B0B0B0;
+        }
+        .form-control {
+            width: 100%;
+            padding: 0.7rem;
+            background: #252525;
+            border: 1px solid #333;
+            border-radius: 6px;
+            color: #F0F0F0;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .form-control:focus {
+            outline: none;
+            border-color: #FF5500;
+            box-shadow: 0 0 0 2px rgba(255, 85, 0, 0.2);
+        }
+        .modal-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        .modal-footer .left-side, .modal-footer .right-side {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .floating-add-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #FF5500, #CC4400);
+            color: white;
+            font-size: 1.5rem;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 85, 0, 0.5);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .floating-add-btn:hover {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 6px 20px rgba(255, 85, 0, 0.7);
+        }
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .banner-card {
+                padding: 1.5rem;
+            }
+            .banner-card h2 {
+                font-size: 1.4rem;
+            }
+            .search-input {
+                max-width: 100%;
+            }
+            .docs-grid {
+                grid-template-columns: 1fr;
+            }
+            .doc-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .doc-icon-large {
+                align-self: center;
+            }
+            .btn-group {
+                justify-content: center;
+            }
+            .modal-footer {
+                flex-direction: column;
+            }
+            .modal-footer .left-side, .modal-footer .right-side {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body class="min-h-screen flex flex-col">
-  <header class="py-4 px-4 sm:px-6">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-      <div class="text-center sm:text-left">
-        <h1 class="text-2xl sm:text-3xl font-bold text-[#F0F0F0] font-display">NSK<span class="gradient-text">Hub</span></h1>
-        <p class="text-sm text-[#B0B0B0] font-light mt-1">Нижневартовский Строительный Колледж</p>
-      </div>
-      <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-        <div class="font-size-toggle flex items-center bg-surface p-1 rounded-lg">
-          <span class="text-xs sm:text-sm" onclick="changeFontSize('small')"><i class="fas fa-text-height"></i> М</span>
-          <span class="text-sm sm:text-base" onclick="changeFontSize('medium')"><i class="fas fa-text-height"></i> С</span>
-          <span class="text-base sm:text-lg" onclick="changeFontSize('large')"><i class="fas fa-text-height"></i> Б</span>
+    <header class="py-4 px-4 sm:px-6" id="mainHeader">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="text-center sm:text-left">
+                <h1 class="text-2xl sm:text-3xl font-bold text-[#F0F0F0] font-display">NSK<span class="gradient-text">Hub</span></h1>
+                <p class="text-sm text-[#B0B0B0] font-light mt-1">Нижневартовский Строительный Колледж</p>
+            </div>
+            <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+                <div class="font-size-toggle flex items-center bg-surface p-1 rounded-lg">
+                    <span class="text-xs sm:text-sm" onclick="changeFontSize('small')"><i class="fas fa-text-height"></i> М</span>
+                    <span class="text-sm sm:text-base" onclick="changeFontSize('medium')"><i class="fas fa-text-height"></i> С</span>
+                    <span class="text-base sm:text-lg" onclick="changeFontSize('large')"><i class="fas fa-text-height"></i> Б</span>
+                </div>
+                <div class="search-block w-full sm:w-auto">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Поиск по сайту..." id="mainSearch">
+                </div>
+                <div class="whitespace-nowrap">
+                    <a href="index.html" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors">
+                        <i class="fas fa-arrow-left mr-2"></i> Назад
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="search-block w-full sm:w-auto">
-          <i class="fas fa-search search-icon"></i>
-          <input type="text" class="search-input" placeholder="Поиск по сайту...">
+    </header>
+
+    <main class="flex-1 max-w-7xl mx-auto py-8 px-4 sm:px-6">
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-[#F0F0F0] font-display mb-2">Документы</h2>
+            <p class="text-[#B0B0B0]">Важные документы колледжа</p>
         </div>
-      </div>
-    </div>
-    <nav class="max-w-7xl mx-auto mt-4">
-      <ul class="flex flex-wrap justify-center gap-1 sm:gap-3">
-        <li><a href="index.html#student" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-graduation-cap"></i> Студенту</a></li>
-        <li><a href="index.html#education" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-book-open"></i> Обучение</a></li>
-        <li><a href="index.html#info" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-info-circle"></i> Информация</a></li>
-        <li><a href="index.html" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors"><i class="fas fa-arrow-left"></i> Назад</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main class="flex-1 max-w-7xl mx-auto py-8 px-4 sm:px-6">
-    <div class="text-center mb-8">
-        <h2 class="text-3xl font-bold text-[#F0F0F0] font-display mb-2">Документы</h2>
-        <p class="text-[#B0B0B0]">Центральный архив всех важных документов колледжа</p>
-    </div>
-
-    <div class="docs-grid" id="docsContainer">
-        <!-- Карточки документов будут генерироваться здесь -->
-    </div>
-  </main>
-
-  <footer class="py-6 px-4 sm:px-6">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-      <div class="footer-section">
-        <h3><i class="fas fa-link"></i> Полезные ссылки</h3>
-        <p>
-          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Дистанционное обучение</a>
-          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Профсоюз студентов</a>
-          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Студенческий совет</a>
-          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Правила распорядка</a>
-          <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Стипендии и льготы</a>
-        </p>
-      </div>
-      <div class="footer-section">
-        <h3><i class="fas fa-phone"></i> Контакты</h3>
-        <p class="text-[#B0B0B0] font-light">
-          <span class="contact-highlight"><i class="fas fa-phone-alt mr-2"></i> Приёмная:</span> +7 (3466) 67-23-28<br>
-          <a href="mailto:info@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> info@nskcollege.ru</a><br>
-          <span class="contact-highlight mt-3 block"><i class="fas fa-home mr-2"></i> Общежитие:</span> +7 (3466) 67-02-38<br>
-          <a href="mailto:hostel@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> hostel@nskcollege.ru</a>
-        </p>
-      </div>
-      <div class="footer-section">
-        <h3><i class="fas fa-clock"></i> Режим работы</h3>
-        <p class="text-[#B0B0B0] font-light mb-4">
-          <i class="fas fa-calendar-day mr-2"></i> Пн-Пт: <span class="text-[#F0F0F0]">09:00–17:00</span><br>
-          <i class="fas fa-calendar-day mr-2"></i> Сб: <span class="text-[#F0F0F0]">09:00–13:00</span><br>
-          <i class="fas fa-calendar-times mr-2"></i> Вс: <span class="text-[#F0F0F0]">выходной</span>
-        </p>
-        <p>
-            <a href="https://vk.com/public216209140" class="btn-primary" target="_blank"><i class="fab fa-vk mr-2"></i> Наш ВКонтакте</a>
-        </p>
-        <p class="text-xs text-[#777] mt-4">
-          © 2025 NSKHub. Все права защищены.<br>
-          <a href="#" class="footer-link hover:underline">Политика конфиденциальности</a>
-        </p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Кнопка "+" -->
-  <button id="addBtn" class="floating-add-btn" title="Создать документ">
-    <i class="fas fa-plus"></i>
-  </button>
-
-  <!-- Модальное окно создания/редактирования -->
-  <div id="createEditDocModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 id="modalTitle">Создать документ</h2>
-        <span class="close-modal" data-modal="createEditDocModal">&times;</span>
-      </div>
-      <div class="modal-body">
-        <div class="preview-banner">
-          Предпросмотр документа
+        <div class="docs-grid" id="docsContainer">
+            <!-- Документы будут загружены через JavaScript -->
         </div>
-        <div id="previewContent" class="modal-preview">
-          Введите название и описание для предпросмотра.
+    </main>
+
+    <button class="floating-add-btn" onclick="showAddDocModal()" title="Добавить документ">
+        <i class="fas fa-plus"></i>
+    </button>
+
+    <!-- Модальное окно: Просмотр документа -->
+    <div id="viewDocModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="viewDocTitle">Заголовок документа</h2>
+                <button class="modal-close" onclick="closeModal('viewDocModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <pre id="viewDocContent">Содержимое документа</pre>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-primary" onclick="closeModal('viewDocModal')">Закрыть</button>
+            </div>
         </div>
-        <input type="hidden" id="editDocId">
-        <label for="docName" class="block text-sm font-medium text-[#B0B0B0] mb-1">Имя документа</label>
-        <input type="text" id="docName" class="modal-input" placeholder="Введите название документа...">
-        <label for="docDesc" class="block text-sm font-medium text-[#B0B0B0] mb-1">Описание документа</label>
-        <textarea id="docDesc" class="modal-input" rows="3" placeholder="Введите описание документа..."></textarea>
-        <label for="docContent" class="block text-sm font-medium text-[#B0B0B0] mb-1">Содержимое документа</label>
-        <textarea id="docContent" class="modal-input" rows="6" placeholder="Введите содержимое документа..."></textarea>
-        <label for="docFile" class="block text-sm font-medium text-[#B0B0B0] mb-1">Прикрепить файл (.md, .txt)</label>
-        <input type="file" id="docFile" class="modal-input" accept=".md,.txt">
-      </div>
-      <div class="modal-footer">
-        <button id="cancelEditBtn" class="btn-secondary" style="display:none;">Отмена</button>
-        <button id="createDocBtn" class="btn-primary"><i class="fas fa-save mr-2"></i>Создать</button>
-        <button id="updateDocBtn" class="btn-primary" style="display:none;"><i class="fas fa-sync-alt mr-2"></i>Обновить</button>
-      </div>
     </div>
-  </div>
 
-  <!-- Модальное окно просмотра -->
-  <div id="viewDocModal" class="modal">
-    <div class="modal-content view-modal-content">
-      <div class="view-modal-header">
-        <h3 id="viewDocTitle">Просмотр документа</h3>
-        <span class="close-modal" data-modal="viewDocModal">&times;</span>
-      </div>
-      <div class="view-modal-body">
-        <pre id="viewDocContent"></pre>
-      </div>
+    <!-- Модальное окно: Добавить/Редактировать документ -->
+    <div id="addDocModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="addDocModalTitle">Добавить документ</h2>
+                <button class="modal-close" onclick="closeModal('addDocModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editDocIdInput">
+                <div class="form-group">
+                    <label for="newDocName">Название документа</label>
+                    <input type="text" id="newDocName" class="form-control" placeholder="Введите название">
+                </div>
+                <div class="form-group">
+                    <label for="newDocCategory">Категория</label>
+                    <select id="newDocCategory" class="form-control">
+                        <option value="Общее">Общее</option>
+                        <option value="Учеба">Учеба</option>
+                        <option value="Документы">Документы</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="newDocContent">Содержимое документа</label>
+                    <textarea id="newDocContent" class="form-control" rows="6" placeholder="Введите текст документа"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="left-side">
+                    <button class="btn-secondary" onclick="closeModal('addDocModal')">Отмена</button>
+                    <button id="createBtn" class="btn-primary" onclick="addDocument()">Сохранить</button>
+                    <button id="updateBtn" class="btn-primary" style="display:none;" onclick="updateDocument()">Обновить</button>
+                    <button id="cancelEditBtn" class="btn-secondary" style="display:none;" onclick="cancelEdit()">Отмена редактирования</button>
+                </div>
+                <div class="right-side">
+                    <button id="exportDocBtn" class="btn-secondary" style="display:none;" onclick="exportCurrentDoc()">Экспорт</button>
+                    <button id="importDocBtn" class="btn-secondary" style="display:none;" onclick="importCurrentDoc()">Импорт</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script>
-    function changeFontSize(size) {
-      const root = document.documentElement;
-      if (size === 'small') {
-        root.style.fontSize = '13px';
-      } else if (size === 'medium') {
-        root.style.fontSize = '15px';
-      } else if (size === 'large') {
-        root.style.fontSize = '17px';
-      }
-    }
-    document.addEventListener('DOMContentLoaded', (event) => {
-        changeFontSize('medium');
-        loadDocumentsFromStorage();
-        renderDocuments();
-    });
+    <footer class="py-6 px-4 sm:px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            <div class="footer-section">
+                <h3><i class="fas fa-link"></i> Полезные ссылки</h3>
+                <p>
+                    <a href="distance.html" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Дистанционное обучение</a>
+                    <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Профсоюз студентов</a>
+                    <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Студенческий совет</a>
+                    <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Правила распорядка</a>
+                    <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Стипендии и льготы</a>
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-phone"></i> Контакты</h3>
+                <p class="text-[#B0B0B0] font-light">
+                    <span class="contact-highlight mt-3 block"><i class="fas fa-home mr-2"></i> Приёмная:</span> +7 (3466) 67-23-28<br>
+                    <a href="mailto:info@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> info@nskcollege.ru</a><br>
+                    <span class="contact-highlight mt-3 block"><i class="fas fa-home mr-2"></i> Общежитие:</span> +7 (3466) 67-02-38<br>
+                    <a href="mailto:hostel@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> hostel@nskcollege.ru</a>
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-clock"></i> Режим работы</h3>
+                <p class="text-[#B0B0B0] font-light mb-4">
+                    <i class="fas fa-calendar-day mr-2"></i> Пн-Пт: <span class="text-[#F0F0F0]">09:00–17:00</span><br>
+                    <i class="fas fa-calendar-day mr-2"></i> Сб: <span class="text-[#F0F0F0]">09:00–13:00</span><br>
+                    <i class="fas fa-calendar-times mr-2"></i> Вс: <span class="text-[#F0F0F0]">выходной</span>
+                </p>
+                <p>
+                    <a href="https://vk.com/public216209140" class="btn-primary" target="_blank"><i class="fab fa-vk mr-2"></i> Наш ВКонтакте</a>
+                </p>
+                <p class="text-xs text-[#777] mt-4">
+                    © 2025 NSKHub. Все права защищены.<br>
+                    <a href="#" class="footer-link hover:underline">Политика конфиденциальности</a>
+                </p>
+            </div>
+        </div>
+    </footer>
 
-    // Массив для хранения документов
-    let documents = [];
+    <script>
+        // --- Глобальные переменные ---
+        let documents = [
+            { id: '1', name: "Устав колледжа", description: "Официальный устав Нижневартовского строительного колледжа.", category: "Общее", content: "Текст устава..." },
+            { id: '2', name: "Правила внутреннего распорядка", description: "Правила поведения студентов и сотрудников.", category: "Общее", content: "Текст правил..." },
+            { id: '3', name: "Учебный план 2024-2025", description: "Учебный план для всех специальностей.", category: "Учеба", content: "Текст плана..." }
+        ];
 
-    // Функция для генерации ID
-    function generateId() {
-        return Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
-    }
-
-    // Функция для сохранения документов в localStorage
-    function saveDocumentsToStorage() {
-        localStorage.setItem('nskDocuments', JSON.stringify(documents));
-    }
-
-    // Функция для загрузки документов из localStorage
-    function loadDocumentsFromStorage() {
-        const stored = localStorage.getItem('nskDocuments');
-        if (stored) {
-            documents = JSON.parse(stored);
+        // --- Функции для работы с шрифтами и поиском (как в index.html) ---
+        function changeFontSize(size) {
+            const root = document.documentElement;
+            if (size === 'small') {
+                root.style.fontSize = '13px';
+            } else if (size === 'medium') {
+                root.style.fontSize = '15px';
+            } else if (size === 'large') {
+                root.style.fontSize = '17px';
+            }
         }
-    }
 
-    // Функция для отображения документов
-    function renderDocuments() {
-        const container = document.getElementById('docsContainer');
-        container.innerHTML = ''; // Очищаем контейнер
+        // --- Скрытие/показ хидера при прокрутке на мобильных ---
+        let lastScrollY = window.scrollY;
+        const header = document.getElementById('mainHeader');
+        const scrollThreshold = 10;
 
-        documents.forEach(doc => {
-            const docCard = document.createElement('div');
-            docCard.className = 'doc-card';
-            docCard.innerHTML = `
-                <div class="doc-icon">
-                    <i class="fas ${getIconClass(doc.name)}"></i>
-                </div>
-                <h3>${doc.name}</h3>
-                <p>${doc.description}</p>
-                <div class="btn-group">
-                    <button class="btn-secondary btn-primary" onclick="viewDocument('${doc.id}')"><i class="fas fa-eye mr-2"></i>Просмотр</button>
-                    <button class="btn-secondary btn-edit" onclick="editDocument('${doc.id}')"><i class="fas fa-edit mr-2"></i>Редакт.</button>
-                    <button class="btn-secondary btn-delete" onclick="deleteDocument('${doc.id}')"><i class="fas fa-trash mr-2"></i>Удалить</button>
-                </div>
-            `;
-            container.appendChild(docCard);
+        window.addEventListener('scroll', () => {
+            const isMobile = window.innerWidth <= 768;
+            if (!isMobile) {
+                header.classList.remove('header-hidden');
+                return;
+            }
+
+            const currentScrollY = window.scrollY;
+            if (Math.abs(currentScrollY - lastScrollY) < scrollThreshold) {
+                return;
+            }
+
+            if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                header.classList.add('header-hidden');
+            } else {
+                header.classList.remove('header-hidden');
+            }
+            lastScrollY = currentScrollY;
         });
-    }
 
-    // Функция для определения иконки по названию файла
-    function getIconClass(name) {
-        const lowerName = name.toLowerCase();
-        if (lowerName.endsWith('.pdf')) return 'fa-file-pdf';
-        if (lowerName.endsWith('.doc') || lowerName.endsWith('.docx')) return 'fa-file-word';
-        if (lowerName.endsWith('.txt') || lowerName.endsWith('.md')) return 'fa-file-alt';
-        return 'fa-file';
-    }
-
-    // --- Модальные окна ---
-    const modals = {
-        createEditDocModal: document.getElementById('createEditDocModal'),
-        viewDocModal: document.getElementById('viewDocModal')
-    };
-    const spans = document.querySelectorAll('.close-modal');
-    const addBtn = document.getElementById('addBtn');
-    const createBtn = document.getElementById('createDocBtn');
-    const updateBtn = document.getElementById('updateDocBtn');
-    const cancelEditBtn = document.getElementById('cancelEditBtn');
-    const docNameInput = document.getElementById('docName');
-    const docDescInput = document.getElementById('docDesc');
-    const docContentInput = document.getElementById('docContent');
-    const docFileInput = document.getElementById('docFile');
-    const previewContent = document.getElementById('previewContent');
-    const editDocIdInput = document.getElementById('editDocId');
-    const viewDocTitle = document.getElementById('viewDocTitle');
-    const viewDocContent = document.getElementById('viewDocContent');
-
-    // Обновление предпросмотра
-    function updatePreview() {
-        const name = docNameInput.value.trim() || 'Новый документ';
-        const desc = docDescInput.value.trim() || 'Без описания.';
-        previewContent.innerHTML = `<strong>${name}</strong><br><small>${desc}</small>`;
-    }
-
-    docNameInput.addEventListener('input', updatePreview);
-    docDescInput.addEventListener('input', updatePreview);
-
-    // Открытие модального окна создания
-    addBtn.onclick = function() {
-        resetModalForm();
-        document.getElementById('modalTitle').textContent = 'Создать документ';
-        createBtn.style.display = 'block';
-        updateBtn.style.display = 'none';
-        cancelEditBtn.style.display = 'none';
-        modals.createEditDocModal.style.display = 'block';
-    }
-
-    // Закрытие модальных окон
-    spans.forEach(span => {
-        span.onclick = function() {
-            const modalId = this.getAttribute('data-modal');
-            modals[modalId].style.display = 'none';
-        }
-    });
-
-    window.onclick = function(event) {
-        Object.values(modals).forEach(modal => {
-            if (event.target === modal) {
-                modal.style.display = 'none';
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                header.classList.remove('header-hidden');
             }
         });
-    }
 
-    // Функция сброса формы модального окна
-    function resetModalForm() {
-        docNameInput.value = '';
-        docDescInput.value = '';
-        docContentInput.value = '';
-        docFileInput.value = ''; // Сбросить файл
-        editDocIdInput.value = '';
-        updatePreview();
-    }
+        // --- Функции для работы с документами ---
+        function getIconClass(name) {
+            if (name.toLowerCase().includes('учеб')) return 'fas fa-book';
+            if (name.toLowerCase().includes('план')) return 'fas fa-list-alt';
+            if (name.toLowerCase().includes('правил')) return 'fas fa-gavel';
+            if (name.toLowerCase().includes('устав')) return 'fas fa-file-contract';
+            return 'fas fa-file-alt';
+        }
 
-    // Обработка выбора файла
-    docFileInput.addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file && (file.name.endsWith('.md') || file.name.endsWith('.txt'))) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                docContentInput.value = e.target.result;
-                updatePreview(); // Обновить предпросмотр после загрузки
+        function loadDocuments() {
+            const saved = localStorage.getItem('nskDocuments');
+            if (saved) {
+                documents = JSON.parse(saved);
+            }
+            renderDocuments();
+        }
+
+        function saveDocuments() {
+            localStorage.setItem('nskDocuments', JSON.stringify(documents));
+            renderDocuments();
+        }
+
+        function renderDocuments() {
+            const container = document.getElementById('docsContainer');
+            container.innerHTML = '';
+            documents.forEach(doc => {
+                const contentPreview = doc.content.length > 100 ? doc.content.substring(0, 100) + '...' : doc.content;
+                const docCard = document.createElement('div');
+                docCard.className = 'doc-card';
+                docCard.innerHTML = `
+                    <div class="doc-header">
+                        <div class="doc-icon-large">
+                            <i class="fas ${getIconClass(doc.name)}"></i>
+                        </div>
+                        <div class="doc-details">
+                            <h3>${doc.name}</h3>
+                            <p>${doc.description}</p>
+                            <p class="content-preview">${contentPreview}</p>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn-view" onclick="viewDocument('${doc.id}')"><i class="fas fa-eye mr-1"></i> Просмотр</button>
+                        <button class="btn-download" onclick="downloadDocument('${doc.id}')"><i class="fas fa-download mr-1"></i> Скачать</button>
+                        <button class="btn-edit" onclick="editDocument('${doc.id}')"><i class="fas fa-edit mr-1"></i> Редактировать</button>
+                        <button class="btn-export" onclick="exportDocument('${doc.id}')"><i class="fas fa-upload mr-1"></i> Экспорт</button>
+                    </div>
+                `;
+                container.appendChild(docCard);
+            });
+        }
+
+        function viewDocument(id) {
+            const doc = documents.find(d => d.id === id);
+            if (!doc) return;
+            document.getElementById('viewDocTitle').textContent = doc.name;
+            document.getElementById('viewDocContent').textContent = doc.content || 'Документ пуст.';
+            document.getElementById('viewDocModal').style.display = 'block';
+        }
+
+        function downloadDocument(id) {
+            const doc = documents.find(d => d.id === id);
+            if (!doc) return;
+            const element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(doc.content || ''));
+            element.setAttribute('download', doc.name + '.txt');
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            element.click();
+            document.body.removeChild(element);
+        }
+
+        // --- Функции для модальных окон ---
+        function showModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function showAddDocModal() {
+            document.getElementById('editDocIdInput').value = '';
+            document.getElementById('newDocName').value = '';
+            document.getElementById('newDocContent').value = '';
+            document.getElementById('newDocCategory').value = 'Общее';
+            document.getElementById('addDocModalTitle').textContent = 'Добавить документ';
+            document.getElementById('createBtn').style.display = 'inline-block';
+            document.getElementById('updateBtn').style.display = 'none';
+            document.getElementById('cancelEditBtn').style.display = 'none';
+            document.getElementById('exportDocBtn').style.display = 'none';
+            document.getElementById('importDocBtn').style.display = 'none';
+            showModal('addDocModal');
+        }
+
+        function generateId() {
+            // Используем crypto.randomUUID() для генерации уникального ID, если доступно
+            if (window.crypto && window.crypto.randomUUID) {
+                return window.crypto.randomUUID();
+            }
+            // Полифилл для старых браузеров
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        function addDocument() {
+            const name = document.getElementById('newDocName').value.trim();
+            const content = document.getElementById('newDocContent').value;
+            const category = document.getElementById('newDocCategory').value;
+            if (!name) {
+                alert('Заполните название документа.');
+                return;
+            }
+            const newDoc = {
+                id: generateId(), // Используем генерацию ID
+                name: name,
+                description: `Документ в категории "${category}".`,
+                category: category,
+                content: content
             };
-            reader.readAsText(file);
-        } else if (file) {
-            alert('Пожалуйста, выберите файл .md или .txt');
-            e.target.value = ''; // Сбросить выбор файла
-        }
-    });
-
-    // Создание документа
-    createBtn.onclick = function() {
-        const name = docNameInput.value.trim();
-        const desc = docDescInput.value.trim();
-        const content = docContentInput.value.trim();
-
-        if (!name) {
-            alert('Пожалуйста, введите имя документа.');
-            return;
+            documents.push(newDoc);
+            saveDocuments();
+            closeModal('addDocModal');
         }
 
-        const newDoc = {
-            id: generateId(),
-            name: name,
-            description: desc,
-            content: content,
-            timestamp: new Date().toISOString()
-        };
-
-        documents.push(newDoc);
-        saveDocumentsToStorage();
-        renderDocuments();
-        modals.createEditDocModal.style.display = 'none';
-        resetModalForm();
-    }
-
-    // Редактирование документа
-    function editDocument(id) {
-        const doc = documents.find(d => d.id === id);
-        if (!doc) return;
-
-        docNameInput.value = doc.name;
-        docDescInput.value = doc.description;
-        docContentInput.value = doc.content;
-        editDocIdInput.value = doc.id;
-
-        document.getElementById('modalTitle').textContent = 'Редактировать документ';
-        createBtn.style.display = 'none';
-        updateBtn.style.display = 'block';
-        cancelEditBtn.style.display = 'block';
-        updatePreview();
-
-        modals.createEditDocModal.style.display = 'block';
-    }
-
-    updateBtn.onclick = function() {
-        const id = editDocIdInput.value;
-        const name = docNameInput.value.trim();
-        const desc = docDescInput.value.trim();
-        const content = docContentInput.value.trim();
-
-        if (!name) {
-            alert('Пожалуйста, введите имя документа.');
-            return;
+        function editDocument(id) {
+            const doc = documents.find(d => d.id === id);
+            if (!doc) return;
+            document.getElementById('editDocIdInput').value = doc.id;
+            document.getElementById('newDocName').value = doc.name;
+            document.getElementById('newDocContent').value = doc.content;
+            document.getElementById('newDocCategory').value = doc.category;
+            document.getElementById('addDocModalTitle').textContent = 'Редактировать документ';
+            document.getElementById('createBtn').style.display = 'none';
+            document.getElementById('updateBtn').style.display = 'inline-block';
+            document.getElementById('cancelEditBtn').style.display = 'inline-block';
+            document.getElementById('exportDocBtn').style.display = 'inline-block';
+            document.getElementById('importDocBtn').style.display = 'inline-block';
+            showModal('addDocModal');
         }
 
-        const index = documents.findIndex(d => d.id === id);
-        if (index !== -1) {
-            documents[index].name = name;
-            documents[index].description = desc;
-            documents[index].content = content;
-            documents[index].timestamp = new Date().toISOString();
-
-            saveDocumentsToStorage();
-            renderDocuments();
-            modals.createEditDocModal.style.display = 'none';
-            resetModalForm();
+        function updateDocument() {
+            const id = document.getElementById('editDocIdInput').value;
+            const name = document.getElementById('newDocName').value.trim();
+            const content = document.getElementById('newDocContent').value;
+            const category = document.getElementById('newDocCategory').value;
+            if (!name) {
+                alert('Заполните название документа.');
+                return;
+            }
+            const index = documents.findIndex(d => d.id === id);
+            if (index !== -1) {
+                documents[index].name = name;
+                documents[index].content = content;
+                documents[index].category = category;
+                documents[index].description = `Документ в категории "${category}".`;
+                saveDocuments();
+                closeModal('addDocModal');
+            }
         }
-    };
 
-    cancelEditBtn.onclick = function() {
-        modals.createEditDocModal.style.display = 'none';
-        resetModalForm();
-    }
-
-    // Удаление документа
-    function deleteDocument(id) {
-        if (confirm('Вы уверены, что хотите удалить этот документ?')) {
-            documents = documents.filter(doc => doc.id !== id);
-            saveDocumentsToStorage();
-            renderDocuments();
+        function cancelEdit() {
+            document.getElementById('createBtn').style.display = 'inline-block';
+            document.getElementById('updateBtn').style.display = 'none';
+            document.getElementById('cancelEditBtn').style.display = 'none';
+            document.getElementById('exportDocBtn').style.display = 'none';
+            document.getElementById('importDocBtn').style.display = 'none';
+            document.getElementById('addDocModalTitle').textContent = 'Добавить документ';
         }
-    }
 
-    // Просмотр документа
-    function viewDocument(id) {
-        const doc = documents.find(d => d.id === id);
-        if (!doc) return;
+        function exportDocument(id) {
+            const doc = documents.find(d => d.id === id);
+            if (!doc) return;
+            const dataStr = JSON.stringify(doc, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `document_${doc.id}.json`;
+            link.click();
+            // URL.revokeObjectURL(url); // Опционально, освобождает память
+        }
 
-        viewDocTitle.textContent = doc.name;
-        // Устанавливаем содержимое как есть, браузер сам обработает переносы и моноширинный шрифт в <pre>
-        viewDocContent.textContent = doc.content || 'Документ пуст.';
-        modals.viewDocModal.style.display = 'block';
-    }
+        function exportCurrentDoc() {
+            const id = document.getElementById('editDocIdInput').value;
+            if (id) {
+                exportDocument(id);
+            }
+        }
 
-  </script>
+        function importCurrentDoc() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = e => {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const importedDoc = JSON.parse(e.target.result);
+                        // Проверим, есть ли необходимые поля
+                        if (importedDoc.id && importedDoc.name !== undefined && importedDoc.content !== undefined && importedDoc.category !== undefined) {
+                            // Обновляем поля текущего документа
+                            document.getElementById('newDocName').value = importedDoc.name;
+                            document.getElementById('newDocContent').value = importedDoc.content;
+                            document.getElementById('newDocCategory').value = importedDoc.category;
+                            // Опционально: обновить описание на основе импортированного
+                            // document.getElementById('newDocDesc').value = importedDoc.description || '';
+                        } else {
+                            alert('Файл не содержит корректной информации документа.');
+                        }
+                    } catch (error) {
+                        alert('Ошибка при чтении файла JSON');
+                    }
+                };
+                reader.readAsText(file);
+            };
+            input.click();
+        }
+
+
+        // --- Инициализация при загрузке ---
+        document.addEventListener('DOMContentLoaded', () => {
+            changeFontSize('medium');
+            loadDocuments();
+
+            // Закрытие модальных окон при клике вне их
+            window.onclick = function(event) {
+                if (event.target.classList.contains('modal')) {
+                    event.target.style.display = 'none';
+                }
+            };
+        });
+    </script>
 </body>
 </html>
