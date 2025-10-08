@@ -69,6 +69,10 @@
       z-index: 50;
       border-bottom: 3px solid #FF5500;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
+    }
+    .header-hidden {
+      transform: translateY(-100%);
     }
     .banner-card {
       background: linear-gradient(145deg, #1E1E1E, #1A1A1A);
@@ -286,7 +290,7 @@
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
-  <header class="py-4 px-4 sm:px-6">
+  <header class="py-4 px-4 sm:px-6" id="mainHeader">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
       <div class="text-center sm:text-left">
         <h1 class="text-2xl sm:text-3xl font-bold text-[#F0F0F0] font-display">NSK<span class="gradient-text">Hub</span></h1>
@@ -431,6 +435,46 @@
             bannerCards.forEach(card => {
                 card.style.display = 'flex';
             });
+        }
+    });
+
+    // --- Скрытие/показ хидера при прокрутке на мобильных ---
+    let lastScrollY = window.scrollY;
+    const header = document.getElementById('mainHeader');
+    const scrollThreshold = 10; // Минимальная прокрутка для срабатывания
+
+    window.addEventListener('scroll', () => {
+        // Проверяем, мобильное ли устройство
+        const isMobile = window.innerWidth <= 768;
+
+        if (!isMobile) {
+            // На десктопе всегда показываем хидер
+            header.classList.remove('header-hidden');
+            return;
+        }
+
+        const currentScrollY = window.scrollY;
+
+        if (Math.abs(currentScrollY - lastScrollY) < scrollThreshold) {
+            return; // Игнорируем мелкие прокрутки
+        }
+
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            // Прокрутка вниз - скрываем хидер
+            header.classList.add('header-hidden');
+        } else {
+            // Прокрутка вверх - показываем хидер
+            header.classList.remove('header-hidden');
+        }
+
+        lastScrollY = currentScrollY;
+    });
+
+    // Обработка изменения размера окна
+    window.addEventListener('resize', () => {
+        // При изменении размера на десктоп - убедимся, что хидер виден
+        if (window.innerWidth > 768) {
+            header.classList.remove('header-hidden');
         }
     });
   </script>
