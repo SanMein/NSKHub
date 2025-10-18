@@ -1739,22 +1739,22 @@
           "type": ""
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Информатика",
+          "teacher": "Павлий Т.В./Голова С.П.",
+          "room": "233/236",
+          "type": "Лекция"
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Физика",
+          "teacher": "Шмиляк М.В.",
+          "room": "319",
+          "type": "Лекция"
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Введение в специальность",
+          "teacher": "Ризванова А.Ф.",
+          "room": "237",
+          "type": "Лекция"
         },
         {
           "subject": "",
@@ -1771,22 +1771,22 @@
       ],
       "Вторник": [
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "История",
+          "teacher": "Черненко О.В.",
+          "room": "322",
+          "type": "Лекция"
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Физика",
+          "teacher": "Шмиляк М.В.",
+          "room": "319",
+          "type": "Лекция"
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Информатика",
+          "teacher": "Павлий Т.В./Голова С.П.",
+          "room": "233/236",
+          "type": "Лекция"
         },
         {
           "subject": "",
@@ -1809,22 +1809,22 @@
       ],
       "Среда": [
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Математика",
+          "teacher": "Кулагина Л.В.",
+          "room": "221",
+          "type": "Лекция"
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Литература",
+          "teacher": "Журавлева А.В.",
+          "room": "315",
+          "type": "Лекция"
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Биология",
+          "teacher": "Адамова Р.М.",
+          "room": "228",
+          "type": "Лекция"
         },
         {
           "subject": "",
@@ -1847,22 +1847,22 @@
       ],
       "Четверг": [
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Физика",
+          "teacher": "Шмиляк М.В.",
+          "room": "235",
+          "type": "Лекция"
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Математика",
+          "teacher": "Кулагина Л.В.",
+          "room": "221",
+          "type": "Лекция"
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Информатика",
+          "teacher": "Павлий Т.В./Голова С.П.",
+          "room": "233/236",
+          "type": "Лекция"
         },
         {
           "subject": "",
@@ -1891,22 +1891,22 @@
           "type": ""
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Математика",
+          "teacher": "Кулагина Л.В.",
+          "room": "221",
+          "type": "Лекция"
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Операционные системы и среды",
+          "teacher": "Ризванова А.Ф.",
+          "room": "237",
+          "type": "Лекция"
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Информатика",
+          "teacher": "Павлий Т.В./Голова С.П.",
+          "room": "233/236",
+          "type": "Лекция"
         },
         {
           "subject": "",
@@ -1923,22 +1923,22 @@
       ],
       "Суббота": [
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Информатика",
+          "teacher": "Павлий Т.В./Голова С.П.",
+          "room": "233/236",
+          "type": "Лекция"
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Математика",
+          "teacher": "Кулагина Л.В.",
+          "room": "221",
+          "type": "Лекция"
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "История",
+          "teacher": "Черненко О.В.",
+          "room": "322",
+          "type": "Лекция"
         },
         {
           "subject": "",
