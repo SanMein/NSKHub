@@ -1848,9 +1848,10 @@
       "Четверг": [
         {
           "subject": "Физика",
-          "teacher": "Шмиляк М.В.",
+          "teacher": "[ЗАМЕНА] Файзуллин Р.Р.",
           "room": "235",
-          "type": "Лекция"
+          "type": "Лекция",
+          "note": ""
         },
         {
           "subject": "Математика",
@@ -1963,22 +1964,25 @@
     "9": {
       "Понедельник": [
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Введение в специальность",
+          "teacher": "Ризванова А.Ф.",
+          "room": "237",
+          "type": "Лекция",
+          "note": ""
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Операционные системы и среды",
+          "teacher": "Ризванова А.Ф.",
+          "room": "237",
+          "type": "Лекция",
+          "note": ""
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Информатика",
+          "teacher": "Павлий Т.В./Голова С.П.",
+          "room": "233/236",
+          "type": "Лекция",
+          "note": ""
         },
         {
           "subject": "",
@@ -2007,22 +2011,25 @@
           "type": ""
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Математика",
+          "teacher": "Кулагина Л.В.",
+          "room": "221",
+          "type": "Лекция",
+          "note": ""
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Русский язык",
+          "teacher": "Журавлёва А.В.",
+          "room": "315",
+          "type": "Лекция",
+          "note": ""
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Информатика",
+          "teacher": "Павлий Т.В./Голова С.П.",
+          "room": "233/236",
+          "type": "Лекция",
+          "note": ""
         },
         {
           "subject": "",
@@ -2045,22 +2052,25 @@
           "type": ""
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Биология",
+          "teacher": "Адамова Р.М",
+          "room": "228",
+          "type": "Лекция",
+          "note": ""
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Иностранный язык",
+          "teacher": "Гришина А.А.",
+          "room": "417",
+          "type": "Лекция",
+          "note": ""
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Информатика",
+          "teacher": "Павлий Т.В./Голова С.П.",
+          "room": "233/236",
+          "type": "Лекция",
+          "note": ""
         },
         {
           "subject": "",
@@ -2077,22 +2087,25 @@
       ],
       "Четверг": [
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Математика",
+          "teacher": "Кулагина Л.В.",
+          "room": "221",
+          "type": "Лекция",
+          "note": ""
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "История",
+          "teacher": "Черненко О.В.",
+          "room": "322",
+          "type": "Лекция",
+          "note": ""
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Основы проектной деятельности",
+          "teacher": "Норекян А.А.",
+          "room": "236",
+          "type": "Лекция",
+          "note": ""
         },
         {
           "subject": "",
@@ -2121,22 +2134,25 @@
           "type": ""
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Литература",
+          "teacher": "Журавлёва А.В.",
+          "room": "315",
+          "type": "Лекция",
+          "note": ""
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Информатика",
+          "teacher": "Павлий Т.В./Голова С.П.",
+          "room": "233/236",
+          "type": "Лекция",
+          "note": ""
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Физика",
+          "teacher": "[ЗАМЕНА] Файзуллин Р.Р.",
+          "room": "319",
+          "type": "Лекция",
+          "note": ""
         },
         {
           "subject": "",
@@ -2153,22 +2169,25 @@
       ],
       "Суббота": [
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Информатика",
+          "teacher": "Павлий Т.В./Голова С.П.",
+          "room": "233/236",
+          "type": "Лекция",
+          "note": ""
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Математика",
+          "teacher": "Кулагина Л.В.",
+          "room": "221",
+          "type": "Лекция",
+          "note": ""
         },
         {
-          "subject": "",
-          "teacher": "",
-          "room": "",
-          "type": ""
+          "subject": "Физика",
+          "teacher": "[ЗАМЕНА] Файзуллин Р.Р.",
+          "room": "235",
+          "type": "Лекция",
+          "note": ""
         },
         {
           "subject": "",
