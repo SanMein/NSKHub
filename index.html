@@ -47,7 +47,22 @@
       color: #F0F0F0;
       font-family: 'Montserrat', sans-serif;
       animation: fadeIn 0.8s ease-out;
+      position: relative;
+      min-height: 100vh;
     }
+
+    /* Прогресс-бар прокрутки */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, #FF5500, #FFAA66);
+      z-index: 100;
+      transition: width 0.3s ease;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
@@ -63,7 +78,7 @@
       to { background-position: 200% center; }
     }
     header {
-      background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
+      background: rgba(26, 26, 26, 0.95);
       position: sticky;
       top: 0;
       z-index: 50;
@@ -77,30 +92,31 @@
     .banner-card {
       background: linear-gradient(145deg, #1E1E1E, #1A1A1A);
       border: 1px solid #333;
-      border-radius: 12px;
-      padding: 1.75rem;
+      border-radius: 16px;
+      padding: 2rem;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 85, 0, 0.05);
-      transition: all 0.3s ease, transform 0.2s ease;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       display: flex;
       flex-direction: column;
       height: 100%;
       position: relative;
       overflow: hidden;
-      cursor: pointer;
     }
     .banner-card::before {
         content: '';
         position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 3px;
-        background: linear-gradient(90deg, #FF5500, #FFAA66);
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, #FF5500, #FFAA66, #FF5500);
         transform: scaleX(0);
         transform-origin: left;
-        transition: transform 0.3s ease;
+        transition: transform 0.4s ease;
     }
     .banner-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 85, 0, 0.1);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 85, 0, 0.2);
       border-color: #FF5500;
     }
     .banner-card:hover::before {
@@ -108,28 +124,49 @@
     }
     .banner-icon {
       background: linear-gradient(145deg, #FF5500, #CC4400);
-      width: 60px;
-      height: 60px;
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1.25rem;
-      box-shadow: 0 4px 10px rgba(255, 85, 0, 0.4);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 6px 15px rgba(255, 85, 0, 0.4);
       align-self: center;
+      position: relative;
+      transition: all 0.4s ease;
+    }
+    .banner-card:hover .banner-icon {
+      box-shadow: 0 8px 20px rgba(255, 85, 0, 0.6);
+      transform: scale(1.1) rotate(5deg);
     }
     .banner-icon i {
-        font-size: 1.75rem;
+        font-size: 2rem;
         color: #FFFFFF;
     }
     .banner-card h2 {
         font-family: 'Oswald', sans-serif;
-        font-size: 1.6rem;
+        font-size: 1.8rem;
         font-weight: 700;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
         color: #F0F0F0;
         text-align: center;
         letter-spacing: 0.5px;
+        position: relative;
+    }
+    .banner-card h2::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 2px;
+        background: linear-gradient(90deg, #FF5500, #FFAA66);
+        transition: width 0.3s ease;
+    }
+    .banner-card:hover h2::after {
+        width: 100px;
     }
     .banner-card ul {
         flex-grow: 1;
@@ -139,6 +176,11 @@
         margin-bottom: 0.8rem;
         padding-bottom: 0.8rem;
         border-bottom: 1px solid #333;
+        transition: all 0.3s ease;
+    }
+    .banner-card li:hover {
+        border-bottom-color: #FF5500;
+        transform: translateX(5px);
     }
     .banner-card li:last-child {
         margin-bottom: 0;
@@ -149,29 +191,45 @@
       color: #B0B0B0;
       text-decoration: none;
       font-weight: 500;
-      transition: all 0.2s ease;
+      transition: all 0.3s ease;
       display: inline-flex;
       align-items: center;
+      position: relative;
+      padding: 4px 0;
+    }
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #FF5500, #FFAA66);
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::before {
+      width: 100%;
     }
     .nav-link i {
-        margin-right: 8px;
-        font-size: 0.9em;
+        margin-right: 10px;
+        font-size: 1em;
         min-width: 20px;
         text-align: center;
         color: #FF5500;
+        transition: all 0.3s ease;
     }
     .nav-link:hover {
       color: #FFAA66;
       text-decoration: none;
     }
     .nav-link:hover i {
-        transform: translateX(3px);
+        transform: translateX(5px) scale(1.1);
         color: #FFAA66;
     }
     .btn-primary {
       background: linear-gradient(90deg, #FF5500, #FF7733);
       color: #FFFFFF;
-      padding: 0.7rem 1.3rem;
+      padding: 0.8rem 1.5rem;
       border: none;
       border-radius: 30px;
       font-weight: 600;
@@ -181,13 +239,28 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 10px rgba(255, 85, 0, 0.3);
+      box-shadow: 0 4px 15px rgba(255, 85, 0, 0.4);
       text-transform: uppercase;
       font-size: 0.9rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s;
+    }
+    .btn-primary:hover::after {
+      left: 100%;
     }
     .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 15px rgba(255, 85, 0, 0.5);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 85, 0, 0.6);
       background: linear-gradient(90deg, #FF7733, #FF5500);
     }
     .btn-primary:active {
@@ -200,7 +273,7 @@
       cursor: pointer;
       margin: 0 0.4rem;
       padding: 0.4rem 0.7rem;
-      border-radius: 4px;
+      border-radius: 6px;
       color: #B0B0B0;
       font-weight: 500;
       transition: all 0.2s ease;
@@ -281,15 +354,21 @@
             padding: 1.5rem;
         }
         .banner-card h2 {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
         }
         .search-input {
             max-width: 100%;
+        }
+        .banner-card:hover {
+            transform: translateY(-5px);
         }
     }
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
+  <!-- Прогресс-бар -->
+  <div class="progress-bar" id="progressBar"></div>
+
   <header class="py-4 px-4 sm:px-6" id="mainHeader">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
       <div class="text-center sm:text-left">
@@ -298,9 +377,9 @@
       </div>
       <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
         <div class="font-size-toggle flex items-center bg-surface p-1 rounded-lg">
-          <span class="text-xs sm:text-sm" onclick="changeFontSize('small')"><i class="fas fa-text-height"></i> М</span>
+          <span class="text-sm sm:text-base" onclick="changeFontSize('small')"><i class="fas fa-text-height"></i> М</span>
           <span class="text-sm sm:text-base" onclick="changeFontSize('medium')"><i class="fas fa-text-height"></i> С</span>
-          <span class="text-base sm:text-lg" onclick="changeFontSize('large')"><i class="fas fa-text-height"></i> Б</span>
+          <span class="text-sm sm:text-base" onclick="changeFontSize('large')"><i class="fas fa-text-height"></i> Б</span>
         </div>
         <div class="search-block w-full sm:w-auto">
           <i class="fas fa-search search-icon"></i>
@@ -366,9 +445,9 @@
         <h3><i class="fas fa-phone"></i> Контакты</h3>
         <p class="text-[#B0B0B0] font-light">
           <span class="contact-highlight mt-3 block"><i class="fas fa-home mr-2"></i> Приёмная:</span> +7 (3466) 67-23-28<br>
-          <a href="mailto:info@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> info@nskcollege.ru</a><br>
+          <a href="https://info@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> info@nskcollege.ru</a><br>
           <span class="contact-highlight mt-3 block"><i class="fas fa-home mr-2"></i> Общежитие:</span> +7 (3466) 67-02-38<br>
-          <a href="mailto:hostel@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> hostel@nskcollege.ru</a>
+          <a href="https://hostel@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> hostel@nskcollege.ru</a>
         </p>
       </div>
       <div class="footer-section">
@@ -393,15 +472,24 @@
     function changeFontSize(size) {
       const root = document.documentElement;
       if (size === 'small') {
-        root.style.fontSize = '13px';
+        root.style.fontSize = '12px';
       } else if (size === 'medium') {
         root.style.fontSize = '15px';
       } else if (size === 'large') {
-        root.style.fontSize = '17px';
+        root.style.fontSize = '18px';
       }
     }
     document.addEventListener('DOMContentLoaded', (event) => {
         changeFontSize('medium');
+    });
+
+    // --- Прогресс-бар прокрутки ---
+    window.addEventListener('scroll', () => {
+      const winHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.pageYOffset;
+      const scrollPercent = (scrollTop / (docHeight - winHeight)) * 100;
+      document.getElementById('progressBar').style.width = scrollPercent + '%';
     });
 
     // --- Функционал поиска на главной странице ---
@@ -415,7 +503,6 @@
             const cardTitle = card.querySelector('h2').textContent.toLowerCase();
             const cardLinks = card.querySelectorAll('.nav-link');
             let linkTexts = Array.from(cardLinks).map(link => link.textContent.toLowerCase());
-            // Объединяем текст заголовка и всех ссылок в карточке
             const cardText = [cardTitle, ...linkTexts].join(' ');
 
             if (cardText.includes(searchTerm)) {
@@ -438,14 +525,12 @@
     // --- Скрытие/показ хидера при прокрутке на мобильных ---
     let lastScrollY = window.scrollY;
     const header = document.getElementById('mainHeader');
-    const scrollThreshold = 10; // Минимальная прокрутка для срабатывания
+    const scrollThreshold = 10;
 
     window.addEventListener('scroll', () => {
-        // Проверяем, мобильное ли устройство
         const isMobile = window.innerWidth <= 768;
 
         if (!isMobile) {
-            // На десктопе всегда показываем хидер
             header.classList.remove('header-hidden');
             return;
         }
@@ -453,14 +538,12 @@
         const currentScrollY = window.scrollY;
 
         if (Math.abs(currentScrollY - lastScrollY) < scrollThreshold) {
-            return; // Игнорируем мелкие прокрутки
+            return;
         }
 
         if (currentScrollY > lastScrollY && currentScrollY > 100) {
-            // Прокрутка вниз - скрываем хидер
             header.classList.add('header-hidden');
         } else {
-            // Прокрутка вверх - показываем хидер
             header.classList.remove('header-hidden');
         }
 
@@ -469,7 +552,6 @@
 
     // Обработка изменения размера окна
     window.addEventListener('resize', () => {
-        // При изменении размера на десктоп - убедимся, что хидер виден
         if (window.innerWidth > 768) {
             header.classList.remove('header-hidden');
         }

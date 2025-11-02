@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Контакты - NSKHub</title>
+    <link rel="icon" type="image/png" href="logo.png"/>
+    <title>NSKHub - Контакты</title>
     <link rel="icon" type="image/png" href="logo.png"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -47,8 +48,22 @@
             color: #F0F0F0;
             font-family: 'Montserrat', sans-serif;
             animation: fadeIn 0.8s ease-out;
-            padding-top: 0; /* Убираем отступ, так как хедер фиксированный */
+            position: relative;
+            min-height: 100vh;
         }
+
+        /* Прогресс-бар прокрутки */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #FF5500, #FFAA66);
+            z-index: 100;
+            transition: width 0.3s ease;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -64,7 +79,7 @@
             to { background-position: 200% center; }
         }
         header {
-            background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
+            background: rgba(26, 26, 26, 0.95);
             position: sticky;
             top: 0;
             z-index: 50;
@@ -78,30 +93,31 @@
         .banner-card {
             background: linear-gradient(145deg, #1E1E1E, #1A1A1A);
             border: 1px solid #333;
-            border-radius: 12px;
-            padding: 1.75rem;
+            border-radius: 16px;
+            padding: 2rem;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 85, 0, 0.05);
-            transition: all 0.3s ease, transform 0.2s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             flex-direction: column;
             height: 100%;
             position: relative;
             overflow: hidden;
-            cursor: pointer;
         }
         .banner-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 3px;
-            background: linear-gradient(90deg, #FF5500, #FFAA66);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #FF5500, #FFAA66, #FF5500);
             transform: scaleX(0);
             transform-origin: left;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
         }
         .banner-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 85, 0, 0.1);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 85, 0, 0.2);
             border-color: #FF5500;
         }
         .banner-card:hover::before {
@@ -109,28 +125,49 @@
         }
         .banner-icon {
             background: linear-gradient(145deg, #FF5500, #CC4400);
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.25rem;
-            box-shadow: 0 4px 10px rgba(255, 85, 0, 0.4);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 6px 15px rgba(255, 85, 0, 0.4);
             align-self: center;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+        .banner-card:hover .banner-icon {
+            box-shadow: 0 8px 20px rgba(255, 85, 0, 0.6);
+            transform: scale(1.1) rotate(5deg);
         }
         .banner-icon i {
-            font-size: 1.75rem;
+            font-size: 2rem;
             color: #FFFFFF;
         }
         .banner-card h2 {
             font-family: 'Oswald', sans-serif;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             color: #F0F0F0;
             text-align: center;
             letter-spacing: 0.5px;
+            position: relative;
+        }
+        .banner-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, #FF5500, #FFAA66);
+            transition: width 0.3s ease;
+        }
+        .banner-card:hover h2::after {
+            width: 100px;
         }
         .banner-card ul {
             flex-grow: 1;
@@ -140,6 +177,11 @@
             margin-bottom: 0.8rem;
             padding-bottom: 0.8rem;
             border-bottom: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+        .banner-card li:hover {
+            border-bottom-color: #FF5500;
+            transform: translateX(5px);
         }
         .banner-card li:last-child {
             margin-bottom: 0;
@@ -169,9 +211,10 @@
             transform: translateX(3px);
             color: #FFAA66;
         }
-        .btn-primary, .btn-secondary {
+        .btn-primary {
+            background: linear-gradient(90deg, #FF5500, #FF7733);
             color: #FFFFFF;
-            padding: 0.7rem 1.3rem;
+            padding: 0.8rem 1.5rem;
             border: none;
             border-radius: 30px;
             font-weight: 600;
@@ -181,37 +224,41 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 10px rgba(255, 85, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 85, 0, 0.4);
             text-transform: uppercase;
             font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
         }
-        .btn-primary {
-            background: linear-gradient(90deg, #FF5500, #FF7733);
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
         }
-        .btn-secondary {
-            background: linear-gradient(90deg, #2A2A2A, #3A3A3A);
-        }
-        .btn-primary:hover, .btn-secondary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(255, 85, 0, 0.5);
+        .btn-primary:hover::after {
+            left: 100%;
         }
         .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 85, 0, 0.6);
             background: linear-gradient(90deg, #FF7733, #FF5500);
         }
-        .btn-secondary:hover {
-            background: linear-gradient(90deg, #3A3A3A, #4A4A4A);
-        }
-        .btn-primary:active, .btn-secondary:active {
+        .btn-primary:active {
             transform: translateY(0);
         }
-        .btn-primary i, .btn-secondary i {
+        .btn-primary i {
             margin-right: 8px;
         }
         .font-size-toggle span {
             cursor: pointer;
             margin: 0 0.4rem;
             padding: 0.4rem 0.7rem;
-            border-radius: 4px;
+            border-radius: 6px;
             color: #B0B0B0;
             font-weight: 500;
             transition: all 0.2s ease;
@@ -292,15 +339,71 @@
                 padding: 1.5rem;
             }
             .banner-card h2 {
-                font-size: 1.4rem;
+                font-size: 1.5rem;
             }
             .search-input {
                 max-width: 100%;
             }
+            .banner-card:hover {
+                transform: translateY(-5px);
+            }
+        }
+
+        /* Стили для страницы контактов */
+        .contact-info {
+            background: linear-gradient(145deg, #1E1E1E, #1A1A1A);
+            border: 1px solid #333;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 85, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+        .contact-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #333;
+        }
+        .contact-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .contact-item h3 {
+            color: #FF5500;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        .contact-item h3 i {
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            color: #B0B0B0;
+        }
+        .contact-detail i {
+            margin-right: 10px;
+            color: #FF5500;
+            width: 20px;
+            text-align: center;
+        }
+        .map-container {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            margin-top: 2rem;
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
+    <!-- Прогресс-бар -->
+    <div class="progress-bar" id="progressBar"></div>
+
     <header class="py-4 px-4 sm:px-6" id="mainHeader">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
             <div class="text-center sm:text-left">
@@ -309,9 +412,9 @@
             </div>
             <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
                 <div class="font-size-toggle flex items-center bg-surface p-1 rounded-lg">
-                    <span class="text-xs sm:text-sm" onclick="changeFontSize('small')"><i class="fas fa-text-height"></i> М</span>
+                    <span class="text-sm sm:text-base" onclick="changeFontSize('small')"><i class="fas fa-text-height"></i> М</span>
                     <span class="text-sm sm:text-base" onclick="changeFontSize('medium')"><i class="fas fa-text-height"></i> С</span>
-                    <span class="text-base sm:text-lg" onclick="changeFontSize('large')"><i class="fas fa-text-height"></i> Б</span>
+                    <span class="text-sm sm:text-base" onclick="changeFontSize('large')"><i class="fas fa-text-height"></i> Б</span>
                 </div>
                 <div class="search-block w-full sm:w-auto">
                     <i class="fas fa-search search-icon"></i>
@@ -325,54 +428,85 @@
     </header>
 
     <main class="flex-1 max-w-7xl mx-auto py-8 px-4 sm:px-6">
-        <div class="text-center mb-8">
-            <h2 class="text-3xl font-bold text-[#F0F0F0] font-display mb-2">Контакты</h2>
-            <p class="text-[#B0B0B0]">Нижневартовский Строительный Колледж</p>
+        <div class="contact-info">
+            <h2 class="text-2xl font-bold text-center mb-8 font-display">Контакты и адрес</h2>
+
+            <div class="contact-item">
+                <h3><i class="fas fa-map-marker-alt"></i> Адрес колледжа</h3>
+                <div class="contact-detail">
+                    <i class="fas fa-location-dot"></i>
+                    <span>628616, Ханты-Мансийский автономный округ - Югра, г. Нижневартовск, ул. Индустриальная 29  </span>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <h3><i class="fas fa-phone"></i> Телефоны</h3>
+                <div class="contact-detail">
+                    <i class="fas fa-phone"></i>
+                    <span>Приёмная: <strong>+7 (3466) 67-23-28</strong></span>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-phone"></i>
+                    <span>Приёмная комиссия: <strong>+7 (3466) 67-23-28</strong></span>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-phone"></i>
+                    <span>Бухгалтерия: <strong>+7 (3466) 67-23-28</strong></span>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <h3><i class="fas fa-envelope"></i> Электронная почта</h3>
+                <div class="contact-detail">
+                    <i class="fas fa-envelope"></i>
+                    <span>Общий: <a href="mailto:info@nskcollege.ru" class="text-primary hover:text-primaryLight">info@nskcollege.ru</a></span>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-envelope"></i>
+                    <span>Приёмная комиссия: <a href="mailto:priem@nskcollege.ru" class="text-primary hover:text-primaryLight">priem@nskcollege.ru</a></span>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <h3><i class="fas fa-clock"></i> Режим работы</h3>
+                <div class="contact-detail">
+                    <i class="fas fa-calendar-day"></i>
+                    <span>Понедельник - Пятница: 09:00 - 17:00</span>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-calendar-day"></i>
+                    <span>Суббота: 09:00 - 13:00</span>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-calendar-times"></i>
+                    <span>Воскресенье: выходной</span>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <h3><i class="fas fa-home"></i> Общежитие</h3>
+                <div class="contact-detail">
+                    <i class="fas fa-location-dot"></i>
+                    <span>Адрес: ул. Индустриальная 29</span>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-phone"></i>
+                    <span>Телефон: <strong>+7 (3466) 67-02-38</strong></span>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email: <a href="mailto:hostel@nskcollege.ru" class="text-primary hover:text-primaryLight">hostel@nskcollege.ru</a></span>
+                </div>
+            </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <section class="banner-card">
-                <div class="banner-icon">
-                    <i class="fas fa-building"></i>
-                </div>
-                <h2>Администрация</h2>
-                <ul class="space-y-2 text-base font-light">
-                    <li><span class="contact-highlight">Директор:</span> Иванова Анна Петровна</li>
-                    <li><span class="contact-highlight">Телефон:</span> +7 (3466) 67-23-28</li>
-                    <li><span class="contact-highlight">Email:</span> <a href="mailto:director@nskcollege.ru" class="nav-link">director@nskcollege.ru</a></li>
-                </ul>
-                <div class="mt-auto">
-                    <a href="mailto:director@nskcollege.ru" class="btn-primary w-full"><i class="fas fa-envelope mr-2"></i> Написать директору</a>
-                </div>
-            </section>
-            <section class="banner-card">
-                <div class="banner-icon">
-                    <i class="fas fa-home"></i>
-                </div>
-                <h2>Общежитие</h2>
-                <ul class="space-y-2 text-base font-light">
-                    <li><span class="contact-highlight">Адрес:</span> г. Нижневартовск, ул. Примерная, д. 123</li>
-                    <li><span class="contact-highlight">Телефон:</span> +7 (3466) 67-02-38</li>
-                    <li><span class="contact-highlight">Email:</span> <a href="mailto:hostel@nskcollege.ru" class="nav-link">hostel@nskcollege.ru</a></li>
-                </ul>
-                <div class="mt-auto">
-                    <a href="info_obsh.html" class="btn-primary w-full"><i class="fas fa-home mr-2"></i> Перейти</a>
-                </div>
-            </section>
-            <section class="banner-card md:col-span-2">
-                <div class="banner-icon">
-                    <i class="fas fa-map-marker-alt"></i>
-                </div>
-                <h2>Контактная информация</h2>
-                <ul class="space-y-2 text-base font-light">
-                    <li><span class="contact-highlight">Адрес:</span> 628616, г. Нижневартовск, ул. Индустриальная, д. 29</li>
-                    <li><span class="contact-highlight">Телефон приёмной:</span> +7 (3466) 67-23-28</li>
-                    <li><span class="contact-highlight">Email:</span> <a href="mailto:info@nskcollege.ru" class="nav-link">info@nskcollege.ru</a></li>
-                    <li><span class="contact-highlight">Режим работы:</span> Пн-Пт: 09:00–17:00</li>
-                </ul>
-                <div class="mt-auto">
-                    <a href="https://yandex.ru/maps/-/CCQ~BbqC0B" class="btn-primary w-full" target="_blank"><i class="fas fa-map-marked-alt mr-2"></i> Открыть на карте</a>
-                </div>
-            </section>
+
+        <div class="map-container">
+            <iframe
+                src="https://yandex.ru/map-widget/v1/?um=constructor%3A2c8d9e9e7d0c4a4b4c4e4a4b4c4e4a4b&amp;source=constructor"
+                width="100%"
+                height="400"
+                frameborder="0">
+            </iframe>
         </div>
     </main>
 
@@ -389,9 +523,9 @@
                 <h3><i class="fas fa-phone"></i> Контакты</h3>
                 <p class="text-[#B0B0B0] font-light">
                     <span class="contact-highlight mt-3 block"><i class="fas fa-home mr-2"></i> Приёмная:</span> +7 (3466) 67-23-28<br>
-                    <a href="mailto:info@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> info@nskcollege.ru</a><br>
+                    <a href="https://info@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> info@nskcollege.ru</a><br>
                     <span class="contact-highlight mt-3 block"><i class="fas fa-home mr-2"></i> Общежитие:</span> +7 (3466) 67-02-38<br>
-                    <a href="mailto:hostel@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> hostel@nskcollege.ru</a>
+                    <a href="https://hostel@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> hostel@nskcollege.ru</a>
                 </p>
             </div>
             <div class="footer-section">
@@ -406,7 +540,7 @@
                 </p>
                 <p class="text-xs text-[#777] mt-4">
                     © 2025 NSKHub. Все права защищены.<br>
-                    <a href="#" class="footer-link hover:underline">Политика конфиденциальности</a>
+                    <a href="privacy.html" class="footer-link hover:underline">Политика конфиденциальности</a>
                 </p>
             </div>
         </div>
@@ -416,13 +550,60 @@
         function changeFontSize(size) {
             const root = document.documentElement;
             if (size === 'small') {
-                root.style.fontSize = '13px';
+                root.style.fontSize = '12px';
             } else if (size === 'medium') {
                 root.style.fontSize = '15px';
             } else if (size === 'large') {
-                root.style.fontSize = '17px';
+                root.style.fontSize = '18px';
             }
         }
+
+        // --- Улучшенный поиск ---
+        function enhancedSearch(searchInput, items, searchFields) {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+
+            items.forEach(item => {
+                let found = false;
+
+                searchFields.forEach(field => {
+                    const element = item.querySelector(field);
+                    if (element && element.textContent.toLowerCase().includes(searchTerm)) {
+                        found = true;
+                    }
+                });
+
+                item.style.display = found ? '' : 'none';
+            });
+        }
+
+        // Инициализация поиска
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('mainSearch');
+            if (searchInput) {
+                const contactItems = document.querySelectorAll('.contact-item');
+
+                searchInput.addEventListener('input', function() {
+                    enhancedSearch(this, contactItems, ['h3', '.contact-detail']);
+                });
+
+                searchInput.addEventListener('search', function() {
+                    if (this.value === '') {
+                        contactItems.forEach(item => {
+                            item.style.display = '';
+                        });
+                    }
+                });
+            }
+        });
+
+        // --- Прогресс-бар прокрутки ---
+        window.addEventListener('scroll', () => {
+            const winHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset;
+            const scrollPercent = (scrollTop / (docHeight - winHeight)) * 100;
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        });
 
         // --- Скрытие/показ хидера при прокрутке на мобильных ---
         let lastScrollY = window.scrollY;

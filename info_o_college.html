@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>О колледже - NSKHub</title>
+    <link rel="icon" type="image/png" href="logo.png"/>
+    <title>NSKHub - Информация о колледже</title>
     <link rel="icon" type="image/png" href="logo.png"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -47,8 +48,21 @@
             color: #F0F0F0;
             font-family: 'Montserrat', sans-serif;
             animation: fadeIn 0.8s ease-out;
-            padding-top: 0; /* Убираем отступ, так как хедер фиксированный */
+            padding-top: 0;
         }
+
+        /* Прогресс-бар прокрутки */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #FF5500, #FFAA66);
+            z-index: 100;
+            transition: width 0.3s ease;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -64,7 +78,7 @@
             to { background-position: 200% center; }
         }
         header {
-            background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
+            background: rgba(26, 26, 26, 0.95);
             position: sticky;
             top: 0;
             z-index: 50;
@@ -301,6 +315,9 @@
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
+    <!-- Прогресс-бар -->
+    <div class="progress-bar" id="progressBar"></div>
+
     <header class="py-4 px-4 sm:px-6" id="mainHeader">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
             <div class="text-center sm:text-left">
@@ -309,9 +326,9 @@
             </div>
             <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
                 <div class="font-size-toggle flex items-center bg-surface p-1 rounded-lg">
-                    <span class="text-xs sm:text-sm" onclick="changeFontSize('small')"><i class="fas fa-text-height"></i> М</span>
+                    <span class="text-sm sm:text-base" onclick="changeFontSize('small')"><i class="fas fa-text-height"></i> М</span>
                     <span class="text-sm sm:text-base" onclick="changeFontSize('medium')"><i class="fas fa-text-height"></i> С</span>
-                    <span class="text-base sm:text-lg" onclick="changeFontSize('large')"><i class="fas fa-text-height"></i> Б</span>
+                    <span class="text-sm sm:text-base" onclick="changeFontSize('large')"><i class="fas fa-text-height"></i> Б</span>
                 </div>
                 <div class="search-block w-full sm:w-auto">
                     <i class="fas fa-search search-icon"></i>
@@ -364,10 +381,10 @@
                 </div>
                 <h2>Структура и руководство</h2>
                 <ul class="space-y-2 text-base font-light">
-                    <li><span class="contact-highlight">Директор:</span> Иванова Анна Петровна</li>
-                    <li><span class="contact-highlight">Зам. директора по УПР:</span> Петров Сергей Николаевич</li>
-                    <li><span class="contact-highlight">Зам. директора по АХЧ:</span> Сидорова Мария Ивановна</li>
-                    <li><span class="contact-highlight">Адрес:</span> 628616, г. Нижневартовск, ул. Индустриальная, д. 29</li>
+                    <li><span class="contact-highlight">Директор:</span> Десятов Александр Анатольевич</li>
+                    <li><span class="contact-highlight">Зам. директора по -:</span> -</li>
+                    <li><span class="contact-highlight">Зам. директора по -:</span> -</li>
+                    <li><span class="contact-highlight">Адрес:</span> 628616, г. Нижневартовск, ул. Индустриальная 29</li>
                 </ul>
                 <div class="mt-auto">
                     <a href="info_contacts.html" class="btn-primary w-full"><i class="fas fa-phone mr-2"></i> Контакты</a>
@@ -389,9 +406,9 @@
                 <h3><i class="fas fa-phone"></i> Контакты</h3>
                 <p class="text-[#B0B0B0] font-light">
                     <span class="contact-highlight mt-3 block"><i class="fas fa-home mr-2"></i> Приёмная:</span> +7 (3466) 67-23-28<br>
-                    <a href="mailto:info@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> info@nskcollege.ru</a><br>
+                    <a href="https://info@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> info@nskcollege.ru</a><br>
                     <span class="contact-highlight mt-3 block"><i class="fas fa-home mr-2"></i> Общежитие:</span> +7 (3466) 67-02-38<br>
-                    <a href="mailto:hostel@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> hostel@nskcollege.ru</a>
+                    <a href="https://hostel@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> hostel@nskcollege.ru</a>
                 </p>
             </div>
             <div class="footer-section">
@@ -416,13 +433,60 @@
         function changeFontSize(size) {
             const root = document.documentElement;
             if (size === 'small') {
-                root.style.fontSize = '13px';
+                root.style.fontSize = '12px';
             } else if (size === 'medium') {
                 root.style.fontSize = '15px';
             } else if (size === 'large') {
-                root.style.fontSize = '17px';
+                root.style.fontSize = '18px';
             }
         }
+
+        // --- Улучшенный поиск ---
+        function enhancedSearch(searchInput, items, searchFields) {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+
+            items.forEach(item => {
+                let found = false;
+
+                searchFields.forEach(field => {
+                    const element = item.querySelector(field);
+                    if (element && element.textContent.toLowerCase().includes(searchTerm)) {
+                        found = true;
+                    }
+                });
+
+                item.style.display = found ? '' : 'none';
+            });
+        }
+
+        // Инициализация поиска
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('mainSearch');
+            if (searchInput) {
+                const bannerCards = document.querySelectorAll('.banner-card');
+
+                searchInput.addEventListener('input', function() {
+                    enhancedSearch(this, bannerCards, ['h2', 'ul', 'li']);
+                });
+
+                searchInput.addEventListener('search', function() {
+                    if (this.value === '') {
+                        bannerCards.forEach(card => {
+                            card.style.display = '';
+                        });
+                    }
+                });
+            }
+        });
+
+        // --- Прогресс-бар прокрутки ---
+        window.addEventListener('scroll', () => {
+            const winHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset;
+            const scrollPercent = (scrollTop / (docHeight - winHeight)) * 100;
+            document.getElementById('progressBar').style.width = scrollPercent + '%';
+        });
 
         // --- Скрытие/показ хидера при прокрутке на мобильных ---
         let lastScrollY = window.scrollY;

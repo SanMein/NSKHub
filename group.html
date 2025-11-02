@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="logo.png"/>
-    <title>NSKHub - Нижневартовский Строительный Колледж</title>
+    <title>NSKHub - Моя группа</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -47,7 +47,22 @@
       color: #F0F0F0;
       font-family: 'Montserrat', sans-serif;
       animation: fadeIn 0.8s ease-out;
+      position: relative;
+      min-height: 100vh;
     }
+
+    /* Прогресс-бар прокрутки */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, #FF5500, #FFAA66);
+      z-index: 100;
+      transition: width 0.3s ease;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
@@ -63,7 +78,7 @@
       to { background-position: 200% center; }
     }
     header {
-      background: linear-gradient(90deg, #1A1A1A 0%, #252525 100%);
+      background: rgba(26, 26, 26, 0.95);
       position: sticky;
       top: 0;
       z-index: 50;
@@ -216,7 +231,7 @@
     .btn-secondary:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 15px rgba(255, 85, 0, 0.5);
-      background: linear-gradient(90deg, #3A3A3A, #4A4A4A);
+      background: linear-gradient(90deg, #3A3A3A, #4A4A3A);
     }
     .btn-secondary:active {
       transform: translateY(0);
@@ -482,6 +497,9 @@
   </style>
 </head>
 <body class="min-h-screen flex flex-col">
+  <!-- Прогресс-бар -->
+  <div class="progress-bar" id="progressBar"></div>
+
   <header class="py-4 px-4 sm:px-6" id="mainHeader">
     <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
       <div class="text-center sm:text-left">
@@ -490,9 +508,9 @@
       </div>
       <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
         <div class="font-size-toggle flex items-center bg-surface p-1 rounded-lg">
-          <span class="text-xs sm:text-sm" onclick="changeFontSize('small')"><i class="fas fa-text-height"></i> М</span>
+          <span class="text-sm sm:text-base" onclick="changeFontSize('small')"><i class="fas fa-text-height"></i> М</span>
           <span class="text-sm sm:text-base" onclick="changeFontSize('medium')"><i class="fas fa-text-height"></i> С</span>
-          <span class="text-base sm:text-lg" onclick="changeFontSize('large')"><i class="fas fa-text-height"></i> Б</span>
+          <span class="text-sm sm:text-base" onclick="changeFontSize('large')"><i class="fas fa-text-height"></i> Б</span>
         </div>
         <div class="search-block w-full sm:w-auto">
           <i class="fas fa-search search-icon"></i>
@@ -703,9 +721,9 @@
         <h3><i class="fas fa-phone"></i> Контакты</h3>
         <p class="text-[#B0B0B0] font-light">
           <span class="contact-highlight mt-3 block"><i class="fas fa-home mr-2"></i> Приёмная:</span> +7 (3466) 67-23-28<br>
-          <a href="mailto:info@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> info@nskcollege.ru</a><br>
+          <a href="https://info@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> info@nskcollege.ru</a><br>
           <span class="contact-highlight mt-3 block"><i class="fas fa-home mr-2"></i> Общежитие:</span> +7 (3466) 67-02-38<br>
-          <a href="mailto:hostel@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> hostel@nskcollege.ru</a>
+          <a href="https://hostel@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> hostel@nskcollege.ru</a>
         </p>
       </div>
       <div class="footer-section">
@@ -730,63 +748,255 @@
     // --- Глобальные переменные ---
     const MAX_STUDENTS = 25;
     let groupData = {
-        name: "Группа по умолчанию",
-        curator: "Куратор не указан",
-        specialty: "Информационные системы",
-        course: 2,
+        name: "ИС-25",
+        curator: "Ризванова Айгуль Фагидовна",
+        specialty: "Информационные системы и программирование",
+        course: 1,
         students: [
-            { id: 1, name: "Иванов Иван Иванович", status: "active" },
-            { id: 2, name: "Петрова Мария Семёновна", status: "inactive" },
-            { id: 3, name: "Сидоров Алексей Петрович", status: "academic_leave" }
-        ],
-        currentSort: 'alpha' // 'alpha' или 'number'
+            { id: 1, name: "Абашина Полина", status: "active" },
+            { id: 2, name: "Беляев Кирилл", status: "active" },
+            { id: 3, name: "Гаврилов Антон", status: "active" },
+            { id: 4, name: "Галинская Амалия", status: "active" },
+            { id: 5, name: "Галинская Виктория", status: "active" },
+            { id: 6, name: "Евстафьев Марк", status: "active" },
+            { id: 7, name: "Ерошенко Дмитрий", status: "active" },
+            { id: 8, name: "Купландеева Елена", status: "active" },
+            { id: 9, name: "Лысенко Денис", status: "active" },
+            { id: 10, name: "Лазарев Дмитрий", status: "active" },
+            { id: 11, name: "Матвеев Андрей", status: "active" },
+            { id: 12, name: "Мироненко Арсений", status: "active" },
+            { id: 13, name: "Сунпрун Александр", status: "active" },
+            { id: 14, name: "Сычук Полина", status: "active" },
+            { id: 15, name: "Сальников Артём", status: "active" },
+            { id: 16, name: "Тюфякова Арина", status: "active" },
+            { id: 17, name: "Фалько Василиса", status: "active" },
+            { id: 18, name: "Фаттахов Ильфат", status: "active" },
+            { id: 19, name: "Фофанова Любовь", status: "active" },
+            { id: 20, name: "Худякова Ева", status: "active" },
+            { id: 21, name: "Чернышов Алексей", status: "active" },
+            { id: 22, name: "Шакирова Раёна", status: "active" },
+            { id: 23, name: "Шарипова Шахзода", status: "active" },
+            { id: 24, name: "Петрова Анастасия", status: "active" },
+            { id: 25, name: "Цейс Ксения", status: "active" }
+        ]
     };
+    let currentEditStudentId = null;
 
-    // --- Функции для работы с шрифтами и поиском (как в index.html) ---
-    function changeFontSize(size) {
-      const root = document.documentElement;
-      if (size === 'small') {
-        root.style.fontSize = '13px';
-      } else if (size === 'medium') {
-        root.style.fontSize = '15px';
-      } else if (size === 'large') {
-        root.style.fontSize = '17px';
-      }
+    // --- Функции для работы с DOM ---
+    function loadGroupInfo() {
+        const groupInfoElement = document.getElementById('groupInfo');
+        groupInfoElement.innerHTML = `
+            <div class="flex justify-between items-center">
+                <span class="text-[#B0B0B0]">Название:</span>
+                <span class="font-medium text-[#F0F0F0]">${groupData.name}</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-[#B0B0B0]">Куратор:</span>
+                <span class="font-medium text-[#F0F0F0]">${groupData.curator}</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-[#B0B0B0]">Специальность:</span>
+                <span class="font-medium text-[#F0F0F0]">${groupData.specialty}</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-[#B0B0B0]">Курс:</span>
+                <span class="font-medium text-[#F0F0F0]">${groupData.course}</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-[#B0B0B0]">Кол-во студентов:</span>
+                <span class="font-medium text-[#F0F0F0]">${groupData.students.length} / ${MAX_STUDENTS}</span>
+            </div>
+        `;
     }
 
-    // --- Скрытие/показ хидера при прокрутке на мобильных ---
-    let lastScrollY = window.scrollY;
-    const header = document.getElementById('mainHeader');
-    const scrollThreshold = 10;
+    function loadStudentsList() {
+        const studentsListElement = document.getElementById('studentsList');
+        studentsListElement.innerHTML = '';
 
-    window.addEventListener('scroll', () => {
-        const isMobile = window.innerWidth <= 768;
-        if (!isMobile) {
-            header.classList.remove('header-hidden');
-            return;
-        }
+        groupData.students.forEach(student => {
+            const statusIcon = getStatusIcon(student.status);
+            const statusClass = getStatusClass(student.status);
 
-        const currentScrollY = window.scrollY;
-        if (Math.abs(currentScrollY - lastScrollY) < scrollThreshold) {
-            return;
-        }
+            const studentItem = document.createElement('div');
+            studentItem.className = 'student-item';
+            studentItem.innerHTML = `
+                <div>
+                    <div class="font-medium text-[#F0F0F0]">${student.name}</div>
+                    <div class="text-sm ${statusClass}">${statusIcon} ${getStatusText(student.status)}</div>
+                </div>
+                <div class="student-actions">
+                    <button class="btn-secondary" onclick="editStudent(${student.id})">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn-secondary" onclick="removeStudent(${student.id})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `;
+            studentsListElement.appendChild(studentItem);
+        });
+    }
 
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
-            header.classList.add('header-hidden');
-        } else {
-            header.classList.remove('header-hidden');
-        }
-        lastScrollY = currentScrollY;
-    });
+    function loadGroupStats() {
+        const groupStatsElement = document.getElementById('groupStats');
+        const activeCount = groupData.students.filter(s => s.status === 'active').length;
+        const inactiveCount = groupData.students.filter(s => s.status === 'inactive').length;
+        const academicLeaveCount = groupData.students.filter(s => s.status === 'academic_leave').length;
 
-    window.addEventListener('resize', () => {
-        if (window.innerWidth > 768) {
-            header.classList.remove('header-hidden');
+        groupStatsElement.innerHTML = `
+            <div class="flex justify-between items-center">
+                <span class="text-[#B0B0B0]">Активные:</span>
+                <span class="font-medium text-[#4ade80]">${activeCount}</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-[#B0B0B0]">Неактивные:</span>
+                <span class="font-medium text-[#94a3b8]">${inactiveCount}</span>
+            </div>
+            <div class="flex justify-between items-center">
+                <span class="text-[#B0B0B0]">Академ. отпуск:</span>
+                <span class="font-medium text-[#fbbf24]">${academicLeaveCount}</span>
+            </div>
+            <div class="mt-4 pt-4 border-t border-gray-600">
+                <div class="flex justify-between items-center">
+                    <span class="text-[#B0B0B0]">Всего студентов:</span>
+                    <span class="font-medium text-[#F0F0F0]">${groupData.students.length}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-[#B0B0B0]">Свободных мест:</span>
+                    <span class="font-medium text-[#F0F0F0]">${MAX_STUDENTS - groupData.students.length}</span>
+                </div>
+            </div>
+        `;
+    }
+
+    // --- Вспомогательные функции ---
+    function getStatusIcon(status) {
+        switch(status) {
+            case 'active': return '<i class="fas fa-check-circle"></i>';
+            case 'inactive': return '<i class="fas fa-minus-circle"></i>';
+            case 'academic_leave': return '<i class="fas fa-pause-circle"></i>';
+            default: return '<i class="fas fa-question-circle"></i>';
         }
-    });
+    }
+
+    function getStatusClass(status) {
+        switch(status) {
+            case 'active': return 'status-active';
+            case 'inactive': return 'status-inactive';
+            case 'academic_leave': return 'status-academic_leave';
+            default: return '';
+        }
+    }
+
+    function getStatusText(status) {
+        switch(status) {
+            case 'active': return 'Активный';
+            case 'inactive': return 'Неактивный';
+            case 'academic_leave': return 'Академ. отпуск';
+            default: return 'Неизвестно';
+        }
+    }
 
     // --- Функции для модальных окон ---
-    function showModal(modalId) {
+    function showEditGroupModal() {
+        document.getElementById('groupNameInput').value = groupData.name;
+        document.getElementById('groupCurator').value = groupData.curator;
+        document.getElementById('groupSpecialty').value = groupData.specialty;
+        document.getElementById('groupCourse').value = groupData.course;
+        openModal('editGroupModal');
+    }
+
+    function showAddStudentModal() {
+        if (groupData.students.length >= MAX_STUDENTS) {
+            showNotification('Достигнуто максимальное количество студентов!', 'error');
+            return;
+        }
+        document.getElementById('newStudentName').value = '';
+        document.getElementById('newStudentStatus').value = 'active';
+        openModal('addStudentModal');
+    }
+
+    function editStudent(studentId) {
+        const student = groupData.students.find(s => s.id === studentId);
+        if (!student) return;
+
+        currentEditStudentId = studentId;
+        document.getElementById('editStudentName').value = student.name;
+        document.getElementById('editStudentStatus').value = student.status;
+        openModal('editStudentModal');
+    }
+
+    function removeStudent(studentId) {
+        if (!confirm('Вы уверены, что хотите удалить этого студента?')) return;
+
+        groupData.students = groupData.students.filter(s => s.id !== studentId);
+        loadStudentsList();
+        loadGroupStats();
+        showNotification('Студент успешно удалён!');
+    }
+
+    function addStudent() {
+        const name = document.getElementById('newStudentName').value.trim();
+        const status = document.getElementById('newStudentStatus').value;
+
+        if (!name) {
+            showNotification('Введите ФИО студента!', 'error');
+            return;
+        }
+
+        const newId = groupData.students.length > 0 ? Math.max(...groupData.students.map(s => s.id)) + 1 : 1;
+        groupData.students.push({ id: newId, name, status });
+
+        closeModal('addStudentModal');
+        loadStudentsList();
+        loadGroupStats();
+        showNotification('Студент успешно добавлен!');
+    }
+
+    function updateStudent() {
+        const name = document.getElementById('editStudentName').value.trim();
+        const status = document.getElementById('editStudentStatus').value;
+
+        if (!name) {
+            showNotification('Введите ФИО студента!', 'error');
+            return;
+        }
+
+        const studentIndex = groupData.students.findIndex(s => s.id === currentEditStudentId);
+        if (studentIndex !== -1) {
+            groupData.students[studentIndex].name = name;
+            groupData.students[studentIndex].status = status;
+        }
+
+        closeModal('editStudentModal');
+        loadStudentsList();
+        loadGroupStats();
+        showNotification('Данные студента обновлены!');
+    }
+
+    function saveGroupInfo() {
+        const name = document.getElementById('groupNameInput').value.trim();
+        const curator = document.getElementById('groupCurator').value.trim();
+        const specialty = document.getElementById('groupSpecialty').value.trim();
+        const course = parseInt(document.getElementById('groupCourse').value);
+
+        if (!name || !curator || !specialty) {
+            showNotification('Заполните все обязательные поля!', 'error');
+            return;
+        }
+
+        groupData.name = name;
+        groupData.curator = curator;
+        groupData.specialty = specialty;
+        groupData.course = course;
+
+        closeModal('editGroupModal');
+        loadGroupInfo();
+        loadGroupStats();
+        showNotification('Информация о группе обновлена!');
+    }
+
+    function openModal(modalId) {
         document.getElementById(modalId).style.display = 'block';
     }
 
@@ -794,272 +1004,136 @@
         document.getElementById(modalId).style.display = 'none';
     }
 
-    // --- Функции для работы с данными группы ---
-    function loadGroupData() {
-        const saved = localStorage.getItem('nskGroupData');
-        if (saved) {
-            groupData = JSON.parse(saved);
-            // Убедимся, что currentSort установлен
-            if (groupData.currentSort === undefined) {
-                groupData.currentSort = 'alpha';
-            }
-        }
-        renderGroupData();
-        updateAddButtonState();
-        applyCurrentSort();
-    }
-
-    function saveGroupData() {
-        localStorage.setItem('nskGroupData', JSON.stringify(groupData));
-        renderGroupData();
-        updateAddButtonState();
-    }
-
-    function renderGroupData() {
-        // Основная информация
-        document.getElementById('groupInfo').innerHTML = `
-            <div><span class="contact-highlight">Группа:</span> ${groupData.name}</div>
-            <div><span class="contact-highlight">Куратор:</span> ${groupData.curator}</div>
-            <div><span class="contact-highlight">Специальность:</span> ${groupData.specialty}</div>
-            <div><span class="contact-highlight">Курс:</span> ${groupData.course}</div>
-            <div><span class="contact-highlight">По списку:</span> ${MAX_STUDENTS} чел.</div>
-            <div><span class="contact-highlight">Текущее кол-во:</span> ${groupData.students.length} чел.</div>
-        `;
-
-        // Список студентов
-        renderStudentList();
-
-        // Статистика
-        const activeStudents = groupData.students.filter(s => s.status === 'active').length;
-        document.getElementById('groupStats').innerHTML = `
-            <div><span class="contact-highlight">Всего студентов:</span> ${groupData.students.length}</div>
-            <div><span class="contact-highlight">Активных:</span> ${activeStudents}</div>
-            <div><span class="contact-highlight">Неактивных:</span> ${groupData.students.length - activeStudents}</div>
-            <div><span class="contact-highlight">Заполненность:</span> ${Math.round((groupData.students.length / MAX_STUDENTS) * 100)}%</div>
-        `;
-    }
-
-    function getStatusText(status) {
-        const statusMap = {
-            'active': 'Активный',
-            'inactive': 'Неактивный',
-            'academic_leave': 'Академ. отпуск'
-        };
-        return statusMap[status] || status;
-    }
-
-    // --- Функции для работы со студентами ---
-    function renderStudentList() {
-        const studentsList = document.getElementById('studentsList');
-        studentsList.innerHTML = '';
-        groupData.students.forEach((student, index) => {
-            const statusClass = student.status === 'active' ? 'status-active' : student.status === 'inactive' ? 'status-inactive' : 'status-academic_leave';
-            const statusText = getStatusText(student.status);
-            const studentItem = document.createElement('div');
-            studentItem.className = 'student-item';
-            studentItem.innerHTML = `
-                <div>
-                    <div>${student.name}</div>
-                    <div class="${statusClass}">${statusText}</div>
-                </div>
-                <div class="student-actions">
-                    <button class="btn-secondary" onclick="showEditStudentModal(${index})"><i class="fas fa-edit"></i></button>
-                    <button class="btn-secondary" onclick="deleteStudent(${index})"><i class="fas fa-trash"></i></button>
-                </div>
-            `;
-            studentsList.appendChild(studentItem);
-        });
-    }
-
-    function showAddStudentModal() {
-        if (groupData.students.length >= MAX_STUDENTS) {
-            showNotification(`Невозможно добавить студента: достигнут лимит в ${MAX_STUDENTS} человек.`, 'error');
-            return;
-        }
-        document.getElementById('newStudentName').value = '';
-        document.getElementById('newStudentStatus').value = 'active';
-        showModal('addStudentModal');
-    }
-
-    function addStudent() {
-        const name = document.getElementById('newStudentName').value.trim();
-        const status = document.getElementById('newStudentStatus').value;
-        if (!name) {
-            showNotification('Введите имя студента', 'error');
-            return;
-        }
-        if (groupData.students.length >= MAX_STUDENTS) {
-            showNotification(`Невозможно добавить студента: достигнут лимит в ${MAX_STUDENTS} человек.`, 'error');
-            closeModal('addStudentModal');
-            return;
-        }
-        const newStudent = {
-            id: Date.now(), // Простой способ генерации ID
-            name: name,
-            status: status
-        };
-        groupData.students.push(newStudent);
-        saveGroupData();
-        closeModal('addStudentModal');
-        showNotification('Студент добавлен');
-    }
-
-    function showEditStudentModal(index) {
-        const student = groupData.students[index];
-        document.getElementById('editStudentName').value = student.name;
-        document.getElementById('editStudentStatus').value = student.status;
-        document.getElementById('editStudentModal').dataset.studentIndex = index;
-        showModal('editStudentModal');
-    }
-
-    function updateStudent() {
-        const index = parseInt(document.getElementById('editStudentModal').dataset.studentIndex);
-        const newName = document.getElementById('editStudentName').value.trim();
-        const newStatus = document.getElementById('editStudentStatus').value;
-        if (!newName) {
-            showNotification('Введите имя студента', 'error');
-            return;
-        }
-        if (index >= 0 && index < groupData.students.length) {
-            groupData.students[index].name = newName;
-            groupData.students[index].status = newStatus;
-            saveGroupData();
-            closeModal('editStudentModal');
-            showNotification('Данные студента обновлены');
-        }
-    }
-
-    function deleteStudent(index) {
-        const student = groupData.students[index];
-        if (confirm(`Удалить студента ${student.name}?`)) {
-            groupData.students.splice(index, 1);
-            saveGroupData();
-            showNotification('Студент удалён');
-        }
-    }
-
-    // --- Функции для работы с информацией о группе ---
-    function showEditGroupModal() {
-        document.getElementById('groupNameInput').value = groupData.name;
-        document.getElementById('groupCurator').value = groupData.curator;
-        document.getElementById('groupSpecialty').value = groupData.specialty || '';
-        document.getElementById('groupCourse').value = groupData.course || 1;
-        showModal('editGroupModal');
-    }
-
-    function saveGroupInfo() {
-        const newName = document.getElementById('groupNameInput').value.trim();
-        if (!newName) {
-            showNotification('Введите название группы', 'error');
-            return;
-        }
-        groupData.name = newName;
-        groupData.curator = document.getElementById('groupCurator').value.trim() || 'Куратор не указан';
-        groupData.specialty = document.getElementById('groupSpecialty').value.trim();
-        const newCourse = parseInt(document.getElementById('groupCourse').value);
-        groupData.course = isNaN(newCourse) ? groupData.course : newCourse;
-        saveGroupData();
-        closeModal('editGroupModal');
-        showNotification('Информация о группе сохранена');
-    }
-
-    // --- Функции для поиска студентов ---
-    document.getElementById('studentSearch').addEventListener('input', function(e) {
-        const searchTerm = e.target.value.toLowerCase();
-        const studentItems = document.querySelectorAll('#studentsList .student-item');
-        studentItems.forEach(item => {
-            const text = item.textContent.toLowerCase();
-            item.style.display = text.includes(searchTerm) ? 'flex' : 'none';
-        });
-    });
-
-    // --- Функции для сортировки студентов ---
-    function sortStudents(type) {
-        groupData.currentSort = type;
-        // Сортировка по алфавиту (ФИО)
-        if (type === 'alpha') {
-            groupData.students.sort((a, b) => a.name.localeCompare(b.name));
-        }
-        // Сортировка по ID (номер в списке)
-        if (type === 'number') {
-            groupData.students.sort((a, b) => a.id - b.id);
-        }
-        saveGroupData(); // Сохраняем порядок
-        applyCurrentSort(); // Обновляем UI
-        updateSortButtons(); // Обновляем активные кнопки
-    }
-
-    function applyCurrentSort() {
-        renderStudentList(); // Перерисовываем список в текущем порядке
-        // Применяем фильтр поиска, если он активен
-        const searchInput = document.getElementById('studentSearch');
-        if (searchInput.value) {
-            // Имитируем ввод, чтобы сработал фильтр
-            const event = new Event('input');
-            searchInput.dispatchEvent(event);
-        }
-    }
-
-    function updateSortButtons() {
-        const alphaBtn = document.getElementById('sortAlphaBtn');
-        const numBtn = document.getElementById('sortNumBtn');
-        alphaBtn.classList.toggle('active', groupData.currentSort === 'alpha');
-        numBtn.classList.toggle('active', groupData.currentSort === 'number');
-    }
-
-    // --- Функции для уведомлений ---
     function showNotification(message, type = 'success') {
         const notification = document.getElementById('notification');
         notification.textContent = message;
-        notification.className = 'notification'; // Сброс классов
+        notification.className = 'notification';
         if (type === 'error') {
             notification.classList.add('error');
         }
         notification.style.display = 'block';
-        if (window.notificationTimeout) {
-            clearTimeout(window.notificationTimeout);
-        }
-        window.notificationTimeout = setTimeout(() => {
+
+        setTimeout(() => {
             notification.style.display = 'none';
         }, 3000);
     }
 
-    // --- Функции для быстрых действий ---
-    function sendReport() {
-        const reportSubject = prompt('Введите тему отчёта:');
-        if (reportSubject) {
-            showNotification(`Отчёт "${reportSubject}" отправлен.`);
+    // --- Функции сортировки и поиска ---
+    function sortStudents(method) {
+        if (method === 'alpha') {
+            groupData.students.sort((a, b) => a.name.localeCompare(b.name));
+            document.getElementById('sortAlphaBtn').classList.add('active');
+            document.getElementById('sortNumBtn').classList.remove('active');
+        } else if (method === 'number') {
+            groupData.students.sort((a, b) => a.id - b.id);
+            document.getElementById('sortAlphaBtn').classList.remove('active');
+            document.getElementById('sortNumBtn').classList.add('active');
         }
+        loadStudentsList();
+    }
+
+    function searchStudents() {
+        const searchTerm = document.getElementById('studentSearch').value.toLowerCase();
+        const studentsListElement = document.getElementById('studentsList');
+        studentsListElement.innerHTML = '';
+
+        const filteredStudents = groupData.students.filter(student =>
+            student.name.toLowerCase().includes(searchTerm)
+        );
+
+        filteredStudents.forEach(student => {
+            const statusIcon = getStatusIcon(student.status);
+            const statusClass = getStatusClass(student.status);
+
+            const studentItem = document.createElement('div');
+            studentItem.className = 'student-item';
+            studentItem.innerHTML = `
+                <div>
+                    <div class="font-medium text-[#F0F0F0]">${student.name}</div>
+                    <div class="text-sm ${statusClass}">${statusIcon} ${getStatusText(student.status)}</div>
+                </div>
+                <div class="student-actions">
+                    <button class="btn-secondary" onclick="editStudent(${student.id})">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn-secondary" onclick="removeStudent(${student.id})">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `;
+            studentsListElement.appendChild(studentItem);
+        });
+    }
+
+    // --- Другие функции ---
+    function sendReport() {
+        showNotification('Отчёт успешно отправлен!');
     }
 
     function showScheduleModal() {
-        showModal('scheduleModal');
+        openModal('scheduleModal');
     }
 
-    // --- Вспомогательные функции ---
-    function updateAddButtonState() {
-        const addButton = document.getElementById('addStudentBtn');
-        if (groupData.students.length >= MAX_STUDENTS) {
-            addButton.classList.add('btn-disabled');
-            addButton.onclick = null; // Убираем обработчик
+    // --- Обработчики событий ---
+    document.getElementById('studentSearch').addEventListener('input', searchStudents);
+
+    // --- Инициализация при загрузке страницы ---
+    document.addEventListener('DOMContentLoaded', function() {
+        loadGroupInfo();
+        loadStudentsList();
+        loadGroupStats();
+        sortStudents('alpha'); // Сортировка по умолчанию
+    });
+
+    // --- Общий функционал для всех страниц ---
+    // Прогресс-бар
+    window.onscroll = function() {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById("progressBar").style.width = scrolled + "%";
+    };
+
+    // Скрытие/показ хидера при прокрутке
+    let lastScrollTop = 0;
+    const header = document.getElementById('mainHeader');
+
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // Прокрутка вниз
+            header.classList.add('header-hidden');
         } else {
-            addButton.classList.remove('btn-disabled');
-            addButton.onclick = showAddStudentModal; // Восстанавливаем обработчик
+            // Прокрутка вверх
+            header.classList.remove('header-hidden');
+        }
+        lastScrollTop = scrollTop;
+    });
+
+    // Изменение размера шрифта
+    function changeFontSize(size) {
+        const body = document.body;
+        body.classList.remove('text-sm', 'text-base', 'text-lg');
+
+        if (size === 'small') {
+            body.classList.add('text-sm');
+        } else if (size === 'medium') {
+            body.classList.add('text-base');
+        } else if (size === 'large') {
+            body.classList.add('text-lg');
         }
     }
 
-    // --- Инициализация при загрузке ---
-    document.addEventListener('DOMContentLoaded', () => {
-        changeFontSize('medium');
-        loadGroupData();
-        updateSortButtons(); // Устанавливаем активную кнопку сортировки при загрузке
-
-        // Закрытие модальных окон при клике вне их
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.style.display = 'none';
+    // Поиск по сайту
+    document.getElementById('mainSearch').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            const query = this.value.trim();
+            if (query) {
+                alert(`Поиск по запросу: ${query}`);
+                // Здесь можно добавить реальную логику поиска
             }
-        };
+        }
     });
   </script>
 </body>
