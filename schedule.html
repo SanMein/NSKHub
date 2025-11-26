@@ -43,51 +43,50 @@
     </script>
     <style>
         body {
-            background: linear-gradient(180deg, #121212 0%, #1A1A1A 100%);
-            color: #F0F0F0;
-            font-family: 'Montserrat', sans-serif;
-            animation: fadeIn 0.8s ease-out;
-            position: relative;
-            min-height: 100vh;
+          background: linear-gradient(180deg, #121212 0%, #1A1A1A 100%);
+          color: #F0F0F0;
+          font-family: 'Montserrat', sans-serif;
+          animation: fadeIn 0.8s ease-out;
+          position: relative;
+          min-height: 100vh;
         }
 
         /* Прогресс-бар прокрутки */
         .progress-bar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, #FF5500, #FFAA66);
-            z-index: 100;
-            transition: width 0.3s ease;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 0%;
+          height: 3px;
+          background: linear-gradient(90deg, #FF5500, #FFAA66);
+          z-index: 100;
+          transition: width 0.3s ease;
         }
-
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
         }
         .gradient-text {
-            background: linear-gradient(90deg, #FF5500, #FFAA66, #FF5500);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-size: 200% auto;
-            animation: shine 3s linear infinite;
+          background: linear-gradient(90deg, #FF5500, #FFAA66, #FF5500);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-size: 200% auto;
+          animation: shine 3s linear infinite;
         }
         @keyframes shine {
-            to { background-position: 200% center; }
+          to { background-position: 200% center; }
         }
         header {
-            background: rgba(26, 26, 26, 0.95);
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            border-bottom: 3px solid #FF5500;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease;
+          background: rgba(26, 26, 26, 0.95);
+          position: sticky;
+          top: 0;
+          z-index: 50;
+          border-bottom: 3px solid #FF5500;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+          transition: transform 0.3s ease;
         }
         .header-hidden {
-            transform: translateY(-100%);
+          transform: translateY(-100%);
         }
         .banner-card {
             background: linear-gradient(145deg, #1E1E1E, #1A1A1A);
@@ -188,32 +187,91 @@
             border-bottom: none;
         }
         .nav-link {
-            color: #B0B0B0;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
+          color: #B0B0B0;
+          text-decoration: none;
+          font-weight: 500;
+          transition: all 0.3s ease;
+          display: inline-flex;
+          align-items: center;
+          position: relative;
+          padding: 4px 0;
+        }
+        .nav-link::before {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background: linear-gradient(90deg, #FF5500, #FFAA66);
+          transition: width 0.3s ease;
+        }
+        .nav-link:hover::before {
+          width: 100%;
         }
         .nav-link i {
-            margin-right: 8px;
-            font-size: 0.9em;
+            margin-right: 10px;
+            font-size: 1em;
             min-width: 20px;
             text-align: center;
             color: #FF5500;
+            transition: all 0.3s ease;
         }
         .nav-link:hover {
-            color: #FFAA66;
-            text-decoration: none;
+          color: #FFAA66;
+          text-decoration: none;
         }
         .nav-link:hover i {
-            transform: translateX(3px);
+            transform: translateX(5px) scale(1.1);
             color: #FFAA66;
         }
         .btn-primary {
-            background: linear-gradient(90deg, #FF5500, #FF7733);
+          background: linear-gradient(90deg, #FF5500, #FF7733);
+          color: #FFFFFF;
+          padding: 0.8rem 1.5rem;
+          border: none;
+          border-radius: 30px;
+          font-weight: 600;
+          font-family: 'Oswald', sans-serif;
+          letter-spacing: 0.5px;
+          transition: all 0.3s ease;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 15px rgba(255, 85, 0, 0.4);
+          text-transform: uppercase;
+          font-size: 0.9rem;
+          position: relative;
+          overflow: hidden;
+        }
+        .btn-primary::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+          transition: left 0.5s;
+        }
+        .btn-primary:hover::after {
+          left: 100%;
+        }
+        .btn-primary:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 8px 20px rgba(255, 85, 0, 0.6);
+          background: linear-gradient(90deg, #FF7733, #FF5500);
+        }
+        .btn-primary:active {
+          transform: translateY(0);
+        }
+        .btn-primary i {
+            margin-right: 8px;
+        }
+        .btn-secondary {
+            background: linear-gradient(90deg, #2A2A2A, #3A3A3A);
             color: #FFFFFF;
-            padding: 0.7rem 1.3rem;
+            padding: 0.8rem 1.5rem;
             border: none;
             border-radius: 30px;
             font-weight: 600;
@@ -226,63 +284,27 @@
             box-shadow: 0 4px 10px rgba(255, 85, 0, 0.3);
             text-transform: uppercase;
             font-size: 0.9rem;
-            cursor: pointer;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(255, 85, 0, 0.5);
-            background: linear-gradient(90deg, #FF7733, #FF5500);
-        }
-        .btn-primary:active {
-            transform: translateY(0);
-        }
-        .btn-primary i {
-            margin-right: 8px;
-        }
-        .btn-secondary {
-            background: linear-gradient(90deg, #444, #555);
-            color: #F0F0F0;
-            padding: 0.7rem 1.3rem;
-            border: none;
-            border-radius: 30px;
-            font-weight: 600;
-            font-family: 'Oswald', sans-serif;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            cursor: pointer;
         }
         .btn-secondary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
-            background: linear-gradient(90deg, #555, #666);
-        }
-        .font-size-toggle {
-            display: flex;
-            flex-wrap: nowrap;
-            white-space: nowrap;
+            box-shadow: 0 6px 15px rgba(255, 85, 0, 0.5);
+            background: linear-gradient(90deg, #3A3A3A, #4A4A4A);
         }
         .font-size-toggle span {
-            cursor: pointer;
-            margin: 0 0.2rem;
-            padding: 0.4rem 0.7rem;
-            border-radius: 4px;
-            color: #B0B0B0;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            background-color: rgba(255, 255, 255, 0.05);
-            border: 1px solid transparent;
-            flex-shrink: 0;
+          cursor: pointer;
+          margin: 0 0.4rem;
+          padding: 0.4rem 0.7rem;
+          border-radius: 6px;
+          color: #B0B0B0;
+          font-weight: 500;
+          transition: all 0.2s ease;
+          background-color: rgba(255, 255, 255, 0.05);
+          border: 1px solid transparent;
         }
         .font-size-toggle span:hover {
-            background-color: rgba(255, 85, 0, 0.1);
-            color: #FFAA66;
-            border-color: #FF5500;
+          background-color: rgba(255, 85, 0, 0.1);
+          color: #FFAA66;
+          border-color: #FF5500;
         }
         .search-block {
             position: relative;
@@ -737,22 +759,29 @@
 <body class="min-h-screen flex flex-col">
     <!-- Прогресс-бар -->
     <div class="progress-bar" id="progressBar"></div>
-        <header class="py-4 px-4 sm:px-6" id="mainHeader">
-            <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
-                <div class="text-center sm:text-left">
-                    <h1 class="text-2xl sm:text-3xl font-bold text-[#F0F0F0] font-display">NSK<span class="gradient-text">Hub</span></h1>
-                    <p class="text-sm text-[#B0B0B0] font-light mt-1">Нижневартовский Строительный Колледж</p>
-                </div>
-                    <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-                        <div class="font-size-toggle flex items-center bg-surface p-1 rounded-lg">
-                        <span class="text-sm sm:text-base" onclick="changeFontSize('small')"><i class="fas fa-text-height"></i> М</span>
-                        <span class="text-sm sm:text-base" onclick="changeFontSize('medium')"><i class="fas fa-text-height"></i> С</span>
-                        <span class="text-sm sm:text-base" onclick="changeFontSize('large')"><i class="fas fa-text-height"></i> Б</span>
-                    </div>
-                        <a href="index.html" class="btn-primary"><i class="fas fa-arrow-left mr-2"></i> Назад</a>
-                </div>
+
+    <header class="py-4 px-4 sm:px-6" id="mainHeader">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div class="text-center sm:text-left">
+            <h1 class="text-2xl sm:text-3xl font-bold text-[#F0F0F0] font-display">NSK<span class="gradient-text">Hub</span></h1>
+            <p class="text-sm text-[#B0B0B0] font-light mt-1">Нижневартовский Строительный Колледж</p>
+          </div>
+          <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+            <div class="font-size-toggle flex items-center bg-surface p-1 rounded-lg">
+              <span class="text-sm sm:text-base" onclick="changeFontSize('small')"><i class="fas fa-text-height"></i> М</span>
+              <span class="text-sm sm:text-base" onclick="changeFontSize('medium')"><i class="fas fa-text-height"></i> С</span>
+              <span class="text-sm sm:text-base" onclick="changeFontSize('large')"><i class="fas fa-text-height"></i> Б</span>
             </div>
-        </header>
+            <div class="search-block w-full sm:w-auto">
+              <i class="fas fa-search search-icon"></i>
+              <input type="text" class="search-input" placeholder="Поиск по сайту..." id="mainSearch">
+            </div>
+            <a href="index.html" class="nav-link px-3 py-2 rounded-lg hover:bg-surfaceLight transition-colors whitespace-nowrap">
+              <i class="fas fa-arrow-left mr-2"></i> Назад
+            </a>
+          </div>
+        </div>
+  </header>
 
       <main class="flex-1 max-w-7xl mx-auto py-8 px-4 sm:px-6 w-full">
         <div class="text-center mb-8">
@@ -883,16 +912,13 @@
             <h3><i class="fas fa-link"></i> Полезные ссылки</h3>
             <p>
               <a href="https://nsk-sdo.ru/" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Дистанционное обучение</a>
-              <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Профсоюз студентов</a>
-              <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Студенческий совет</a>
               <a href="rules.html" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Устав учреждения</a>
-              <a href="#" class="footer-link"><i class="fas fa-chevron-right text-xs mr-2"></i> Стипендии и льготы</a>
             </p>
           </div>
           <div class="footer-section">
             <h3><i class="fas fa-phone"></i> Контакты</h3>
             <p class="text-[#B0B0B0] font-light">
-              <span class="contact-highlight"><i class="fas fa-phone-alt mr-2"></i> Приёмная:</span> +7 (3466) 67-23-28<br>
+              <span class="contact-highlight mt-3 block"><i class="fas fa-home mr-2"></i> Приёмная:</span> +7 (3466) 67-23-28<br>
               <a href="https://info@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> info@nskcollege.ru</a><br>
               <span class="contact-highlight mt-3 block"><i class="fas fa-home mr-2"></i> Общежитие:</span> +7 (3466) 67-02-38<br>
               <a href="https://hostel@nskcollege.ru" class="footer-link"><i class="fas fa-envelope mr-2"></i> hostel@nskcollege.ru</a>
@@ -910,7 +936,7 @@
             </p>
             <p class="text-xs text-[#777] mt-4">
               © 2025 NSKHub. Все права защищены.<br>
-              <a href="#" class="footer-link hover:underline">Политика конфиденциальности</a>
+              <a href="privacy.html" class="footer-link hover:underline">Политика конфиденциальности</a>
             </p>
           </div>
         </div>
@@ -957,23 +983,28 @@
       </div>
 
     <script>
-        // Переменные для управления скрытием хедера
-        let lastScrollTop = 0;
-        const header = document.querySelector('header');
-        const scrollThreshold = 60;
-
         function changeFontSize(size) {
-          const root = document.documentElement;
-          if (size === 'small') {
-            root.style.fontSize = '12px';
-          } else if (size === 'medium') {
-            root.style.fontSize = '15px';
-          } else if (size === 'large') {
-            root.style.fontSize = '18px';
-          }
-          // Сохраняем настройку в localStorage
-          localStorage.setItem('fontSize', size);
-        }
+      const root = document.documentElement;
+      if (size === 'small') {
+        root.style.fontSize = '12px';
+      } else if (size === 'medium') {
+        root.style.fontSize = '15px';
+      } else if (size === 'large') {
+        root.style.fontSize = '18px';
+      }
+    }
+    document.addEventListener('DOMContentLoaded', (event) => {
+        changeFontSize('medium');
+    });
+
+    // --- Прогресс-бар прокрутки ---
+    window.addEventListener('scroll', () => {
+      const winHeight = window.innerHeight;
+      const docHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.pageYOffset;
+      const scrollPercent = (scrollTop / (docHeight - winHeight)) * 100;
+      document.getElementById('progressBar').style.width = scrollPercent + '%';
+    });
 
         // Основные переменные
         let currentWeek = 1;
@@ -1003,28 +1034,44 @@
             initHeaderHide();
         });
 
-        // Инициализация скрытия хедера при скролле
-        function initHeaderHide() {
-            window.addEventListener('scroll', function() {
-                if (window.innerWidth < 768) { // Только для мобильных
-                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        // --- Скрытие/показ хидера при прокрутке на мобильных ---
+    let lastScrollY = window.scrollY;
+    const header = document.getElementById('mainHeader');
+    const scrollThreshold = 10;
 
-                    if (scrollTop > lastScrollTop && scrollTop > scrollThreshold) {
-                        // Скролл вниз - скрываем хедер
-                        header.classList.add('header-hidden');
-                    } else {
-                        // Скролл вверх - показываем хедер
-                        header.classList.remove('header-hidden');
-                    }
+    window.addEventListener('scroll', () => {
+        const isMobile = window.innerWidth <= 768;
 
-                    lastScrollTop = scrollTop;
-                }
-            });
+        if (!isMobile) {
+            header.classList.remove('header-hidden');
+            return;
         }
+
+        const currentScrollY = window.scrollY;
+
+        if (Math.abs(currentScrollY - lastScrollY) < scrollThreshold) {
+            return;
+        }
+
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            header.classList.add('header-hidden');
+        } else {
+            header.classList.remove('header-hidden');
+        }
+
+        lastScrollY = currentScrollY;
+    });
+
+    // Обработка изменения размера окна
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            header.classList.remove('header-hidden');
+        }
+    });
 
         // Инициализация поиска
         function initSearch() {
-            const searchInput = document.getElementById('searchInput');
+            const searchInput = document.getElementById('mainSearch');
 
             searchInput.addEventListener('input', function(e) {
                 searchTerm = e.target.value.trim().toLowerCase();
